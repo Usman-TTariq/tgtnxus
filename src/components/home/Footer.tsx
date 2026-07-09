@@ -18,16 +18,16 @@ export default function Footer() {
   return (
     <div className="border border-[rgba(3,7,18,0.1)] border-solid relative size-full" data-node-id="61:1913" data-name="wpr footer area start">
       <div className="absolute h-[27px] left-[152px] right-[152px] top-[64px]" data-node-id="61:1914" data-name="List">
-        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:SemiBold'] font-semibold h-[29px] justify-center leading-[0] left-0 text-[#030712] text-[24px] top-[calc(50%-2px)] w-[98.121px]" data-node-id="61:1915">
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold h-[29px] justify-center leading-[0] left-0 text-[#030712] text-[24px] top-[calc(50%-2px)] w-[98.121px]" data-node-id="61:1915">
           <p className="leading-[24px]">About Us</p>
         </div>
-        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:SemiBold'] font-semibold h-[29px] justify-center leading-[0] left-[397.63px] text-[#030712] text-[24px] top-[calc(50%-2px)] w-[90.97px]" data-node-id="61:1916">
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold h-[29px] justify-center leading-[0] left-[397.63px] text-[#030712] text-[24px] top-[calc(50%-2px)] w-[90.97px]" data-node-id="61:1916">
           <p className="leading-[24px]">Services</p>
         </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:SemiBold'] font-semibold justify-center leading-[0] left-[829.11px] text-[#030712] text-[24px] text-center top-[calc(50%-2.5px)] whitespace-nowrap" data-node-id="61:1917">
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] left-[829.11px] text-[#030712] text-[24px] text-center top-[calc(50%-2.5px)] whitespace-nowrap" data-node-id="61:1917">
           <p className="leading-[24px]">Careers</p>
         </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:SemiBold'] font-semibold h-[29px] justify-center leading-[0] left-[1232.97px] text-[#030712] text-[24px] text-center top-[calc(50%-2px)] w-[122.83px]" data-node-id="61:1918">
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold h-[29px] justify-center leading-[0] left-[1232.97px] text-[#030712] text-[24px] text-center top-[calc(50%-2px)] w-[122.83px]" data-node-id="61:1918">
           <p className="leading-[24px]">Our Team</p>
         </div>
         <div className="-translate-y-1/2 absolute bg-[#d1d5db] left-[241.7px] size-[12px] top-1/2" data-node-id="61:1919" data-name="Item" />
@@ -94,13 +94,13 @@ export default function Footer() {
         <div className="absolute bg-[#030712] bottom-[-3px] right-[-3px] size-[6px]" data-node-id="61:1961" data-name="Background" />
       </div>
       <div className="absolute bg-[#030712] left-[-4px] size-[6px] top-[153px]" data-node-id="61:1958" data-name="Background" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:Medium'] font-medium justify-center leading-[0] left-[658.83px] right-[659.17px] text-[16px] text-black text-center top-[666px] whitespace-nowrap" data-node-id="61:1962">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-medium justify-center leading-[0] left-[658.83px] right-[659.17px] text-[16px] text-black text-center top-[666px] whitespace-nowrap" data-node-id="61:1962">
         <p className="leading-[14px]">© 2026 TGTNexus - All Rights Reserved</p>
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:SemiBold'] font-semibold justify-center leading-[0] right-[32px] text-[#030712] text-[14px] text-right top-[666.5px] whitespace-nowrap" data-node-id="61:1964">
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] right-[32px] text-[#030712] text-[14px] text-right top-[666.5px] whitespace-nowrap" data-node-id="61:1964">
         <p className="leading-[normal]">{`Terms & Conditions | Privacy Policy`}</p>
       </div>
-      <div className="[word-break:break-word] absolute font-['Urbanist:SemiBold'] font-semibold h-[24px] leading-[0] left-[32px] right-[1138.98px] text-[#030712] text-[14px] top-[654px]" data-node-id="61:1967" data-name="List">
+      <div className="[word-break:break-word] absolute font-secondary font-semibold h-[24px] leading-[0] left-[32px] right-[1138.98px] text-[#030712] text-[14px] top-[654px]" data-node-id="61:1967" data-name="List">
         <div className="-translate-y-1/2 absolute flex flex-col h-[17px] justify-center left-0 top-[calc(50%+0.5px)] w-[64.618px]" data-node-id="61:1968">
           <p className="leading-[14px]">Instagram</p>
         </div>

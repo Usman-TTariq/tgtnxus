@@ -1,0 +1,498 @@
+/* Inspired by Agenio template — animation layer only, no asset changes */
+
+@keyframes tgtFadeMove {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+}
+
+@keyframes tgtMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes tgtScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tgtFadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tgtFadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tgtFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tgtWordSlide {
+  0%,
+  10% {
+    transform: translateY(0);
+  }
+  12%,
+  22% {
+    transform: translateY(-120px);
+  }
+  24%,
+  34% {
+    transform: translateY(-240px);
+  }
+  36%,
+  46% {
+    transform: translateY(-360px);
+  }
+  48%,
+  58% {
+    transform: translateY(-480px);
+  }
+  60%,
+  70% {
+    transform: translateY(-600px);
+  }
+  72%,
+  82% {
+    transform: translateY(-720px);
+  }
+  84%,
+  100% {
+    transform: translateY(-840px);
+  }
+}
+
+/* Banner arrow pulse tracks */
+.tgt-arrow-track > [data-name="arrow-left.svg"],
+.tgt-arrow-track > [data-name="arrow-right.svg"] {
+  animation: tgtFadeMove 1.2s infinite;
+}
+
+/* Top track (FUTURE) — pulse flows right to left */
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(1) {
+  animation-delay: 0.9s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(3) {
+  animation-delay: 0.7s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(6) {
+  animation-delay: 0.4s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(7) {
+  animation-delay: 0.3s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(8) {
+  animation-delay: 0.2s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(9) {
+  animation-delay: 0.1s;
+}
+.tgt-arrow-track > [data-name="arrow-left.svg"]:nth-child(10) {
+  animation-delay: 0s;
+}
+
+/* Bottom track (WE BUILD) — pulse flows left to right */
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(1) {
+  animation-delay: 0s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(7) {
+  animation-delay: 0.6s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(8) {
+  animation-delay: 0.7s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(9) {
+  animation-delay: 0.8s;
+}
+.tgt-arrow-track > [data-name="arrow-right.svg"]:nth-child(10) {
+  animation-delay: 0.9s;
+}
+
+/* CTA arrow pulse */
+.tgt-cta-arrow-1 {
+  animation: tgtFadeMove 1.2s infinite 0.6s;
+}
+.tgt-cta-arrow-2 {
+  animation: tgtFadeMove 1.2s infinite 0.3s;
+}
+.tgt-cta-arrow-3 {
+  animation: tgtFadeMove 1.2s infinite 0s;
+}
+
+/* Banner entrance animations */
+.tgt-animate-scale-in {
+  animation: tgtScaleIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+.tgt-animate-fade-left {
+  animation: tgtFadeInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+.tgt-animate-fade-right {
+  animation: tgtFadeInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+.tgt-animate-fade-up {
+  animation: tgtFadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+}
+
+.tgt-animate-shape-left {
+  animation: tgtFadeInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+}
+
+.tgt-animate-shape-right {
+  animation: tgtFadeInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+}
+
+/* Rotating banner words */
+.tgt-word-rotator-inner {
+  animation: tgtWordSlide 14s linear infinite;
+  will-change: transform;
+}
+
+/* Brand marquee */
+.tgt-brand-marquee-viewport {
+  overflow: hidden;
+  position: relative;
+}
+
+.tgt-brand-marquee-inner {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.tgt-brand-marquee-item {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  border-left: 1px solid rgba(3, 7, 18, 0.1);
+  border-right: 1px solid rgba(3, 7, 18, 0.1);
+}
+
+/* Banner CTA button */
+.tgt-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  min-width: 337px;
+  height: 68px;
+  padding: 8px 28px 8px 78px;
+  border-radius: 12px;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  background:
+    radial-gradient(62.56% 62.56% at 28.14% -10.42%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(147.64deg, #555555 21.13%, #2f2f2f 80.53%);
+  box-shadow:
+    0 3px 3px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -3px 0 #1a1a1a,
+    inset 0 -4px 0 1px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tgt-banner-cta:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -3px 0 #1a1a1a,
+    inset 0 -4px 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.tgt-banner-cta-label {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.tgt-banner-cta .tgt-btn-icon-inner {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 52px;
+  pointer-events: none;
+}
+
+.tgt-banner-cta .tgt-btn-icon-track {
+  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  gap: 16px;
+  overflow: hidden;
+  background: linear-gradient(178.82deg, #ff4343 1.01%, #ba161c 100%);
+  box-shadow:
+    4px 8px 2px rgba(0, 0, 0, 0.08),
+    inset 0 -2px 0.5px #490000,
+    inset 0 1px 0 #ffffff;
+  transition: width 0.4s ease, padding 0.4s ease;
+}
+
+.tgt-banner-cta .tgt-btn-arrow {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tgt-banner-cta .tgt-btn-arrow img {
+  width: 19px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+}
+
+.tgt-banner-cta .tgt-btn-arrow-fixed img {
+  filter: brightness(0) invert(1);
+}
+
+.tgt-banner-cta .tgt-btn-arrow:not(.tgt-btn-arrow-fixed) {
+  display: none;
+}
+
+.tgt-banner-cta:hover .tgt-btn-icon-track {
+  width: calc(100% - 12px);
+  padding: 0 22px 0 16px;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.tgt-banner-cta:hover .tgt-btn-arrow:not(.tgt-btn-arrow-fixed) {
+  display: flex;
+}
+
+.tgt-banner-cta .tgt-btn-arrow:not(.tgt-btn-arrow-fixed) img {
+  opacity: 0;
+}
+
+.tgt-banner-cta:hover .tgt-btn-arrow img {
+  opacity: 0.15;
+  animation: tgtFadeMove 1.2s infinite;
+}
+
+.tgt-banner-cta:hover .tgt-btn-arrow.tgt-btn-arrow-fixed img {
+  opacity: 1;
+  animation: none;
+}
+
+.tgt-banner-cta:hover .tgt-btn-arrow:nth-child(2) img {
+  animation-delay: 0.1s;
+}
+.tgt-banner-cta:hover .tgt-btn-arrow:nth-child(3) img {
+  animation-delay: 0.2s;
+}
+.tgt-banner-cta:hover .tgt-btn-arrow:nth-child(4) img {
+  animation-delay: 0.3s;
+}
+.tgt-banner-cta:hover .tgt-btn-arrow:nth-child(5) img {
+  animation-delay: 0.4s;
+}
+.tgt-banner-cta:hover .tgt-btn-arrow:nth-child(6) img {
+  animation-delay: 0.5s;
+}
+.tgt-banner-cta:hover .tgt-btn-arrow:nth-child(7) img {
+  animation-delay: 0.6s;
+}
+
+/* Button icon hover — arrow cascade (legacy figma buttons) */
+.tgt-btn-with-icon:not(.tgt-banner-cta) .tgt-btn-icon-track {
+  overflow: hidden;
+  transition: width 0.4s ease;
+}
+
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track {
+  width: 100% !important;
+}
+
+.tgt-btn-with-icon:not(.tgt-banner-cta) .tgt-btn-icon-track [data-name="button-arrow.svg"] img {
+  animation: none;
+  opacity: 1;
+}
+
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track [data-name="button-arrow.svg"] img {
+  opacity: 0.15;
+  animation: tgtFadeMove 1.2s infinite;
+}
+
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track > [data-name="button-arrow.svg"]:nth-child(1) img {
+  animation-delay: 0.5s;
+}
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track > [data-name="button-arrow.svg"]:nth-child(2) img {
+  animation-delay: 0.4s;
+}
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track > [data-name="button-arrow.svg"]:nth-child(3) img {
+  animation-delay: 0.3s;
+}
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track > [data-name="button-arrow.svg"]:nth-child(4) img {
+  animation-delay: 0.2s;
+}
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track > [data-name="button-arrow.svg"]:nth-child(5) img {
+  animation-delay: 0.1s;
+}
+.tgt-btn-with-icon:not(.tgt-banner-cta):hover .tgt-btn-icon-track > [data-name="button-arrow.svg"]:nth-child(6) img {
+  animation-delay: 0s;
+}
+
+/* Scroll reveal — initial state before GSAP */
+.tgt-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.tgt-reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.tgt-reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+/* Image parallax wrapper */
+.tgt-parallax-wrap {
+  overflow: hidden;
+}
+
+/* Preloader */
+.tgt-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #060606;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  clip-path: inset(0 0 0 var(--tgt-preloader-clip, 0%));
+  transition: clip-path 0.3s ease;
+}
+
+.tgt-preloader.tgt-preloader-done {
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.tgt-preloader-name {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: #fff;
+  letter-spacing: 0.2em;
+  margin-bottom: 40px;
+}
+
+.tgt-preloader-name span {
+  color: #ff0d16;
+}
+
+.tgt-preloader-bars {
+  display: flex;
+  gap: 8px;
+  width: 280px;
+}
+
+.tgt-preloader-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.tgt-preloader-bar-inner {
+  height: 100%;
+  width: 0;
+  background: #ff0d16;
+}

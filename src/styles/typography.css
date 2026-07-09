@@ -1,0 +1,138 @@
+/* Agenio template typography — Space Grotesk (primary) + Urbanist (secondary) */
+
+:root {
+  --font-primary: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-secondary: var(--font-urbanist), "Urbanist", sans-serif;
+  --font-size-b1: 16px;
+  --font-size-b2: 16px;
+  --font-size-b3: 22px;
+  --h1: 100px;
+  --h2: 64px;
+  --h3: 48px;
+  --h4: 40px;
+  --h5: 30px;
+  --h6: 24px;
+}
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-secondary {
+  font-family: var(--font-secondary);
+}
+
+.second-font {
+  font-family: var(--font-secondary);
+}
+
+.font-semi-bold {
+  font-weight: 600;
+}
+
+.text-normal {
+  text-transform: none !important;
+}
+
+/* Section label — .sub-title */
+.tgt-sub-title {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Banner h1 / rotating words */
+.tgt-banner-title {
+  font-family: var(--font-primary);
+  font-size: 120px;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.tgt-banner-desc {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Section h2 — Urbanist semibold, capitalize */
+.tgt-section-title {
+  font-family: var(--font-secondary);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  text-transform: capitalize;
+}
+
+/* About quote block */
+.tgt-about-quote {
+  font-family: var(--font-secondary);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+/* Body / desc text */
+.tgt-body-text {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.tgt-body-muted {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* Stat h4 */
+.tgt-stat-title {
+  font-family: var(--font-secondary);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Marquee */
+.tgt-marquee-title {
+  font-family: var(--font-primary);
+  font-size: 120px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Brand sidebar label */
+.tgt-brand-label {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Service card number */
+.tgt-service-number {
+  font-family: var(--font-primary);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Button label */
+.tgt-btn-text {
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}

@@ -1,0 +1,112 @@
+/* Marquee — Agenio wpr-marquee-area */
+
+.tgt-marquee-area {
+  position: relative;
+  width: 100%;
+  height: 363px;
+  border-top: 1px solid #dbdcdf;
+  border-bottom: 1px solid #dbdcdf;
+  background: #fff;
+}
+
+.tgt-marquee-container {
+  height: 100%;
+  padding: 0 160px;
+}
+
+.tgt-marquee-inner {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(3, 7, 18, 0.1);
+}
+
+.tgt-marquee-inner.border-1 {
+  border: 1px solid rgba(3, 7, 18, 0.1);
+}
+
+.tgt-marquee-text-wrapper {
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+.tgt-marquee-text-wrapper.first-text {
+  transform: translateX(-40%);
+}
+
+.tgt-marquee-text-wrapper + .tgt-marquee-text-wrapper {
+  border-top: 1px solid rgba(3, 7, 18, 0.1);
+}
+
+.tgt-scrollingtext-1,
+.tgt-scrollingtext-2,
+.text-split {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.tgt-marquee-title,
+.title {
+  display: flex;
+  align-items: center;
+  min-width: max-content;
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 120px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #030712;
+}
+
+.tgt-marquee-title span span,
+.title span span {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 50px;
+}
+
+.tgt-marquee-title img,
+.title img {
+  display: block;
+  width: 38px;
+  height: auto;
+}
+
+@media (max-width: 991px) {
+  .tgt-marquee-container {
+    padding: 0 24px;
+  }
+
+  .tgt-marquee-title,
+  .title {
+    font-size: 72px;
+  }
+
+  .tgt-marquee-title span span,
+  .title span span {
+    margin: 0 28px;
+  }
+
+  .tgt-marquee-title img,
+  .title img {
+    width: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tgt-marquee-area {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .tgt-marquee-title,
+  .title {
+    font-size: 52px;
+  }
+
+  .tgt-marquee-text-wrapper.first-text {
+    transform: translateX(-25%);
+  }
+}

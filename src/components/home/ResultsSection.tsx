@@ -6,7 +6,7 @@ export default function ResultsSection() {
   return (
     <div className="relative w-full h-full" data-node-id="24:14">
       <div className="absolute border-[#dee2e6] border-solid border-t h-[95px] left-0 right-0 top-0" data-node-id="3:3753" data-name="Item">
-        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:Medium'] font-medium justify-center leading-[0] left-[56px] right-[232px] text-[#535353] text-[18px] top-[47px]" data-node-id="3:3754">
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-medium justify-center leading-[0] left-[56px] right-[232px] text-[#535353] text-[18px] top-[47px]" data-node-id="3:3754">
           <p className="leading-[21px] mb-0">OUR RESULTS SPEAK FOR THEMSELVES. EACH NUMBER</p>
           <p className="leading-[21px]">REPRESENTS THE TRUST WE'VE BUILT.</p>
         </div>
@@ -18,10 +18,10 @@ export default function ResultsSection() {
           </div>
         </div>
         <div className="-translate-y-1/2 [word-break:break-word] absolute contents leading-[0] left-[148px] top-1/2" data-node-id="20:11">
-          <div className="-translate-y-1/2 absolute capitalize flex flex-col font-['Urbanist:SemiBold'] font-semibold justify-center left-[148px] right-[301px] text-[#030712] text-[40px] top-[40px] whitespace-nowrap" data-node-id="3:3773">
+          <div className="-translate-y-1/2 absolute capitalize flex flex-col font-secondary font-semibold justify-center left-[148px] right-[301px] text-[#030712] text-[40px] top-[40px] whitespace-nowrap" data-node-id="3:3773">
             <p className="leading-[36px]">Strategic Guidance</p>
           </div>
-          <div className="-translate-y-1/2 absolute flex flex-col font-['Urbanist:Medium'] font-medium justify-center left-[148px] text-[#6b7280] text-[20px] top-[calc(50%+22.5px)] w-[573px]" data-node-id="3:3781">
+          <div className="-translate-y-1/2 absolute flex flex-col font-secondary font-medium justify-center left-[148px] text-[#6b7280] text-[20px] top-[calc(50%+22.5px)] w-[573px]" data-node-id="3:3781">
             <p className="leading-[24px]">Providing insightful guidance and strategic direction to help you achieve your business objectives and outshine the competition.</p>
           </div>
         </div>
@@ -33,10 +33,10 @@ export default function ResultsSection() {
           </div>
         </div>
         <div className="-translate-y-1/2 [word-break:break-word] absolute contents leading-[0] left-[148px] top-1/2" data-node-id="20:12">
-          <div className="-translate-y-1/2 absolute flex flex-col font-['Urbanist:Medium'] font-medium justify-center left-[148px] text-[#6b7280] text-[20px] top-[calc(50%+22.5px)] w-[566px]" data-node-id="3:3826">
+          <div className="-translate-y-1/2 absolute flex flex-col font-secondary font-medium justify-center left-[148px] text-[#6b7280] text-[20px] top-[calc(50%+22.5px)] w-[566px]" data-node-id="3:3826">
             <p className="leading-[24px]">Round-the-clock assistance, ensuring that your needs are met anytime, anywhere, with our 24/7 dedicated support.</p>
           </div>
-          <div className="-translate-y-1/2 absolute capitalize flex flex-col font-['Urbanist:SemiBold'] font-semibold justify-center left-[148px] right-[411px] text-[#030712] text-[40px] top-[40px] whitespace-nowrap" data-node-id="8:120">
+          <div className="-translate-y-1/2 absolute capitalize flex flex-col font-secondary font-semibold justify-center left-[148px] right-[411px] text-[#030712] text-[40px] top-[40px] whitespace-nowrap" data-node-id="8:120">
             <p className="leading-[36px]">24/7 Support</p>
           </div>
         </div>
@@ -48,10 +48,10 @@ export default function ResultsSection() {
           </div>
         </div>
         <div className="-translate-y-1/2 [word-break:break-word] absolute contents leading-[0] left-[148px] top-1/2" data-node-id="20:13">
-          <div className="-translate-y-1/2 absolute flex flex-col font-['Urbanist:Medium'] font-medium justify-center left-[148px] text-[#6b7280] text-[20px] top-[calc(50%+22.5px)] w-[566px]" data-node-id="3:3856">
+          <div className="-translate-y-1/2 absolute flex flex-col font-secondary font-medium justify-center left-[148px] text-[#6b7280] text-[20px] top-[calc(50%+22.5px)] w-[566px]" data-node-id="3:3856">
             <p className="leading-[24px]">Unleash your imagination and let us create a bespoke solution that perfectly aligns with your specific needs and aspirations.</p>
           </div>
-          <div className="-translate-y-1/2 absolute capitalize flex flex-col font-['Urbanist:SemiBold'] font-semibold justify-center left-[148px] right-[357px] text-[#030712] text-[40px] top-[40px] whitespace-nowrap" data-node-id="19:10">
+          <div className="-translate-y-1/2 absolute capitalize flex flex-col font-secondary font-semibold justify-center left-[148px] right-[357px] text-[#030712] text-[40px] top-[40px] whitespace-nowrap" data-node-id="19:10">
             <p className="leading-[36px]">Custom Request</p>
           </div>
         </div>

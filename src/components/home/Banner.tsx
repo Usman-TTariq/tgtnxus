@@ -13,38 +13,8 @@ const imgVector1 = "https://www.figma.com/api/mcp/asset/00200bfe-e156-4ea4-a026-
 const imgVector2 = "https://www.figma.com/api/mcp/asset/ab409430-cad2-4a10-86ab-0f5f4cddb11e";
 const imgVector3 = "https://www.figma.com/api/mcp/asset/4528c06c-bef0-4098-9fb0-b67ca1452993";
 
-type Component1Props = {
-  className?: string;
-  property1?: "Frame 1";
-};
-
-function Component1({ className, property1 = "Frame 1" }: Component1Props) {
-  return (
-    <div className={className || "h-[135px] overflow-clip relative w-[611px]"} data-node-id="3:3612">
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-1/2 top-[67.5px]" data-node-id="3:3506" style={{ backgroundImage: "linear-gradient(148.1349942825198deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Innovation</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-[calc(50%-0.5px)] top-[263.5px]" data-node-id="3:3508" style={{ backgroundImage: "linear-gradient(144.06531103106215deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Websites</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-1/2 top-[459.5px]" data-node-id="3:3509" style={{ backgroundImage: "linear-gradient(138.87594318139713deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Brands</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-1/2 top-[655.5px]" data-node-id="3:3510" style={{ backgroundImage: "linear-gradient(146.917692454971deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Solutions</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-1/2 top-[851.5px]" data-node-id="3:3511" style={{ backgroundImage: "linear-gradient(141.9360211690506deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Success</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-[calc(50%-0.5px)] top-[1047.5px]" data-node-id="3:3512" style={{ backgroundImage: "linear-gradient(140.5773944653033deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Growth</p>
-      </div>
-      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-clip-text flex flex-col justify-center left-[calc(50%-0.5px)] top-[1243.5px]" data-node-id="3:3513" style={{ backgroundImage: "linear-gradient(137.0503457383297deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[134.108px]">Future</p>
-      </div>
-    </div>
-  );
-}
+import BannerWordRotator from "./BannerWordRotator";
+import BannerCtaButton from "./BannerCtaButton";
 
 export default function Banner() {
   return (
@@ -57,12 +27,12 @@ export default function Banner() {
         </div>
         <div className="-translate-x-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-dashed border-l border-r bottom-[70%] left-[calc(50%-60px)] top-0 w-[100px]" data-node-id="3:2940" data-name="Background+Border" />
         <div className="absolute h-[303px] left-0 right-[-1px] top-[172px]" data-node-id="3:2941" data-name="Heading 1">
-          <div className="-translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%-57.5px)] rounded-[21px] size-[304px] top-[calc(50%-0.5px)]" data-node-id="3:3438">
+          <div className="-translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%-57.5px)] rounded-[21px] size-[304px] top-[calc(50%-0.5px)] tgt-animate-scale-in" data-node-id="3:3438">
             <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[21px] size-full" src={imgRectangle39989} />
           </div>
-          <div className="-translate-y-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-b border-dashed border-t h-[201px] left-[894px] right-0 top-1/2" data-node-id="3:2943" data-name="Background+Border">
-            <Component1 className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute font-['Space_Grotesk:Medium'] font-medium h-[135px] leading-[0] left-1/2 overflow-clip text-[122px] text-[transparent] text-center top-1/2 tracking-[-7.5412px] uppercase w-[611px] whitespace-nowrap" />
-            <div className="absolute h-[16px] left-[-0.71%] overflow-clip right-0 top-[-35px]" data-node-id="3:2945" data-name="Container">
+          <div className="-translate-y-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-b border-dashed border-t h-[201px] left-[894px] right-0 top-1/2 tgt-animate-fade-right" data-node-id="3:2943" data-name="Background+Border">
+            <BannerWordRotator className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 w-[611px]" />
+            <div className="absolute h-[16px] left-[-0.71%] overflow-clip right-0 top-[-35px] tgt-arrow-track" data-node-id="3:2945" data-name="Container">
               <div className="-translate-y-1/2 absolute h-[16px] left-[-17.47px] opacity-15 overflow-clip top-1/2 w-[13px]" data-node-id="3:2946" data-name="arrow-left.svg">
                 <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[16px] left-1/2 overflow-clip top-1/2 w-[13px]" data-node-id="3:2947" data-name="arrow-left.svg">
                   <div className="absolute contents inset-[0_2.57%_0_0]" data-node-id="3:2948" data-name="Mask group">
@@ -202,11 +172,11 @@ export default function Banner() {
             <div className="absolute bg-[#030712] left-[-3px] size-[6px] top-[-3px]" data-node-id="3:3122" data-name="Background" />
             <div className="absolute bg-[#030712] bottom-[-3.04px] left-[-3px] size-[6px]" data-node-id="3:3123" data-name="Background" />
           </div>
-          <div className="-translate-y-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-b border-dashed border-t h-[201px] left-0 right-[1009px] top-1/2" data-node-id="3:3124" data-name="Background+Border">
-            <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute bg-clip-text flex flex-col font-['Space_Grotesk:Medium'] font-medium justify-center leading-[0] left-[calc(50%+0.5px)] text-[122px] text-[transparent] text-center top-[97.98px] tracking-[-7.9842px] uppercase whitespace-nowrap" data-node-id="3:3125" style={{ backgroundImage: "linear-gradient(147.02860246353544deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-              <p className="leading-[141.985px]">We BUILD</p>
+          <div className="-translate-y-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-b border-dashed border-t h-[201px] left-0 right-[1009px] top-1/2 tgt-animate-fade-left" data-node-id="3:3124" data-name="Background+Border">
+            <div className="tgt-banner-title -translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute bg-clip-text flex flex-col justify-center left-[calc(50%+0.5px)] text-transparent text-center top-[97.98px] whitespace-nowrap" data-node-id="3:3125" style={{ backgroundImage: "linear-gradient(147.02860246353544deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
+              <p>We BUILD</p>
             </div>
-            <div className="absolute bottom-[-35px] h-[16px] left-0 overflow-clip right-[1.36%]" data-node-id="3:3126" data-name="Container">
+            <div className="absolute bottom-[-35px] h-[16px] left-0 overflow-clip right-[1.36%] tgt-arrow-track" data-node-id="3:3126" data-name="Container">
               <div className="-translate-y-1/2 absolute h-[16px] opacity-15 overflow-clip right-[557.06px] top-[calc(50%+0.04px)] w-[13px]" data-node-id="3:3127" data-name="arrow-right.svg">
                 <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[16px] left-1/2 overflow-clip top-1/2 w-[13px]" data-node-id="3:3128" data-name="arrow-right.svg">
                   <div className="absolute contents inset-[0_2.56%_0_0]" data-node-id="3:3129" data-name="Mask group">
@@ -311,68 +281,11 @@ export default function Banner() {
             <div className="absolute bg-[#030712] bottom-[-3.04px] right-[-3px] size-[6px]" data-node-id="3:3304" data-name="Background" />
           </div>
         </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:Medium'] font-medium justify-center leading-[0] left-[calc(50%-57.5px)] text-[#030712] text-[20px] text-center top-[572px] w-[665px]" data-node-id="3:3305">
+        <div className="tgt-banner-desc -translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col justify-center left-[calc(50%-57.5px)] text-[#030712] text-center top-[572px] w-[665px] tgt-animate-fade-up" data-node-id="3:3305">
           <p className="leading-[24px]">At TGT Nexus, we are committed to helping businesses thrive in the digital age. Our expert team leverages cutting-edge technologies to drive your growth, providing tailored solutions designed to meet your unique business needs. Whether it’s strategic guidance or round-the-clock support, we’re here to ensure your success at every step of the journey.</p>
         </div>
-        <div className="absolute contents left-[573px] right-[688px] top-[664px]" data-node-id="3:3505">
-          <div className="absolute h-[68px] left-[574px] overflow-clip right-[689px] rounded-[12px] shadow-[0px_3px_3px_0px_rgba(0,0,0,0.1)] top-[664px]" data-node-id="3:3308" data-name="Link">
-            <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[12px]" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg viewBox='0 0 337 68' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(21.083 0 0 4.2541 94.832 -7.0856)'><stop stop-color='rgba(255,255,255,0.2)' offset='0'/><stop stop-color='rgba(255,255,255,0)' offset='1'/></radialGradient></defs></svg>\"), linear-gradient(147.64055574615466deg, rgb(85, 85, 85) 21.13%, rgb(47, 47, 47) 80.53%)" }} />
-            <div className="-translate-y-1/2 absolute h-[52px] left-[1.87%] overflow-clip right-[82.7%] rounded-[8px] shadow-[4px_8px_2px_0px_rgba(0,0,0,0.08)] top-1/2" data-node-id="3:3309" data-name="Background+Shadow">
-              <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[8px]" style={{ backgroundImage: "linear-gradient(178.81999996724733deg, rgb(255, 67, 67) 1.01%, rgb(186, 22, 28) 100%)" }} />
-              <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[26px] left-[calc(50%+0.7px)] overflow-clip top-1/2 w-[20px]" data-node-id="3:3310" data-name="button-arrow.svg">
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[28px] left-[calc(50%-0.2px)] overflow-clip top-[calc(50%+1.49px)] w-[27px]" data-node-id="3:3311" data-name="button-arrow.svg">
-                  <div className="absolute contents inset-[0_14.81%_14.29%_14.81%]" data-node-id="3:3312" data-name="Mask group">
-                    <div className="absolute inset-[-14.29%_-3.7%_0_-11.11%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[7px_4px] mask-size-[19px_24px]" data-node-id="3:3324" style={{ maskImage: `url("${imgGroup4}")` }} data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup5} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="-translate-y-1/2 absolute h-[19.7px] left-[86px] overflow-clip top-[calc(50%+1.49px)] w-[19px]" data-node-id="3:3342" data-name="button-arrow.svg">
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[28px] left-1/2 overflow-clip top-1/2 w-[27px]" data-node-id="3:3343" data-name="button-arrow.svg">
-                  <div className="absolute contents inset-[0_14.81%_14.29%_14.81%]" data-node-id="3:3344" data-name="Mask group">
-                    <div className="absolute inset-[-14.29%_-3.7%_0_-11.11%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[7px_4px] mask-size-[19px_24px]" data-node-id="3:3356" style={{ maskImage: `url("${imgGroup4}")` }} data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="-translate-y-1/2 absolute h-[19.7px] left-[121px] overflow-clip top-[calc(50%+1.49px)] w-[19px]" data-node-id="3:3358" data-name="button-arrow.svg">
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[28px] left-1/2 overflow-clip top-1/2 w-[27px]" data-node-id="3:3359" data-name="button-arrow.svg">
-                  <div className="absolute contents inset-[0_14.81%_14.29%_14.81%]" data-node-id="3:3360" data-name="Mask group">
-                    <div className="absolute inset-[-14.29%_-3.7%_0_-11.11%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[7px_4px] mask-size-[19px_24px]" data-node-id="3:3372" style={{ maskImage: `url("${imgGroup4}")` }} data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="-translate-y-1/2 absolute h-[19.7px] left-[156px] overflow-clip top-[calc(50%+1.49px)] w-[19px]" data-node-id="3:3374" data-name="button-arrow.svg">
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[28px] left-1/2 overflow-clip top-1/2 w-[27px]" data-node-id="3:3375" data-name="button-arrow.svg">
-                  <div className="absolute contents inset-[0_14.81%_14.29%_14.81%]" data-node-id="3:3376" data-name="Mask group">
-                    <div className="absolute inset-[-14.29%_-3.7%_0_-11.11%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[7px_4px] mask-size-[19px_24px]" data-node-id="3:3388" style={{ maskImage: `url("${imgGroup4}")` }} data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="-translate-y-1/2 absolute h-[19.7px] left-[191px] overflow-clip top-[calc(50%+1.49px)] w-[19px]" data-node-id="3:3390" data-name="button-arrow.svg">
-                <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[28px] left-1/2 overflow-clip top-1/2 w-[27px]" data-node-id="3:3391" data-name="button-arrow.svg">
-                  <div className="absolute contents inset-[0_14.81%_14.29%_14.81%]" data-node-id="3:3392" data-name="Mask group">
-                    <div className="absolute inset-[-14.29%_-3.7%_0_-11.11%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[7px_4px] mask-size-[19px_24px]" data-node-id="3:3404" style={{ maskImage: `url("${imgGroup4}")` }} data-name="Group">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup6} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_-2px_0.5px_0px_#490000,inset_0px_1px_0px_0px_white]" />
-            </div>
-            <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Urbanist:SemiBold'] font-semibold justify-center leading-[0] left-[calc(50%-96.5px)] text-[18px] text-white top-1/2 uppercase whitespace-nowrap" data-node-id="3:3406">
-              <p className="leading-[18px]">Start your journey today</p>
-            </div>
-            <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.6),inset_0px_-3px_0px_0px_#1a1a1a,inset_0px_-4px_0px_1px_rgba(255,255,255,0.1)]" />
-          </div>
-        </div>
-        <div className="absolute h-[223px] left-0 overflow-clip top-0 w-[261px]" data-node-id="3:3407" data-name="shape-01.svg">
+        <BannerCtaButton className="-translate-x-1/2 absolute left-1/2 top-[664px] tgt-animate-fade-up" />
+        <div className="absolute h-[223px] left-0 overflow-clip top-0 w-[261px] tgt-animate-shape-left" data-node-id="3:3407" data-name="shape-01.svg">
           <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[223px] left-1/2 top-1/2 w-[261px]" data-node-id="3:3408" data-name="shape-01.svg">
             <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgShape01Svg} />
           </div>

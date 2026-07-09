@@ -1,0 +1,185 @@
+/* Service cards — Agenio hover transition */
+
+.tgt-services-grid {
+  display: flex;
+  border-top: 1px solid rgba(3, 7, 18, 0.1);
+}
+
+.tgt-service-card {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 25%;
+  height: 665px;
+  overflow: hidden;
+  border-right: 1px solid rgba(3, 7, 18, 0.1);
+  transition: all 0.4s ease;
+}
+
+.tgt-service-card:last-child {
+  border-right: none;
+}
+
+.tgt-service-card::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 101%;
+  height: 101%;
+  top: 49%;
+  left: 51%;
+  background: #fff;
+  transform: translate(-51%, -49%) scale(1);
+  opacity: 1;
+  transition: all 0.8s ease;
+  pointer-events: none;
+}
+
+.tgt-service-card:hover::after {
+  transform: translate(-51%, -49%) scale(0);
+  opacity: 0;
+}
+
+.tgt-service-card-image {
+  position: absolute;
+  inset: 0;
+}
+
+.tgt-service-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: all 0.8s ease;
+}
+
+.tgt-service-card:hover .tgt-service-card-image img {
+  transform: scale(1.15);
+}
+
+.tgt-service-card-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 24px 36px;
+  pointer-events: none;
+}
+
+.tgt-service-card-tag {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  max-width: max-content;
+  margin-bottom: 15px;
+  padding: 6px 8px 5px 28px;
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #f9fafb;
+  background: #030712;
+  transition: all 0.4s ease;
+}
+
+.tgt-service-card-tag::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  background: #ff0d16;
+}
+
+.tgt-service-card-desc {
+  font-family: var(--font-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.tgt-service-card:hover .tgt-service-card-tag {
+  color: #030712;
+  background: #f3f4f6;
+}
+
+.tgt-service-card:hover .tgt-service-card-desc {
+  opacity: 1;
+  color: #d1d5db;
+}
+
+.tgt-service-card-number {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-size: clamp(120px, 14vw, 200px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(3, 7, 18, 0.1);
+  transition: all 0.4s ease;
+}
+
+.tgt-service-card:hover .tgt-service-card-number {
+  color: rgba(249, 250, 251, 0.8);
+}
+
+.tgt-service-card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tgt-service-card-list {
+  margin: 0;
+  padding: 0 0 0 16px;
+  list-style: none;
+  border-left: 2px solid #ff0d16;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tgt-service-card-list li {
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  color: #030712;
+  transition: all 0.4s ease;
+}
+
+.tgt-service-card:hover .tgt-service-card-list li {
+  color: #f9fafb;
+}
+
+.tgt-service-card-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: auto;
+  background:
+    radial-gradient(62.56% 62.56% at 28.14% -10.42%, #fff 0%, rgba(255, 255, 255, 0) 100%),
+    #fff;
+  box-shadow:
+    0 3px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0  -5px 0 #e4e4e4,
+    inset 0 -6px 0 1px #fafafa;
+  transition: all 0.4s ease;
+}
+
+.tgt-service-card:hover .tgt-service-card-btn {
+  opacity: 1;
+}
