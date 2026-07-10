@@ -15,6 +15,11 @@ const urbanist = Urbanist({
 export const metadata: Metadata = {
   title: "TGT Nexus",
   description: "TGT Nexus - Full-service web development and design company",
+  icons: {
+    icon: "/assets/logo-mark.svg",
+    shortcut: "/assets/logo-mark.svg",
+    apple: "/assets/logo-mark.svg",
+  },
 };
 
 export default function RootLayout({

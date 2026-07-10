@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { LOGO_MARK, LOGO_TYPE } from "@/lib/brand";
 
 const imgGreenLeft = "https://www.figma.com/api/mcp/asset/1435748f-c8bf-41b7-afdf-f1c58f068308";
 const imgGreenRight = "https://www.figma.com/api/mcp/asset/1e6dc01d-5914-4fb3-ba06-416336d11993";
-const imgLogoMark = "https://www.figma.com/api/mcp/asset/9c0c11cf-5722-4974-be02-466b4a7aebec";
-const imgLogoType = "https://www.figma.com/api/mcp/asset/fe6d99e8-a818-4dd5-bdd4-86a142564055";
 
 const NAV_ITEMS: { label: string; href: string; active?: boolean }[] = [
   { label: "HOME", href: "#", active: true },
@@ -61,8 +60,8 @@ export default function Header() {
             <div className="left-area square-dot">
               <div className="logo-area">
                 <Link href="/" className="logo" onClick={closeMenu}>
-                  <img className="logo-mark" src={imgLogoMark} alt="TGT Nexus" width={28} height={28} />
-                  <img className="logo-type" src={imgLogoType} alt="" aria-hidden width={120} height={20} />
+                  <img className="logo-mark" src={LOGO_MARK} alt="TGT Nexus" width={28} height={28} />
+                  <img className="logo-type" src={LOGO_TYPE} alt="" aria-hidden width={120} height={20} />
                 </Link>
               </div>
               <span className="square-shape top-left" aria-hidden />
