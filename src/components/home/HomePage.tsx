@@ -53,7 +53,7 @@ export default function HomePage() {
       <div className="tgt-home-slot tgt-home-slot--contact absolute top-[8259px] left-[160px] w-[1760px] h-[703px] tgt-reveal">
         <ContactSection />
       </div>
-      <div className="tgt-home-slot tgt-home-slot--footer absolute top-[8985px] left-[160px] w-[1600px] h-[704px] tgt-reveal">
+      <div className="tgt-home-slot tgt-home-slot--footer absolute top-[8985px] left-[160px] w-[1600px] min-h-[704px] tgt-reveal">
         <Footer />
       </div>
     </div>

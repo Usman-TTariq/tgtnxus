@@ -1,6 +1,8 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { createAdminClient, type ApplicationRow } from "@/lib/supabase/admin";
 
 export async function getApplications(): Promise<ApplicationRow[]> {
+  noStore();
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("applications")
@@ -15,6 +17,7 @@ export async function getApplications(): Promise<ApplicationRow[]> {
 }
 
 export async function getSavedApplications(): Promise<ApplicationRow[]> {
+  noStore();
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("applications")

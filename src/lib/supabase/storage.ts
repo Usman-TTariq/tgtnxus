@@ -18,11 +18,7 @@ export async function ensureResumeBucket(supabase: SupabaseClient) {
     {
       public: true,
       fileSizeLimit: 5 * 1024 * 1024,
-      allowedMimeTypes: [
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      ],
+      allowedMimeTypes: ["application/pdf"],
     }
   );
 

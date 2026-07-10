@@ -52,10 +52,7 @@ export default async function AdminSavedPage() {
           </p>
         </div>
       ) : (
-        <ApplicationsTable
-          applications={applications}
-          refreshOnSaveToggle
-        />
+        <ApplicationsTable applications={applications} />
       )}
     </div>
   );

@@ -1,69 +1,166 @@
-const imgShape01Svg = "https://www.figma.com/api/mcp/asset/55a609a4-fc0b-433f-8ef3-7b6612465390";
-const imgShape02Svg = "https://www.figma.com/api/mcp/asset/0ab2f6a0-cef7-47e2-881f-b1006c31f6fa";
+const imgShape01Svg = "/agenio/assets/images/logo/shape-01.svg";
+const imgShape02Svg = "/agenio/assets/images/logo/shape-02.svg";
 const footerLogo = "/agenio/assets/images/footer-logo.png";
+const NAV_LINKS = [
+  { label: "About Us", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Careers", href: "#careers" },
+  { label: "Our Team", href: "#team" },
+] as const;
+
+const SOCIAL_LINKS = [
+  "Instagram",
+  "Linkedin",
+  "Dribbble",
+  "Behance",
+] as const;
 
 export default function Footer() {
   return (
-    <div className="border border-[rgba(3,7,18,0.1)] border-solid relative size-full" data-node-id="61:1913" data-name="wpr footer area start">
-      <div className="absolute h-[27px] left-[152px] right-[152px] top-[64px]" data-node-id="61:1914" data-name="List">
-        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold h-[29px] justify-center leading-[0] left-0 text-[#030712] text-[24px] top-[calc(50%-2px)] w-[98.121px]" data-node-id="61:1915">
-          <p className="leading-[24px]">About Us</p>
-        </div>
-        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold h-[29px] justify-center leading-[0] left-[397.63px] text-[#030712] text-[24px] top-[calc(50%-2px)] w-[90.97px]" data-node-id="61:1916">
-          <p className="leading-[24px]">Services</p>
-        </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] left-[829.11px] text-[#030712] text-[24px] text-center top-[calc(50%-2.5px)] whitespace-nowrap" data-node-id="61:1917">
-          <p className="leading-[24px]">Careers</p>
-        </div>
-        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold h-[29px] justify-center leading-[0] left-[1232.97px] text-[#030712] text-[24px] text-center top-[calc(50%-2px)] w-[122.83px]" data-node-id="61:1918">
-          <p className="leading-[24px]">Our Team</p>
-        </div>
-        <div className="-translate-y-1/2 absolute bg-[#d1d5db] left-[241.7px] size-[12px] top-1/2" data-node-id="61:1919" data-name="Item" />
-        <div className="-translate-y-1/2 absolute bg-[#d1d5db] left-[632.19px] size-[12px] top-1/2" data-node-id="61:1920" data-name="Item" />
-        <div className="-translate-y-1/2 absolute bg-[#d1d5db] left-[1015.64px] size-[12px] top-1/2" data-node-id="61:1921" data-name="Item" />
-      </div>
-      <div className="absolute border-[rgba(3,7,18,0.1)] border-b border-solid border-t h-[475px] left-[-1px] right-[-1px] top-[155px]" data-node-id="61:1922" data-name="Border">
-        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2">
+    <section
+      className="h-full w-full border border-solid border-[rgba(3,7,18,0.1)] bg-[#f3f4f6]"
+      data-node-id="61:1913"
+      data-name="wpr footer area start"
+    >
+      <div className="mx-auto w-full max-w-[1600px]">
+        {/* Top navigation */}
+        <nav
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 pt-10 pb-8 font-secondary text-lg font-semibold leading-6 text-[#030712] md:px-8 lg:flex-nowrap lg:justify-between lg:gap-x-0 lg:px-[152px] lg:pt-[64px] lg:pb-[62px] lg:text-2xl"
+          aria-label="Footer navigation"
+          data-node-id="61:1914"
+          data-name="List"
+        >
+          {NAV_LINKS.map((item, index) => (
+            <span key={item.label} className="contents">
+              <a
+                href={item.href}
+                className="whitespace-nowrap transition-opacity hover:opacity-70"
+                data-node-id={
+                  index === 0
+                    ? "61:1915"
+                    : index === 1
+                      ? "61:1916"
+                      : index === 2
+                        ? "61:1917"
+                        : "61:1918"
+                }
+              >
+                {item.label}
+              </a>
+              {index < NAV_LINKS.length - 1 ? (
+                <span
+                  className="hidden size-3 shrink-0 bg-[#d1d5db] lg:block"
+                  aria-hidden
+                  data-node-id={
+                    index === 0
+                      ? "61:1919"
+                      : index === 1
+                        ? "61:1920"
+                        : "61:1921"
+                  }
+                  data-name="Item"
+                />
+              ) : null}
+            </span>
+          ))}
+        </nav>
+
+        {/* Logo band */}
+        <div
+          className="relative flex min-h-[240px] items-center justify-center border-y border-solid border-[rgba(3,7,18,0.1)] px-4 py-10 sm:min-h-[320px] md:min-h-[400px] lg:min-h-[475px] lg:py-0"
+          data-node-id="61:1922"
+          data-name="Border"
+        >
+          <span
+            className="pointer-events-none absolute left-[-4px] top-[-3px] hidden size-[6px] bg-[#030712] lg:block"
+            data-node-id="61:1958"
+            data-name="Background"
+            aria-hidden
+          />
+          <span
+            className="pointer-events-none absolute bottom-[-3px] left-[-3px] hidden size-[6px] bg-[#030712] lg:block"
+            data-node-id="61:1960"
+            data-name="Background"
+            aria-hidden
+          />
+          <span
+            className="pointer-events-none absolute bottom-[-3px] right-[-3px] hidden size-[6px] bg-[#030712] lg:block"
+            data-node-id="61:1961"
+            data-name="Background"
+            aria-hidden
+          />
+
+          <div
+            className="pointer-events-none absolute left-0 top-0 hidden h-[120px] w-[140px] overflow-hidden opacity-60 sm:block md:h-[180px] md:w-[210px] lg:h-[240px] lg:w-[281px] lg:opacity-100"
+            data-node-id="61:1946"
+            data-name="shape-01.svg"
+          >
+            <img
+              alt=""
+              className="size-full object-contain object-left-top"
+              src={imgShape01Svg}
+            />
+          </div>
+
+          <div
+            className="pointer-events-none absolute bottom-0 right-0 hidden h-[120px] w-[140px] overflow-hidden opacity-60 sm:block md:h-[180px] md:w-[210px] lg:h-[240px] lg:w-[281px] lg:opacity-100"
+            data-node-id="61:1952"
+            data-name="shape-02.svg"
+          >
+            <img
+              alt=""
+              className="size-full object-contain object-right-bottom"
+              src={imgShape02Svg}
+            />
+          </div>
+
           <img
             alt="TGT Nexus"
-            className="block h-auto max-h-[157px] w-auto max-w-[752px] object-contain"
+            className="relative z-[1] block h-auto max-h-[80px] w-auto max-w-[min(752px,88vw)] object-contain sm:max-h-[120px] lg:max-h-[157px]"
             src={footerLogo}
           />
         </div>
-        <div className="absolute h-[240px] left-0 overflow-clip top-0 w-[281px]" data-node-id="61:1946" data-name="shape-01.svg">
-          <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[240px] left-1/2 top-1/2 w-[281px]" data-node-id="61:1947" data-name="shape-01.svg">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgShape01Svg} />
-          </div>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col items-center gap-5 px-4 py-8 font-secondary text-[#030712] md:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-9">
+          <ul
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold leading-[14px] lg:justify-start"
+            data-node-id="61:1967"
+            data-name="List"
+          >
+            {SOCIAL_LINKS.map((label, index) => (
+              <li
+                key={label}
+                data-node-id={
+                  index === 0
+                    ? "61:1968"
+                    : index === 1
+                      ? "61:1969"
+                      : index === 2
+                        ? "61:1970"
+                        : "61:1971"
+                }
+              >
+                {label}
+              </li>
+            ))}
+          </ul>
+
+          <p
+            className="text-center text-base font-medium leading-[14px] text-black lg:flex-1"
+            data-node-id="61:1962"
+          >
+            © 2026 TGTNexus - All Rights Reserved
+          </p>
+
+          <p
+            className="text-center text-sm font-semibold leading-normal lg:text-right"
+            data-node-id="61:1964"
+          >
+            Terms & Conditions | Privacy Policy
+          </p>
         </div>
-        <div className="absolute bottom-0 h-[240px] overflow-clip right-0 w-[281px]" data-node-id="61:1952" data-name="shape-02.svg">
-          <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[240px] left-1/2 top-1/2 w-[281px]" data-node-id="61:1953" data-name="shape-02.svg">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgShape02Svg} />
-          </div>
-        </div>
-        <div className="absolute bg-[#030712] bottom-[-3px] left-[-3px] size-[6px]" data-node-id="61:1960" data-name="Background" />
-        <div className="absolute bg-[#030712] bottom-[-3px] right-[-3px] size-[6px]" data-node-id="61:1961" data-name="Background" />
       </div>
-      <div className="absolute bg-[#030712] left-[-4px] size-[6px] top-[153px]" data-node-id="61:1958" data-name="Background" />
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-medium justify-center leading-[0] left-[658.83px] right-[659.17px] text-[16px] text-black text-center top-[666px] whitespace-nowrap" data-node-id="61:1962">
-        <p className="leading-[14px]">© 2026 TGTNexus - All Rights Reserved</p>
-      </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] right-[32px] text-[#030712] text-[14px] text-right top-[666.5px] whitespace-nowrap" data-node-id="61:1964">
-        <p className="leading-[normal]">{`Terms & Conditions | Privacy Policy`}</p>
-      </div>
-      <div className="[word-break:break-word] absolute font-secondary font-semibold h-[24px] leading-[0] left-[32px] right-[1138.98px] text-[#030712] text-[14px] top-[654px]" data-node-id="61:1967" data-name="List">
-        <div className="-translate-y-1/2 absolute flex flex-col h-[17px] justify-center left-0 top-[calc(50%+0.5px)] w-[64.618px]" data-node-id="61:1968">
-          <p className="leading-[14px]">Instagram</p>
-        </div>
-        <div className="-translate-y-1/2 absolute flex flex-col h-[17px] justify-center left-[88.22px] top-[calc(50%+0.5px)] w-[52.199px]" data-node-id="61:1969">
-          <p className="leading-[14px]">Linkedin</p>
-        </div>
-        <div className="-translate-y-1/2 absolute flex flex-col h-[17px] justify-center left-[164.06px] top-[calc(50%+0.5px)] w-[53.974px]" data-node-id="61:1970">
-          <p className="leading-[14px]">Dribbble</p>
-        </div>
-        <div className="-translate-y-1/2 absolute flex flex-col h-[17px] justify-center left-[241.67px] top-[calc(50%+0.5px)] w-[53.924px]" data-node-id="61:1971">
-          <p className="leading-[14px]">Behance</p>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }

@@ -11,37 +11,26 @@ import { findDuplicateApplication } from "@/lib/applications/duplicate";
 import { ensureResumeBucket, RESUME_BUCKET } from "@/lib/supabase/storage";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
-const ALLOWED_TYPES = new Set([
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-]);
-
-const ALLOWED_EXTENSIONS = new Set([".pdf", ".doc", ".docx"]);
 
 function validateEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function resolveResumeContentType(file: File) {
-  if (file.type && ALLOWED_TYPES.has(file.type)) {
+  if (file.type === "application/pdf") {
     return file.type;
   }
 
   const lower = file.name.toLowerCase();
   if (lower.endsWith(".pdf")) return "application/pdf";
-  if (lower.endsWith(".doc")) return "application/msword";
-  if (lower.endsWith(".docx")) {
-    return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-  }
 
   return file.type || "application/octet-stream";
 }
 
 function isAllowedResume(file: File) {
-  if (file.type && ALLOWED_TYPES.has(file.type)) return true;
   const lower = file.name.toLowerCase();
-  return [...ALLOWED_EXTENSIONS].some((ext) => lower.endsWith(ext));
+  if (lower.endsWith(".pdf")) return true;
+  return file.type === "application/pdf";
 }
 
 export async function POST(request: Request) {
@@ -77,7 +66,7 @@ export async function POST(request: Request) {
     }
     if (!isAllowedResume(resume)) {
       return NextResponse.json(
-        { error: "Resume must be a PDF or Word document." },
+        { error: "Resume must be a PDF file." },
         { status: 400 }
       );
     }

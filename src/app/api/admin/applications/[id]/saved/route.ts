@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+export const dynamic = "force-dynamic";
+
 type RouteContext = {
   params: Promise<{ id: string }>;
 };
@@ -32,8 +34,12 @@ export async function PATCH(request: Request, context: RouteContext) {
 
     if (error) {
       console.error("[admin/applications/saved]", error);
+      const hint =
+        error.code === "42703"
+          ? "Run supabase/migrations/003_application_saved.sql in Supabase SQL Editor."
+          : error.message;
       return NextResponse.json(
-        { error: "Failed to update saved status." },
+        { error: hint || "Failed to update saved status." },
         { status: 500 }
       );
     }

@@ -14,13 +14,11 @@ function formatDate(value: string) {
 type Props = {
   applications: ApplicationRow[];
   compact?: boolean;
-  refreshOnSaveToggle?: boolean;
 };
 
 export default function ApplicationsTable({
   applications,
   compact,
-  refreshOnSaveToggle = false,
 }: Props) {
   const rows = compact ? applications.slice(-8) : applications;
 
@@ -88,7 +86,6 @@ export default function ApplicationsTable({
                   <SaveApplicantButton
                     applicationId={row.id}
                     initialSaved={row.is_saved ?? false}
-                    refreshOnToggle={refreshOnSaveToggle}
                   />
                 </td>
                 <td className="px-4 py-3 font-secondary text-sm font-semibold text-[#111]">

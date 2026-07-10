@@ -30,6 +30,12 @@ function formatFileSize(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+function isPdfResume(file: File) {
+  const lower = file.name.toLowerCase();
+  if (lower.endsWith(".pdf")) return true;
+  return file.type === "application/pdf";
+}
+
 const fieldInputClass =
   "w-full h-[40px] border-0 border-b border-solid border-[rgba(255,255,255,0.3)] bg-transparent font-secondary text-[16px] font-semibold text-[#f9fafb] outline-none placeholder:text-[rgba(249,250,251,0.6)]";
 
@@ -70,6 +76,7 @@ export default function ContactSection() {
     if (!phone.trim()) next.phone = "Required";
     if (!position) next.position = "Required";
     if (!resume) next.resume = "Required";
+    else if (!isPdfResume(resume)) next.resume = "Resume must be a PDF file.";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -266,10 +273,20 @@ export default function ContactSection() {
                 id="contact-resume"
                 name="resume"
                 type="file"
-                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                accept=".pdf,application/pdf"
                 className="sr-only"
                 onChange={(e) => {
-                  setResume(e.target.files?.[0] ?? null);
+                  const file = e.target.files?.[0] ?? null;
+                  if (file && !isPdfResume(file)) {
+                    setResume(null);
+                    if (fileInputRef.current) fileInputRef.current.value = "";
+                    setErrors((prev) => ({
+                      ...prev,
+                      resume: "Only PDF files are allowed.",
+                    }));
+                    return;
+                  }
+                  setResume(file);
                   setErrors((prev) => ({ ...prev, resume: undefined }));
                 }}
               />
@@ -327,7 +344,7 @@ export default function ContactSection() {
                     Attach your resume
                   </span>
                   <span className="ml-auto font-secondary text-[13px] text-[rgba(255,255,255,0.45)]">
-                    PDF, DOC · max 5MB
+                    PDF only · max 5MB
                   </span>
                 </label>
               )}
