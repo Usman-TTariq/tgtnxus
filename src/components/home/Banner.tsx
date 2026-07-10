@@ -15,10 +15,13 @@ const imgVector3 = "https://www.figma.com/api/mcp/asset/4528c06c-bef0-4098-9fb0-
 
 import BannerWordRotator from "./BannerWordRotator";
 import BannerCtaButton from "./BannerCtaButton";
+import BannerMobile from "./BannerMobile";
 
 export default function Banner() {
   return (
-    <div className="tgt-banner-section border-[rgba(3,7,18,0.1)] border-b border-solid border-t relative size-full" data-node-id="3:2935" data-name="Section - wpr banner area start">
+    <>
+      <BannerMobile />
+      <div className="tgt-banner-section tgt-banner-desktop hidden md:block border-[rgba(3,7,18,0.1)] border-b border-solid border-t relative size-full" data-node-id="3:2935" data-name="Section - wpr banner area start">
       <div className="tgt-banner-inner absolute border-[rgba(3,7,18,0.1)] border-l border-r border-solid h-[800px] left-[160px] overflow-clip right-[160px] top-0" data-node-id="3:2936" data-name="Border">
         <div className="tgt-banner-bg absolute inset-[0_192px_0_0] overflow-clip" data-node-id="3:2937" data-name="bg-shape.svg">
           <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[798.864px] left-1/2 top-1/2 w-[1406px]" data-node-id="3:2938" data-name="bg-shape.svg">
@@ -31,7 +34,7 @@ export default function Banner() {
             <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[21px] size-full" src={imgRectangle39989} />
           </div>
           <div className="tgt-hero-word-right -translate-y-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-b border-dashed border-t h-[201px] left-[894px] right-0 top-1/2 tgt-animate-fade-right" data-node-id="3:2943" data-name="Background+Border">
-            <BannerWordRotator className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 w-[611px]" />
+            <BannerWordRotator className="tgt-hero-word-rotator-slot" />
             <div className="absolute h-[16px] left-[-0.71%] overflow-clip right-0 top-[-35px] tgt-arrow-track" data-node-id="3:2945" data-name="Container">
               <div className="-translate-y-1/2 absolute h-[16px] left-[-17.47px] opacity-15 overflow-clip top-1/2 w-[13px]" data-node-id="3:2946" data-name="arrow-left.svg">
                 <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[16px] left-1/2 overflow-clip top-1/2 w-[13px]" data-node-id="3:2947" data-name="arrow-left.svg">
@@ -320,5 +323,6 @@ export default function Banner() {
         </div>
       </div>
     </div>
+    </>
   );
 }

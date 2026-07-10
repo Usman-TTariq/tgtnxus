@@ -1,0 +1,198 @@
+/* Testimonials — mobile-only stacked carousel */
+
+@media (max-width: 768px) {
+  .tgt-testimonials-mobile {
+    display: block !important;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 16px 12px;
+  }
+
+  .tgt-testimonials-desktop,
+  .tgt-testimonials-desktop.wpr-testimonials-area {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  .responsive-page-inner .tgt-home-slot--testimonials {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .site-page-section .tgt-testimonials-mobile {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .tgt-testimonials-mobile-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding: 6px 14px 6px 10px;
+    background: #fff;
+    border: 1px solid rgba(3, 7, 18, 0.08);
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(3, 7, 18, 0.04);
+  }
+
+  .tgt-testimonials-mobile-label-mark {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    background: #ff0d16;
+    border-radius: 1px;
+  }
+
+  .tgt-testimonials-mobile-label-text {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #030712;
+    line-height: 1;
+  }
+
+  .tgt-testimonials-mobile-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .tgt-testimonials-mobile-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tgt-testimonials-mobile-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(3, 7, 18, 0.08);
+    box-shadow: 0 8px 28px rgba(3, 7, 18, 0.06);
+    background: #030712;
+  }
+
+  .tgt-testimonials-mobile-media {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #111827;
+  }
+
+  .tgt-testimonials-mobile-image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center;
+  }
+
+  .tgt-testimonials-mobile-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 18px 20px;
+    background: rgba(0, 0, 0, 0.72);
+  }
+
+  .tgt-testimonials-mobile-title {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: clamp(22px, 6vw, 28px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  .tgt-testimonials-mobile-quote {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .tgt-testimonials-mobile-author {
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .tgt-testimonials-mobile-name {
+    margin: 0 0 4px;
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  .tgt-testimonials-mobile-role {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .tgt-testimonials-mobile-nav {
+    display: grid;
+    grid-template-columns: 52px 1fr 52px;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .tgt-testimonials-mobile-nav-label {
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+    color: #6b7280;
+  }
+
+  .tgt-testimonials-mobile-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(3, 7, 18, 0.1);
+    border-radius: 12px;
+    background: #fff;
+    color: #030712;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(3, 7, 18, 0.06);
+  }
+}
+
+@media (min-width: 769px) {
+  .tgt-testimonials-mobile {
+    display: none !important;
+  }
+}

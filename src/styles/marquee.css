@@ -130,24 +130,15 @@
 }
 
 @media (max-width: 768px) {
-  .tgt-marquee-area {
-    min-height: 280px;
-  }
-
-  .tgt-marquee-container {
-    min-height: 280px;
-  }
-
-  .tgt-marquee-inner {
-    min-height: 278px;
-  }
-
-  .tgt-marquee-title,
-  .title {
-    font-size: 52px;
-  }
-
-  .tgt-marquee-text-wrapper.first-text {
-    transform: none;
+  .tgt-marquee-desktop,
+  .tgt-marquee-desktop.tgt-marquee-area {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
   }
 }

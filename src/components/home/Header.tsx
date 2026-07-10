@@ -2,20 +2,27 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LOGO_MARK, LOGO_TYPE } from "@/lib/brand";
 
 const imgGreenLeft = "https://www.figma.com/api/mcp/asset/1435748f-c8bf-41b7-afdf-f1c58f068308";
 const imgGreenRight = "https://www.figma.com/api/mcp/asset/1e6dc01d-5914-4fb3-ba06-416336d11993";
 
-const NAV_ITEMS: { label: string; href: string; active?: boolean }[] = [
-  { label: "HOME", href: "#", active: true },
-  { label: "ABOUT US", href: "#about" },
-  { label: "SERVICES", href: "#services" },
-  { label: "CAREERS", href: "#careers" },
-  { label: "OUR TEAM", href: "#team" },
+const NAV_ITEMS: { label: string; href: string }[] = [
+  { label: "HOME", href: "/" },
+  { label: "ABOUT US", href: "/about" },
+  { label: "SERVICES", href: "/services" },
+  { label: "CAREERS", href: "/careers" },
+  { label: "OUR TEAM", href: "/team" },
 ];
 
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname.startsWith(href);
+}
+
 export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
 
@@ -73,19 +80,22 @@ export default function Header() {
             <nav className="main-nav-area" aria-label="Main navigation">
               <ul className="wpr-desktop-menu">
                 {NAV_ITEMS.map((item) => (
-                  <li key={item.label} className={`menu-item${item.active ? " active" : ""}`}>
-                    <a className="main-element" href={item.href} onClick={closeMenu}>
+                  <li
+                    key={item.label}
+                    className={`menu-item${isActive(pathname, item.href) ? " active" : ""}`}
+                  >
+                    <Link className="main-element" href={item.href} onClick={closeMenu}>
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </nav>
 
             <div className="button-area-start square-dot">
-              <a href="#contact" className="wpr-btn btn-primary" onClick={closeMenu}>
+              <Link href="/contact" className="wpr-btn btn-primary" onClick={closeMenu}>
                 CONTACT US
-              </a>
+              </Link>
               <button
                 id="menu-btn"
                 type="button"
@@ -109,19 +119,22 @@ export default function Header() {
                   <nav className="nav-main mainmenu-nav" aria-label="Mobile navigation">
                     <ul id="mobile-menu">
                       {NAV_ITEMS.map((item) => (
-                        <li key={item.label} className={`menu-item${item.active ? " active" : ""}`}>
-                          <a className="main-element" href={item.href} onClick={closeMenu}>
+                        <li
+                          key={item.label}
+                          className={`menu-item${isActive(pathname, item.href) ? " active" : ""}`}
+                        >
+                          <Link className="main-element" href={item.href} onClick={closeMenu}>
                             {item.label}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
                   </nav>
                 </div>
                 <div className="button-area">
-                  <a href="#contact" className="wpr-btn btn-primary" onClick={closeMenu}>
+                  <Link href="/contact" className="wpr-btn btn-primary" onClick={closeMenu}>
                     CONTACT US
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

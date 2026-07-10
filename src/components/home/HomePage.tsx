@@ -11,13 +11,13 @@ import CtaSection from "./CtaSection";
 import ContactSection from "./ContactSection";
 import Footer from "./Footer";
 import Preloader from "../animations/Preloader";
-import HomeAnimations from "../animations/HomeAnimations";
+import SiteAnimations from "../animations/SiteAnimations";
 
 export default function HomePage() {
   return (
     <>
       <Preloader />
-      <HomeAnimations />
+      <SiteAnimations />
     <div className="responsive-page-wrapper bg-[#f3f4f6]">
     <div className="responsive-page-inner relative w-[1920px] h-[8289px] bg-[#f3f4f6] overflow-x-clip overflow-y-visible shrink-0">
       <div className="tgt-home-slot tgt-home-slot--header absolute top-0 left-0 w-full min-h-[130px] z-[60]">
@@ -32,7 +32,7 @@ export default function HomePage() {
       <div className="tgt-home-slot tgt-home-slot--about absolute top-[1144px] left-[160px] w-[1600px] h-[1020px] tgt-reveal">
         <AboutSection />
       </div>
-      <div className="tgt-home-slot tgt-home-slot--services-header absolute top-[2181px] left-[160px] w-[1600px] h-[280px] tgt-reveal">
+      <div id="services" className="tgt-home-slot tgt-home-slot--services-header absolute top-[2181px] left-[160px] w-[1600px] h-[280px] tgt-reveal">
         <ServicesHeader />
       </div>
       <div className="tgt-home-slot tgt-home-slot--services-grid absolute top-[2467px] left-[161px] w-[1599px] h-[665px] tgt-reveal-stagger">

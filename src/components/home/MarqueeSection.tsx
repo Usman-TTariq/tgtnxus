@@ -3,9 +3,9 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MarqueeSectionMobile from "./MarqueeSectionMobile";
+import { MARQUEE_ICON_LEFT, MARQUEE_ICON_RIGHT } from "./marquee-data";
 
-const ICON_RIGHT = "/agenio/assets/images/icon/black-right.svg";
-const ICON_LEFT = "/agenio/assets/images/icon/black-left.svg";
 const REPEAT_COUNT = 18;
 
 function MarqueeLine({ label, icon }: { label: string; icon: string }) {
@@ -27,6 +27,8 @@ export default function MarqueeSection() {
   const root = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
+
     const el = root.current;
     if (!el) return;
 
@@ -94,13 +96,16 @@ export default function MarqueeSection() {
   }, []);
 
   return (
-    <section ref={root} className="tgt-marquee-area" data-node-id="50:509">
+    <>
+      <MarqueeSectionMobile />
+
+      <section ref={root} className="tgt-marquee-desktop tgt-marquee-area hidden md:block" data-node-id="50:509">
       <div className="tgt-marquee-container">
         <div className="tgt-marquee-inner border-1">
           <div className="tgt-marquee-text-wrapper first-text">
             <div className="text-split tgt-scrollingtext-1">
               <h2 className="tgt-marquee-title title">
-                <MarqueeLine label="Innovative" icon={ICON_RIGHT} />
+                <MarqueeLine label="Innovative" icon={MARQUEE_ICON_RIGHT} />
               </h2>
             </div>
           </div>
@@ -108,12 +113,13 @@ export default function MarqueeSection() {
           <div className="tgt-marquee-text-wrapper">
             <div className="text-split tgt-scrollingtext-2">
               <h2 className="tgt-marquee-title title">
-                <MarqueeLine label="Visionary" icon={ICON_LEFT} />
+                <MarqueeLine label="Visionary" icon={MARQUEE_ICON_LEFT} />
               </h2>
             </div>
           </div>
         </div>
       </div>
     </section>
+    </>
   );
 }

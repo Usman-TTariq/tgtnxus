@@ -67,6 +67,7 @@
   z-index: 10;
   backface-visibility: hidden;
   transform: translateZ(0);
+  will-change: transform, opacity;
 }
 
 .wpr-project-area .pin-spacer {
@@ -145,13 +146,18 @@
   object-fit: cover;
 }
 
+.wpr-project-area .wpr-video-pin.is-interactive {
+  pointer-events: auto;
+}
+
 .wpr-project-area .wpr-video-wrapper .swiper-navigation {
   position: absolute;
-  z-index: 1;
+  z-index: 30;
   right: 0;
   bottom: 0;
   display: flex;
   align-items: center;
+  pointer-events: auto;
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(46px);
 }
@@ -161,9 +167,17 @@
   height: 110px;
   line-height: 110px;
   text-align: center;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  color: inherit;
 }
 
 .wpr-project-area .wpr-video-wrapper .swiper-navigation .swiper-btn:not(:last-child) {
@@ -355,6 +369,11 @@
 
 .wpr-project-area .wpr-video-wrapper .swiper-navigation .swiper-btn {
   cursor: pointer;
+  transition: background-color 0.25s ease, opacity 0.25s ease;
+}
+
+.wpr-project-area .wpr-video-wrapper .swiper-navigation .swiper-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .wpr-project-area .wpr-project-scroll-runway {
@@ -365,14 +384,15 @@
 }
 
 @media (max-width: 768px) {
-  .wpr-project-area .wpr-project-scroll-runway {
-    display: none;
-    height: 0;
-    min-height: 0;
-  }
-
-  .wpr-project-area .wpr-video-wrapper {
-    opacity: 1 !important;
-    transform: none !important;
+  .tgt-vision-desktop,
+  .tgt-vision-desktop.wpr-project-area {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
   }
 }

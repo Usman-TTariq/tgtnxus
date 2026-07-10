@@ -1,0 +1,28 @@
+/* Banner / hero — desktop canvas layout */
+
+:root {
+  --tgt-banner-word-height: 120px;
+}
+
+@media (min-width: 769px) {
+  .tgt-hero-word-rotator-slot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 611px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .tgt-banner-section.tgt-banner-desktop {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+}

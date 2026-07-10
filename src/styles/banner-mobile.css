@@ -1,0 +1,187 @@
+/* Mobile hero — clean stacked layout (desktop uses canvas banner) */
+
+.tgt-banner-mobile {
+  --tgt-banner-word-height: 44px;
+  display: none;
+  width: 100%;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(255, 13, 22, 0.07) 0%, transparent 65%),
+    #f3f4f6;
+  border-top: 1px solid rgba(3, 7, 18, 0.08);
+  border-bottom: 1px solid rgba(3, 7, 18, 0.08);
+}
+
+.tgt-banner-mobile-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 32px 20px 36px;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tgt-banner-mobile-visual {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tgt-banner-mobile-visual::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(3, 7, 18, 0.06);
+  border-radius: 26px;
+  pointer-events: none;
+}
+
+.tgt-banner-mobile-visual::after {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  background: radial-gradient(circle, rgba(255, 13, 22, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.tgt-banner-mobile-image {
+  display: block;
+  width: 132px;
+  height: 132px;
+  border-radius: 22px;
+  object-fit: cover;
+  box-shadow:
+    0 16px 48px rgba(3, 7, 18, 0.14),
+    0 0 0 1px rgba(3, 7, 18, 0.04);
+}
+
+.tgt-banner-mobile-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.tgt-banner-mobile-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.28em;
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: clamp(30px, 9vw, 38px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.tgt-banner-mobile-we {
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.tgt-banner-mobile-build {
+  background: linear-gradient(147deg, #55595c 18%, #000 82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tgt-banner-mobile-rotator {
+  width: 100%;
+  max-width: 100%;
+}
+
+.tgt-banner-mobile-rotator .tgt-hero-word-rotator-viewport {
+  height: var(--tgt-banner-word-height);
+}
+
+.tgt-banner-mobile-rotator .tgt-banner-title {
+  height: var(--tgt-banner-word-height) !important;
+  min-height: var(--tgt-banner-word-height) !important;
+  font-size: clamp(28px, 8.5vw, 36px) !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+  justify-content: center !important;
+  background-image: linear-gradient(147deg, #ff0d16 0%, #030712 88%) !important;
+}
+
+.tgt-banner-mobile-desc {
+  margin: 0;
+  max-width: 320px;
+  font-family: var(--font-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #6b7280;
+}
+
+.tgt-banner-mobile-cta.tgt-banner-cta {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: 56px;
+  padding: 8px 20px 8px 60px;
+  justify-content: center;
+  margin-top: 2px;
+  border-radius: 14px;
+}
+
+.tgt-banner-mobile-cta .tgt-banner-cta-label {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+  .tgt-banner-mobile {
+    display: block !important;
+  }
+
+  @keyframes tgtWordSlideMobileHero {
+    0%,
+    10% {
+      transform: translateY(0);
+    }
+    12%,
+    22% {
+      transform: translateY(calc(-1 * var(--tgt-banner-word-height)));
+    }
+    24%,
+    34% {
+      transform: translateY(calc(-2 * var(--tgt-banner-word-height)));
+    }
+    36%,
+    46% {
+      transform: translateY(calc(-3 * var(--tgt-banner-word-height)));
+    }
+    48%,
+    58% {
+      transform: translateY(calc(-4 * var(--tgt-banner-word-height)));
+    }
+    60%,
+    70% {
+      transform: translateY(calc(-5 * var(--tgt-banner-word-height)));
+    }
+    72%,
+    82% {
+      transform: translateY(calc(-6 * var(--tgt-banner-word-height)));
+    }
+    84%,
+    100% {
+      transform: translateY(calc(-7 * var(--tgt-banner-word-height)));
+    }
+  }
+
+  .tgt-banner-mobile .tgt-word-rotator-inner {
+    animation: tgtWordSlideMobileHero 14s linear infinite;
+  }
+}
+
+@media (min-width: 769px) {
+  .tgt-banner-mobile {
+    display: none !important;
+  }
+}

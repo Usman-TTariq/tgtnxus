@@ -1,0 +1,67 @@
+.site-page > .header-style-one {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+
+.site-page-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.site-page-hero {
+  width: 100%;
+}
+
+.site-page-section {
+  position: relative;
+  width: 100%;
+}
+
+/* Careers hero + trusted-by strip */
+.tgt-careers-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tgt-careers-intro .tgt-grid-page-hero {
+  border-bottom: none;
+}
+
+.tgt-careers-intro .tgt-grid-page-hero-shape--br {
+  display: none;
+}
+
+.tgt-careers-intro .tgt-brand-area--strip {
+  border-top: none;
+}
+
+@media (max-width: 768px) {
+  .site-page-main {
+    gap: 1.5rem;
+  }
+
+  .site-page-section .tgt-brand-area--strip {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .site-page-section {
+    min-height: auto !important;
+  }
+
+  .site-page-section .tgt-about-panel,
+  .site-page-section .tgt-services-header,
+  .site-page-section .tgt-services-grid,
+  .site-page-section .wpr-testimonials-area {
+    position: relative !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .site-page-footer .relative {
+    min-height: auto !important;
+  }
+}

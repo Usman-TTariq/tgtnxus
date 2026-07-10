@@ -1,0 +1,312 @@
+/* Vision / Our Projects — mobile-only layout */
+
+@media (max-width: 768px) {
+  .tgt-vision-mobile {
+    display: block !important;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 12px;
+  }
+
+  .tgt-vision-desktop,
+  .tgt-vision-desktop.wpr-project-area {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  .responsive-page-inner .tgt-home-slot--vision {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .tgt-vision-mobile-header {
+    margin-bottom: 16px;
+    padding: 24px 18px 22px;
+    background: #fff;
+    border: 1px solid rgba(3, 7, 18, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(3, 7, 18, 0.04);
+  }
+
+  .tgt-vision-mobile-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 6px 14px 6px 10px;
+    background: #f3f4f6;
+    border-radius: 6px;
+  }
+
+  .tgt-vision-mobile-label-mark {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    background: #ff0d16;
+    border-radius: 1px;
+  }
+
+  .tgt-vision-mobile-label-text {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #030712;
+    line-height: 1;
+  }
+
+  .tgt-vision-mobile-title {
+    margin: 0 0 12px;
+    font-family: var(--font-secondary);
+    font-size: clamp(22px, 6.2vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: #030712;
+  }
+
+  .tgt-vision-mobile-thumb-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .tgt-vision-mobile-thumb {
+    flex-shrink: 0;
+    display: block;
+    width: 96px;
+    height: 56px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(3, 7, 18, 0.08);
+    box-shadow: 0 6px 18px rgba(3, 7, 18, 0.08);
+  }
+
+  .tgt-vision-mobile-title-tail {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: clamp(18px, 5.2vw, 22px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #030712;
+  }
+
+  .tgt-vision-mobile-desc {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #6b7280;
+  }
+
+  .tgt-vision-mobile-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .tgt-vision-mobile-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .tgt-vision-mobile-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tgt-vision-mobile-card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(3, 7, 18, 0.08);
+    box-shadow: 0 8px 28px rgba(3, 7, 18, 0.06);
+    background: #030712;
+  }
+
+  .tgt-vision-mobile-card-media {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #111827;
+  }
+
+  .tgt-vision-mobile-card-image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center top;
+  }
+
+  .tgt-vision-mobile-card-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 16px 18px;
+    background: #030712;
+  }
+
+  .tgt-vision-mobile-card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tgt-vision-mobile-card-index {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: rgba(152, 255, 3, 0.85);
+  }
+
+  .tgt-vision-mobile-card-title {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: clamp(20px, 5.6vw, 24px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #fff;
+  }
+
+  .tgt-vision-mobile-card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .tgt-vision-mobile-card-text {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .tgt-vision-mobile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .tgt-vision-mobile-stats li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 6px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .tgt-vision-mobile-stats li:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .tgt-vision-mobile-stat-value {
+    font-family: var(--font-secondary);
+    font-size: clamp(16px, 4.8vw, 20px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  .tgt-vision-mobile-stat-label {
+    font-family: var(--font-secondary);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .tgt-vision-mobile-card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: #98ff03;
+    color: #030712;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .tgt-vision-mobile-card-link svg {
+    flex-shrink: 0;
+  }
+
+  .tgt-vision-mobile-nav {
+    display: grid;
+    grid-template-columns: 52px 1fr 52px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tgt-vision-mobile-nav-label {
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+    color: #6b7280;
+  }
+
+  .tgt-vision-mobile-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(3, 7, 18, 0.1);
+    border-radius: 12px;
+    background: #fff;
+    color: #030712;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(3, 7, 18, 0.06);
+  }
+}
+
+@media (min-width: 769px) {
+  .tgt-vision-mobile {
+    display: none !important;
+  }
+}

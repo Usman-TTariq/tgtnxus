@@ -6,11 +6,13 @@ const ARROW_FIXED = "/agenio/assets/images/icon/button-arrow-fixed.svg";
 type BannerCtaButtonProps = {
   className?: string;
   href?: string;
+  label?: string;
 };
 
 export default function BannerCtaButton({
   className = "",
-  href = "#contact",
+  href = "/contact",
+  label = "Start your journey today",
 }: BannerCtaButtonProps) {
   return (
     <a href={href} className={`tgt-banner-cta ${className}`.trim()}>
@@ -26,7 +28,7 @@ export default function BannerCtaButton({
           ))}
         </span>
       </span>
-      <span className="tgt-banner-cta-label">Start your journey today</span>
+      <span className="tgt-banner-cta-label">{label}</span>
     </a>
   );
 }

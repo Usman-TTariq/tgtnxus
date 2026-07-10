@@ -1,79 +1,79 @@
+import CtaSectionMobile from "./CtaSectionMobile";
+
 const ARROW_LEFT = "/agenio/assets/images/cta/arrow-left.svg";
 const ARROW_RIGHT = "/agenio/assets/images/cta/arrow-right.svg";
+const CAREER_BG = "/agenio/assets/images/career-bg-2.png";
+
+const TITLE_GRADIENT =
+  "linear-gradient(140.4438116569271deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)";
+
+function CtaArrows({ side }: { side: "left" | "right" }) {
+  const isLeft = side === "left";
+  const src = isLeft ? ARROW_RIGHT : ARROW_LEFT;
+  const positions = isLeft
+    ? ["left-[4.5%] tgt-cta-arrow-left-1", "left-[7.5%] tgt-cta-arrow-left-2", "left-[10.5%] tgt-cta-arrow-left-3"]
+    : ["right-[10.5%] tgt-cta-arrow-3", "right-[7.5%] tgt-cta-arrow-2", "right-[4.5%] tgt-cta-arrow-1"];
+
+  return (
+    <>
+      {positions.map((pos) => (
+        <div
+          key={pos}
+          className={`tgt-cta-arrow absolute top-[calc(50%-110px)] aspect-[26/32] opacity-15 ${pos}`}
+        >
+          <img
+            alt=""
+            className="block h-[32px] w-[26px]"
+            height={32}
+            src={src}
+            width={26}
+          />
+        </div>
+      ))}
+    </>
+  );
+}
+
+function CtaTitle() {
+  return (
+    <div
+      className="tgt-cta-title pointer-events-none absolute left-1/2 top-[calc(50%-110px)] z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col text-center font-primary text-[clamp(48px,7.5vw,120px)] font-normal uppercase leading-[0.95] tracking-[-0.06em]"
+      data-node-id="54:1341"
+    >
+      <span
+        className="mb-0 block bg-clip-text text-transparent"
+        style={{ backgroundImage: TITLE_GRADIENT, WebkitBackgroundClip: "text" }}
+      >
+        Start Your
+      </span>
+      <span
+        className="block bg-clip-text text-transparent"
+        style={{ backgroundImage: TITLE_GRADIENT, WebkitBackgroundClip: "text" }}
+      >
+        Career With Us
+      </span>
+    </div>
+  );
+}
 
 export default function CtaSection() {
   return (
-    <div className="border border-[rgba(3,7,18,0.1)] border-solid relative size-full" data-node-id="54:1337" data-name="Border">
-      <div className="absolute h-[615px] overflow-clip right-[-1px] top-0 w-[1600px]" data-node-id="54:1338" data-name="grid.svg">
-        <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[616px] left-1/2 top-[calc(50%+0.5px)] w-[1600px]" data-node-id="54:1339" data-name="grid.svg">
-          <img alt="" className="absolute block inset-0 max-w-none size-full" src={"/agenio/assets/images/career-bg-2.png"} />
+    <>
+      <CtaSectionMobile />
+
+      <div
+        className="tgt-cta-desktop tgt-cta-section relative hidden h-[614px] w-full overflow-hidden border border-solid border-[rgba(3,7,18,0.1)] bg-white md:block"
+        data-node-id="54:1337"
+      >
+        <div className="absolute inset-0 z-0">
+          <img alt="" className="size-full object-cover object-center" src={CAREER_BG} />
         </div>
+
+        <CtaTitle />
+
+        <CtaArrows side="left" />
+        <CtaArrows side="right" />
       </div>
-      <div className="-translate-y-1/2 [word-break:break-word] absolute bg-clip-text flex flex-col font-primary font-medium justify-center leading-[0] left-[380.02px] right-[372.98px] text-[120px] text-[transparent] text-center top-[calc(50%-110px)] tracking-[-7.2px] uppercase whitespace-nowrap" data-node-id="54:1341" style={{ backgroundImage: "linear-gradient(140.4438116569271deg, rgb(85, 89, 92) 21.13%, rgb(0, 0, 0) 80.53%)" }}>
-        <p className="leading-[120px] mb-0">start Your</p>
-        <p className="leading-[120px]">Career With Us</p>
-      </div>
-      <div className="-translate-y-1/2 absolute aspect-[105/105] left-[746.5px] overflow-clip right-[746.5px] top-[calc(50%+93.5px)]" data-node-id="54:1342" data-name="cta-logo.svg">
-        <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[105px] top-1/2" data-node-id="54:1343" data-name="cta-logo.svg" />
-      </div>
-      <div className="-translate-y-1/2 absolute contents left-[72px] right-[1405px] top-[calc(50%-161px)]">
-        <div className="-translate-y-1/2 absolute aspect-[27/32] left-[73px] opacity-15 overflow-clip right-[1500px] top-[calc(50%-161px)] tgt-cta-arrow-left-1">
-          <img
-            alt=""
-            className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 block h-[32px] w-[26px]"
-            height={32}
-            src={ARROW_RIGHT}
-            width={26}
-          />
-        </div>
-        <div className="-translate-y-1/2 absolute aspect-[26/32] left-[120px] opacity-15 overflow-clip right-[1454px] top-[calc(50%-161px)] tgt-cta-arrow-left-2">
-          <img
-            alt=""
-            className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 block h-[32px] w-[26px]"
-            height={32}
-            src={ARROW_RIGHT}
-            width={26}
-          />
-        </div>
-        <div className="-translate-y-1/2 absolute aspect-[26/32] left-[168px] opacity-15 overflow-clip right-[1406px] top-[calc(50%-161px)] tgt-cta-arrow-left-3">
-          <img
-            alt=""
-            className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 block h-[32px] w-[26px]"
-            height={32}
-            src={ARROW_RIGHT}
-            width={26}
-          />
-        </div>
-      </div>
-      <div className="-translate-y-1/2 absolute contents left-[1405px] right-[72px] top-[calc(50%-161px)]">
-        <div className="-translate-y-1/2 absolute aspect-[26/32] left-[1406px] opacity-15 overflow-clip right-[168px] top-[calc(50%-161px)] tgt-cta-arrow-1">
-          <img
-            alt=""
-            className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 block h-[32px] w-[26px]"
-            height={32}
-            src={ARROW_LEFT}
-            width={26}
-          />
-        </div>
-        <div className="-translate-y-1/2 absolute aspect-[26/32] left-[1454px] opacity-15 overflow-clip right-[120px] top-[calc(50%-161px)] tgt-cta-arrow-2">
-          <img
-            alt=""
-            className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 block h-[32px] w-[26px]"
-            height={32}
-            src={ARROW_LEFT}
-            width={26}
-          />
-        </div>
-        <div className="-translate-y-1/2 absolute aspect-[27/32] left-[1500px] opacity-15 overflow-clip right-[73px] top-[calc(50%-161px)] tgt-cta-arrow-3">
-          <img
-            alt=""
-            className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 top-1/2 block h-[32px] w-[26px]"
-            height={32}
-            src={ARROW_LEFT}
-            width={26}
-          />
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

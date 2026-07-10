@@ -27,37 +27,92 @@
     height: auto !important;
     min-height: 0 !important;
     margin: 0 !important;
+    padding: 0 !important;
   }
 
   .responsive-page-inner .tgt-home-slot--header {
     position: sticky !important;
     top: 0;
     z-index: 60 !important;
+    margin-bottom: 0 !important;
   }
 
-  .responsive-page-inner .wpr-testimonials-area .section-inner {
-    height: auto !important;
-    min-height: 520px !important;
+  .responsive-page-inner .tgt-home-slot--banner {
+    margin-top: 0 !important;
   }
 
-  .responsive-page-inner .wpr-testimonials-area .testimonials-panel {
-    position: relative !important;
-    width: 100% !important;
-    right: auto !important;
-    bottom: auto !important;
+  .responsive-page-inner .tgt-home-slot--brand {
+    margin: 8px 0 0 !important;
   }
 
-  .responsive-page-inner .tgt-marquee-title,
-  .responsive-page-inner .title {
-    font-size: clamp(32px, 9vw, 48px) !important;
+  .responsive-page-inner .tgt-home-slot--about {
+    margin-top: 12px !important;
+    padding: 0 16px !important;
   }
 
-  .responsive-page-inner .tgt-marquee-title > span,
-  .responsive-page-inner .title > span {
-    margin: 0 20px !important;
+  .responsive-page-inner .tgt-home-slot--services-header,
+  .responsive-page-inner .tgt-home-slot--services-grid,
+  .responsive-page-inner .tgt-home-slot--vision,
+  .responsive-page-inner .tgt-home-slot--careers,
+  .responsive-page-inner .tgt-home-slot--contact,
+  .responsive-page-inner .tgt-home-slot--footer {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin-top: 12px !important;
+  }
+
+  .responsive-page-inner .tgt-home-slot--marquee {
+    margin-top: 12px !important;
+    padding: 0 !important;
+  }
+
+  .responsive-page-inner .tgt-home-slot--testimonials {
+    margin-top: 12px !important;
+    padding: 0 !important;
   }
 
   /* ── 2. Header / nav ── */
+  .header-style-one .header-top {
+    padding: 10px 0;
+  }
+
+  .header-style-one .header-top .header-top-inner {
+    gap: 16px;
+    padding: 0 8px;
+  }
+
+  .header-style-one .header-top .header-top-inner .text {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .header-style-one .header-top .header-top-inner .text span {
+    display: inline-block;
+    margin-left: 4px;
+  }
+
+  .header-style-one .header-style-one-wrapper {
+    margin-top: 10px;
+    min-height: 64px;
+  }
+
+  .header-style-one .header-style-one-wrapper .left-area {
+    padding: 16px 18px !important;
+  }
+
+  .header-style-one .header-style-one-wrapper .logo-area .logo img.logo-type {
+    height: 18px;
+  }
+
+  .header-style-one .header-style-one-wrapper .button-area-start {
+    padding: 10px 14px !important;
+    gap: 8px;
+  }
+
+  .header-style-one .header-style-one-wrapper .button-area-start .wpr-btn {
+    display: none !important;
+  }
+
   .header-style-one .tgt-container {
     padding-left: 16px;
     padding-right: 16px;
@@ -90,299 +145,19 @@
     min-height: 48px;
   }
 
-  /* ── 3. Hero (Banner) — stack WE BUILD / icon / word ── */
-  .responsive-page-inner .tgt-home-slot--banner {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-  }
+  /* ── 3. Hero (Banner) — see banner.css ── */
 
-  @keyframes tgtWordSlideMobile {
-    0%,
-    10% {
-      transform: translateY(0);
-    }
-    12%,
-    22% {
-      transform: translateY(-56px);
-    }
-    24%,
-    34% {
-      transform: translateY(-112px);
-    }
-    36%,
-    46% {
-      transform: translateY(-168px);
-    }
-    48%,
-    58% {
-      transform: translateY(-224px);
-    }
-    60%,
-    70% {
-      transform: translateY(-280px);
-    }
-    72%,
-    82% {
-      transform: translateY(-336px);
-    }
-    84%,
-    100% {
-      transform: translateY(-392px);
-    }
-  }
+  /* ── 4. Trusted-by strip — handled in brand.css ── */
 
-  .responsive-page-inner .tgt-word-rotator-inner {
-    animation: tgtWordSlideMobile 14s linear infinite;
-  }
+  /* ── 5. About — see about-mobile.css ── */
 
-  /* ── 4. Trusted-by strip — label + horizontal scroll ── */
-  .responsive-page-inner .tgt-brand-area {
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
-    padding: 12px 0 16px !important;
-  }
+  /* ── 6. Services — see services-mobile.css ── */
 
-  .responsive-page-inner .tgt-brand-label {
-    position: relative !important;
-    inset: auto !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 10px 20px !important;
-    margin: 0 16px 8px !important;
-  }
+  /* ── 7. Marquee + Testimonials — see marquee-mobile.css, testimonials-mobile.css ── */
 
-  .responsive-page-inner .tgt-brand-logos-track {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    transform: none !important;
-    width: 100% !important;
-    height: auto !important;
-    border-left: none !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 16px;
-  }
+  /* ── 8. Careers + Contact + Footer — see cta/contact/footer mobile CSS ── */
 
-  .responsive-page-inner .tgt-brand-marquee-viewport {
-    width: max-content !important;
-    min-width: 100% !important;
-    height: 120px !important;
-  }
-
-  .responsive-page-inner .tgt-brand-marquee-item {
-    flex: 0 0 132px !important;
-    width: 132px !important;
-    height: 120px !important;
-  }
-
-  .responsive-page-inner .tgt-brand-marquee-item > div {
-    transform: scale(0.82);
-    transform-origin: center center;
-  }
-
-  .responsive-page-inner .tgt-brand-corner-decor {
-    display: none !important;
-  }
-
-  /* ── 5. About — stack quote, features, image ── */
-  .responsive-page-inner .tgt-about-panel {
-    height: auto !important;
-  }
-
-  .responsive-page-inner .tgt-about-hero {
-    position: relative !important;
-    height: auto !important;
-    padding: 28px 20px 24px !important;
-  }
-
-  .responsive-page-inner .tgt-about-hero-label,
-  .responsive-page-inner .tgt-about-hero-quote {
-    position: relative !important;
-    inset: auto !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin-bottom: 16px;
-  }
-
-  .responsive-page-inner .tgt-about-quote {
-    font-size: clamp(22px, 5.8vw, 28px) !important;
-    line-height: 1.35 !important;
-  }
-
-  .responsive-page-inner .tgt-about-features {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-  }
-
-  .responsive-page-inner .tgt-about-features > * {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-  .responsive-page-inner .tgt-about-image {
-    position: relative !important;
-    inset: auto !important;
-    width: 100% !important;
-    height: 240px !important;
-  }
-
-  .responsive-page-inner .tgt-about-panel > .tgt-about-corner-mark {
-    display: none !important;
-  }
-
-  /* ── 6. Services header ── */
-  .responsive-page-inner .tgt-services-header {
-    height: auto !important;
-    padding: 28px 20px 32px !important;
-  }
-
-  .responsive-page-inner .tgt-services-eyebrow,
-  .responsive-page-inner .tgt-services-header .tgt-section-title,
-  .responsive-page-inner .tgt-services-header .tgt-body-muted {
-    position: relative !important;
-    transform: none !important;
-    left: auto !important;
-    top: auto !important;
-    width: 100% !important;
-    margin: 0 auto 14px !important;
-    text-align: center;
-  }
-
-  .responsive-page-inner .tgt-services-eyebrow {
-    margin-bottom: 20px !important;
-  }
-
-  .responsive-page-inner .tgt-section-title {
-    font-size: clamp(28px, 7.5vw, 40px) !important;
-  }
-
-  /* ── 7. Services grid — single column ── */
-  .responsive-page-inner .tgt-services-grid {
-    flex-direction: column !important;
-  }
-
-  .responsive-page-inner .tgt-service-card {
-    flex: none !important;
-    width: 100% !important;
-    height: 380px !important;
-    border-right: none !important;
-    border-bottom: 1px solid rgba(3, 7, 18, 0.1);
-  }
-
-  .responsive-page-inner .tgt-service-card::after {
-    opacity: 0 !important;
-  }
-
-  .responsive-page-inner .tgt-service-card-image::after {
-    opacity: 0.45 !important;
-  }
-
-  .responsive-page-inner .tgt-service-card-image img {
-    opacity: 0.72 !important;
-  }
-
-  .responsive-page-inner .tgt-service-card .tgt-service-card-desc {
-    opacity: 1 !important;
-    color: #e5e7eb !important;
-  }
-
-  .responsive-page-inner .tgt-service-card .tgt-service-card-number {
-    color: rgba(249, 250, 251, 0.5) !important;
-    font-size: clamp(72px, 22vw, 120px) !important;
-  }
-
-  .responsive-page-inner .tgt-service-card .tgt-service-card-list li {
-    color: #f9fafb !important;
-    font-size: 16px !important;
-  }
-
-  .responsive-page-inner .tgt-service-card .tgt-service-card-tag {
-    color: #030712 !important;
-    background: #f3f4f6 !important;
-  }
-
-  .responsive-page-inner .tgt-service-card .tgt-service-card-btn {
-    opacity: 1 !important;
-    min-width: 48px;
-    min-height: 48px;
-  }
-
-  /* ── 8. Marquee ── */
-  .responsive-page-inner .marquee-slot,
-  .responsive-page-inner .tgt-marquee-area,
-  .responsive-page-inner .tgt-marquee-container,
-  .responsive-page-inner .tgt-marquee-inner {
-    height: auto !important;
-    min-height: 0 !important;
-  }
-
-  .responsive-page-inner .tgt-marquee-container {
-    padding: 0 16px !important;
-  }
-
-  .responsive-page-inner .tgt-marquee-inner {
-    min-height: 220px !important;
-  }
-
-  .responsive-page-inner .tgt-marquee-title img,
-  .responsive-page-inner .title img {
-    width: 24px !important;
-    height: 30px !important;
-  }
-
-  /* ── 9. Contact — stack info + form ── */
-  .responsive-page-inner .tgt-contact-panel {
-    position: relative !important;
-    inset: auto !important;
-    height: auto !important;
-    padding: 32px 20px !important;
-  }
-
-  .responsive-page-inner .tgt-contact-panel .absolute {
-    position: relative !important;
-    transform: none !important;
-    inset: auto !important;
-    width: 100% !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    white-space: normal !important;
-    text-align: left !important;
-    margin-bottom: 12px;
-    font-size: clamp(22px, 6vw, 32px) !important;
-  }
-
-  .responsive-page-inner .tgt-contact-form {
-    position: relative !important;
-    transform: none !important;
-    inset: auto !important;
-    height: auto !important;
-    border-left: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-    margin-top: 24px;
-    padding-top: 24px !important;
-  }
-
-  .responsive-page-inner .tgt-contact-submit {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    width: 100% !important;
-    margin-top: 16px !important;
-    min-height: 48px !important;
-  }
-
-  /* ── 10. Vision / careers wrappers ── */
-  .responsive-page-inner .wpr-project-area {
-    min-height: 0 !important;
-  }
+  /* ── 10. Vision / careers wrappers — see vision-mobile.css ── */
 
   .responsive-page-inner #careers {
     overflow: visible !important;

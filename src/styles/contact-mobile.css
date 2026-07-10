@@ -1,0 +1,279 @@
+/* Contact / apply form — mobile-only layout (homepage canvas) */
+
+@media (max-width: 768px) {
+  .tgt-contact-mobile {
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 16px 16px;
+  }
+
+  .tgt-contact-desktop {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+  }
+
+  .responsive-page-inner .tgt-home-slot--contact {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin-top: 12px !important;
+  }
+
+  .site-page-section .tgt-contact-mobile {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+  }
+
+  .tgt-contact-mobile-card {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(3, 7, 18, 0.08);
+    background: #111;
+    box-shadow: 0 8px 28px rgba(3, 7, 18, 0.08);
+  }
+
+  .tgt-contact-mobile-card--info {
+    padding: 24px 18px 22px;
+  }
+
+  .tgt-contact-mobile-card--form {
+    padding: 22px 18px 24px;
+  }
+
+  .tgt-contact-mobile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 6px 14px 6px 10px;
+    background: rgba(243, 244, 246, 0.12);
+    border-radius: 6px;
+  }
+
+  .tgt-contact-mobile-badge--office {
+    margin-top: 22px;
+    margin-bottom: 12px;
+  }
+
+  .tgt-contact-mobile-badge-mark {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    background: #ff0d16;
+    border-radius: 1px;
+  }
+
+  .tgt-contact-mobile-badge span:last-child {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #f9fafb;
+    line-height: 1;
+  }
+
+  .tgt-contact-mobile-emails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tgt-contact-mobile-emails a {
+    font-family: var(--font-secondary);
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 600;
+    line-height: 1.25;
+    color: #f9fafb;
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  .tgt-contact-mobile-city {
+    margin: 0 0 8px;
+    font-family: var(--font-secondary);
+    font-size: clamp(22px, 6vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #f9fafb;
+  }
+
+  .tgt-contact-mobile-address {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .tgt-contact-mobile-form-title {
+    margin: 0 0 20px;
+    font-family: var(--font-secondary);
+    font-size: clamp(20px, 5.6vw, 26px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #f9fafb;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-form-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-field {
+    margin: 0;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-field input,
+  .tgt-contact-mobile .tgt-contact-page-field select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    font-family: var(--font-secondary);
+    font-size: 15px;
+    font-weight: 600;
+    color: #f9fafb;
+    outline: none;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-field input::placeholder {
+    color: rgba(249, 250, 251, 0.45);
+    font-weight: 500;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-field select {
+    appearance: none;
+    padding-right: 28px;
+    line-height: 1.35;
+    white-space: normal;
+    text-overflow: ellipsis;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-select-wrap {
+    position: relative;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-select-arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-field option {
+    color: #030712;
+    background: #fff;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-file,
+  .tgt-contact-mobile .tgt-contact-page-file--filled {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px 12px;
+    padding: 14px 16px;
+    border: 1px dashed rgba(255, 255, 255, 0.28);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    color: #f9fafb;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-file--filled {
+    border-style: solid;
+    background: rgba(255, 255, 255, 0.06);
+    cursor: default;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-file > span:nth-child(2) {
+    flex: 1 1 calc(100% - 40px);
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-file > span:last-child {
+    flex: 1 1 100%;
+    margin-left: 0 !important;
+    padding-left: 33px;
+    font-size: 12px;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-submit {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 4px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(143.4deg, #40454a 21.13%, #292c2e 80.53%);
+    box-shadow:
+      0 3px 3px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -3px 0 #1a1a1a;
+    color: #fff;
+    font-family: var(--font-secondary);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-error {
+    margin: 6px 0 0;
+    font-family: var(--font-secondary);
+    font-size: 13px;
+    color: #ff272f;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-success {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 14px;
+    color: #86efac;
+  }
+
+  .tgt-contact-mobile .tgt-contact-page-input-error {
+    border-bottom-color: #ff272f !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .tgt-contact-mobile {
+    display: none !important;
+  }
+}
