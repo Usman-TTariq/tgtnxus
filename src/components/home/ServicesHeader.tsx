@@ -1,7 +1,7 @@
 export default function ServicesHeader() {
   return (
-    <div className="bg-white border border-[rgba(3,7,18,0.1)] border-solid relative size-full" data-node-id="23:14">
-      <div className="absolute bg-[#f3f4f6] h-[25px] left-1/2 -translate-x-1/2 top-[98px] w-[144px]" data-node-id="23:112" data-name="Background">
+    <div className="tgt-services-header bg-white border border-[rgba(3,7,18,0.1)] border-solid relative size-full" data-node-id="23:14">
+      <div className="tgt-services-eyebrow absolute bg-[#f3f4f6] h-[25px] left-1/2 -translate-x-1/2 top-[98px] w-[144px]" data-node-id="23:112" data-name="Background">
         <div className="tgt-sub-title -translate-y-1/2 [word-break:break-word] absolute flex flex-col justify-center left-[28.07px] text-[#030712] top-[12.5px] whitespace-nowrap" data-node-id="23:113">
           <p>OUR SERVICES</p>
         </div>
