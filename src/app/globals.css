@@ -8,7 +8,7 @@
 @import "../styles/testimonials.css";
 
 :root {
-  --background: #ffffff;
+  --background: #f3f4f6;
   --foreground: #030712;
   --tgt-accent: #ff0d16;
   --color-heading-1: #030712;
@@ -32,7 +32,7 @@ html {
 }
 
 body {
-  background: #ffffff;
+  background: #f3f4f6;
   color: var(--foreground);
   font-family: var(--font-secondary);
   font-size: var(--font-size-b1);

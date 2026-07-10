@@ -52,7 +52,7 @@ export default function ProjectsSection() {
                       We streamlined user flows, refreshed the visual language, and introduced accessibility-focused
                       design components to improve usability.
                     </p>
-                  </div>
+              </div>
                   <div className="bottom">
                     <ul className="tgt-project-intro-stats">
                       <li>
@@ -68,8 +68,8 @@ export default function ProjectsSection() {
                         <p>Star rating</p>
                       </li>
                     </ul>
-                  </div>
-                </div>
+              </div>
+            </div>
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${urbanist.variable} antialiased`}
     >
-      <body className="bg-white text-[#030712]">{children}</body>
+      <body className="bg-[#f3f4f6] text-[#030712]">{children}</body>
     </html>
   );
 }

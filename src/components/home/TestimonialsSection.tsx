@@ -17,7 +17,7 @@ const SHAPE = `${IMG}/top-left-shape.svg`;
 
 const slides = [
   {
-    image: `${IMG}/01.webp`,
+    image: "/agenio/assets/images/carousel-1.webp",
     title: "Beyond expectations",
     quote:
       "Working with this team completely transformed how we present our product. Their attention to detail and understanding of user experience helped us increase engagement beyond expectations.",
@@ -25,7 +25,7 @@ const slides = [
     role: "Founder, Lunaris Coffee Co.",
   },
   {
-    image: `${IMG}/02.webp`,
+    image: "/agenio/assets/images/carousel-2.webp",
     title: "Professional experience",
     quote:
       "They delivered a sophisticated, modern brand that aligns perfectly with our values. Communication was seamless from start to finish — truly a professional experience.",
@@ -33,7 +33,7 @@ const slides = [
     role: "CEO, Axis Legal Group",
   },
   {
-    image: `${IMG}/03.webp`,
+    image: "/agenio/assets/images/carousel-3.webp",
     title: "Genuinely love",
     quote:
       "Their design process is smart, collaborative, and strategic. They understood our vision quickly and turned it into a product our users genuinely love.",
