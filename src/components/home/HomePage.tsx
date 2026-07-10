@@ -19,7 +19,7 @@ export default function HomePage() {
       <Preloader />
       <HomeAnimations />
     <div className="responsive-page-wrapper bg-[#f3f4f6]">
-    <div className="responsive-page-inner relative w-[1920px] h-[9689px] bg-[#f3f4f6] overflow-x-clip overflow-y-visible shrink-0">
+    <div className="responsive-page-inner relative w-[1920px] h-[8289px] bg-[#f3f4f6] overflow-x-clip overflow-y-visible shrink-0">
       <div className="absolute top-0 left-0 w-full min-h-[130px] z-[60]">
         <Header />
       </div>
@@ -38,22 +38,22 @@ export default function HomePage() {
       <div className="absolute top-[2467px] left-[161px] w-[1599px] h-[665px] tgt-reveal-stagger">
         <ServicesGrid />
       </div>
-      <div className="absolute top-[3216px] left-[160px] w-[1600px] min-h-[3200px] overflow-visible z-[10]">
+      <div className="absolute top-[3216px] left-[160px] w-[1600px] overflow-visible z-[10]">
         <VisionProject />
       </div>
-      <div className="marquee-slot absolute top-[6420px] left-0 w-full h-[363px] z-[2] isolate bg-[#f3f4f6]">
+      <div className="marquee-slot absolute top-[5020px] left-0 w-full h-[363px] z-[2] isolate bg-[#f3f4f6]">
         <MarqueeSection />
       </div>
-      <div className="absolute top-[6816px] left-[160px] w-[1600px] h-[798px] z-[2]">
+      <div className="absolute top-[5416px] left-[160px] w-[1600px] h-[798px] z-[2]">
         <TestimonialsSection />
       </div>
-      <div id="careers" className="absolute top-[7646px] left-[160px] w-[1600px] h-[614px] tgt-reveal">
+      <div id="careers" className="absolute top-[6246px] left-[160px] w-[1600px] h-[614px] tgt-reveal">
         <CtaSection />
       </div>
-      <div className="absolute top-[8259px] left-[160px] w-[1760px] h-[703px] tgt-reveal">
+      <div className="absolute top-[6859px] left-[160px] w-[1760px] h-[703px] tgt-reveal">
         <ContactSection />
       </div>
-      <div className="absolute top-[8985px] left-[160px] w-[1600px] h-[704px] tgt-reveal">
+      <div className="absolute top-[7585px] left-[160px] w-[1600px] h-[704px] tgt-reveal">
         <Footer />
       </div>
     </div>
