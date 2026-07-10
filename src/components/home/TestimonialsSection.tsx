@@ -102,7 +102,7 @@ export default function TestimonialsSection() {
   return (
     <section ref={root} className="wpr-testimonials-area mb--16">
       <div className="container">
-        <div className="section-inner border-1">
+        <div className="section-inner border-1 ">
           <div className="swiper testimonials-image-slider">
             <div className="swiper-wrapper">
               {loopSlides.map((slide, i) => (

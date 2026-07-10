@@ -11,18 +11,14 @@ import "swiper/css/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function syncThumbScale(
-  rootEl: HTMLElement,
-  wrapper: HTMLElement,
-  thumb: HTMLElement
-) {
+function syncThumbScale(wrapper: HTMLElement, thumb: HTMLElement) {
   const thumbRect = thumb.getBoundingClientRect();
   const wrapRect = wrapper.getBoundingClientRect();
 
   if (!wrapRect.width || !wrapRect.height) {
     gsap.set(wrapper, {
       scale: 0.1,
-      opacity: 0,
+      autoAlpha: 0,
       transformOrigin: "center center",
     });
     return 0.1;
@@ -38,9 +34,17 @@ function syncThumbScale(
 
   gsap.set(wrapper, {
     scale: startScale,
-    opacity: 0,
+    autoAlpha: 0,
     transformOrigin: `${originX}% ${originY}%`,
+    force3D: true,
     willChange: "transform, opacity",
+  });
+
+  gsap.set(thumb, {
+    autoAlpha: 1,
+    scale: 1,
+    transformOrigin: "center center",
+    force3D: true,
   });
 
   return startScale;
@@ -84,11 +88,16 @@ export default function VisionProject() {
       mm = gsap.matchMedia();
 
       mm.add("(min-width: 769px)", () => {
-        const sectionInner = el.querySelector(".section-inner") as HTMLElement;
         const pinWrap = el.querySelector(".wpr-video-pin") as HTMLElement;
+        const floatingContent = el.querySelector(
+          ".floating-content"
+        ) as HTMLElement;
         const wrapper = el.querySelector(".wpr-video-wrapper") as HTMLElement;
         const thumb = el.querySelector(
           ".vision-inline-thumb"
+        ) as HTMLElement;
+        const runway = el.querySelector(
+          ".wpr-project-scroll-runway"
         ) as HTMLElement;
         const slideContents = wrapper?.querySelectorAll(".slide-content");
         const featureProjects =
@@ -96,93 +105,175 @@ export default function VisionProject() {
         const swiperNav = wrapper?.querySelector(".swiper-navigation");
 
         if (
-          !sectionInner ||
           !pinWrap ||
+          !floatingContent ||
           !wrapper ||
           !thumb ||
+          !runway ||
           !slideContents?.length ||
           !featureProjects?.length ||
           !swiperNav
         )
           return;
 
-        const applyThumbStart = () => syncThumbScale(el, wrapper, thumb);
+        const syncRunway = () => {
+          runway.style.height = "0px";
+        };
 
-        applyThumbStart();
+        const setThumbLayerOrder = (animationActive: boolean) => {
+          if (animationActive) {
+            floatingContent.style.zIndex = "2";
+            pinWrap.style.zIndex = "12";
+          } else {
+            floatingContent.style.zIndex = "15";
+            pinWrap.style.zIndex = "10";
+            gsap.set(thumb, { autoAlpha: 1 });
+          }
+        };
 
+        const applyThumbStart = () => syncThumbScale(wrapper, thumb);
+
+        const resetAtStart = () => {
+          applyThumbStart();
+          setThumbLayerOrder(false);
+          gsap.set(textFadeTargets, { autoAlpha: 1 });
+          gsap.set([...slideContents, swiperNav], { opacity: 0 });
+          gsap.set(featureProjects, { pointerEvents: "none" });
+        };
+
+        let tl: gsap.core.Timeline;
+        let wasAnimating = false;
+
+        const textFadeTargets = floatingContent.querySelectorAll(
+          ".sub-title, .desc"
+        );
+
+        syncRunway();
+        resetAtStart();
+
+        gsap.set(textFadeTargets, { autoAlpha: 1, willChange: "opacity" });
         gsap.set([...slideContents, swiperNav], {
           opacity: 0,
           willChange: "opacity",
         });
+        gsap.set(featureProjects, { pointerEvents: "none" });
 
-        gsap.set(featureProjects, {
-          pointerEvents: "none",
-        });
+        const scheduleStartMeasure = () => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              if ((tl?.scrollTrigger?.progress ?? 0) < 0.01) {
+                resetAtStart();
+              }
+            });
+          });
+        };
 
-        const tl = gsap
+        tl = gsap
           .timeline({
             scrollTrigger: {
-              trigger: sectionInner,
+              trigger: el,
               start: "top top",
               end: () => "+=" + window.innerHeight,
-              scrub: 0.8,
-              pin: sectionInner,
+              scrub: 1,
+              pin: el,
               pinType: "transform",
-              pinSpacing: true,
-              anticipatePin: 1,
+              pinSpacing: false,
+              anticipatePin: 0,
               invalidateOnRefresh: true,
-              onRefresh: applyThumbStart,
+              onRefresh: (self) => {
+                syncRunway();
+                if (self.progress < 0.01) resetAtStart();
+              },
+              onEnter: scheduleStartMeasure,
+              onEnterBack: scheduleStartMeasure,
+              onLeaveBack: () => {
+                wasAnimating = false;
+                resetAtStart();
+              },
+              onUpdate: (self) => {
+                const animating = self.progress > 0.01;
+
+                if (wasAnimating && !animating) {
+                  resetAtStart();
+                }
+
+                wasAnimating = animating;
+                setThumbLayerOrder(animating);
+              },
             },
           })
-          .to(wrapper, {
-            opacity: 1,
-            duration: 0.25,
-            ease: "power1.out",
-            onStart: () => {
-              thumb.style.visibility = "hidden";
+          .to(
+            thumb,
+            {
+              autoAlpha: 0,
+              duration: 0.02,
+              ease: "none",
             },
-          })
-          .to(wrapper, {
-            scale: 1,
-            duration: 1.4,
-            ease: "power2.out",
-          })
+            0
+          )
+          .to(
+            wrapper,
+            {
+              autoAlpha: 1,
+              duration: 0.02,
+              ease: "none",
+            },
+            0
+          )
+          .to(
+            wrapper,
+            {
+              scale: 1,
+              duration: 0.98,
+              ease: "none",
+              force3D: true,
+            },
+            0
+          )
           .to(
             [...slideContents, swiperNav],
             {
               opacity: 1,
-              duration: 0.4,
+              duration: 0.35,
               ease: "power1.out",
             },
-            ">"
+            0.98
           )
-          .to(
-            featureProjects,
-            {
-              pointerEvents: "auto",
-            },
-            ">"
-          )
-          .to(
-            pinWrap,
-            { pointerEvents: "auto", duration: 0 },
-            ">"
-          );
+          .to(featureProjects, { pointerEvents: "auto" }, ">")
+          .to(pinWrap, { pointerEvents: "auto", duration: 0 }, ">");
+
+        const onRefreshInit = () => {
+          syncRunway();
+        };
 
         const refresh = () => {
-          applyThumbStart();
+          syncRunway();
           ScrollTrigger.refresh();
+          if ((tl?.scrollTrigger?.progress ?? 0) < 0.01) {
+            resetAtStart();
+          }
         };
 
         window.addEventListener("resize", refresh);
-        ScrollTrigger.addEventListener("refreshInit", applyThumbStart);
+        ScrollTrigger.addEventListener("refreshInit", onRefreshInit);
 
         requestAnimationFrame(() => requestAnimationFrame(refresh));
 
         return () => {
           window.removeEventListener("resize", refresh);
-          ScrollTrigger.removeEventListener("refreshInit", applyThumbStart);
-          thumb.style.visibility = "";
+          ScrollTrigger.removeEventListener("refreshInit", onRefreshInit);
+          floatingContent.style.zIndex = "";
+          pinWrap.style.zIndex = "";
+          gsap.set(wrapper, {
+            clearProps: "transform,opacity,visibility,transformOrigin",
+          });
+          gsap.set(thumb, {
+            clearProps: "transform,opacity,visibility,transformOrigin",
+          });
+          gsap.set(textFadeTargets, {
+            clearProps: "opacity,visibility,autoAlpha",
+          });
+          gsap.set([...slideContents, swiperNav], { clearProps: "opacity" });
           tl.scrollTrigger?.kill();
           tl.kill();
         };
@@ -213,7 +304,7 @@ export default function VisionProject() {
                   starts{" "}
                   <span>
                     <img
-                      src="/assets/images/portfolio/sm.webp"
+                      src="/assets/images/portfolio/nova-mobile-app.png"
                       width={147}
                       height={83}
                       alt=""
@@ -242,7 +333,7 @@ export default function VisionProject() {
                     <div className="slide feature-project">
                       <div className="image-area">
                         <img
-                          src="/assets/images/portfolio/sm.webp"
+                          src="/assets/images/portfolio/nova-mobile-app.png"
                           alt=""
                           className="video-img"
                         />
@@ -312,7 +403,7 @@ export default function VisionProject() {
                     <div className="slide feature-project">
                       <div className="image-area">
                         <img
-                          src="/assets/images/portfolio/02.webp"
+                          src="/assets/images/portfolio/nova-mobile-app.png"
                           alt=""
                           className="video-img"
                         />
@@ -382,7 +473,7 @@ export default function VisionProject() {
                     <div className="slide feature-project">
                       <div className="image-area">
                         <img
-                          src="/assets/images/portfolio/03.webp"
+                          src="/assets/images/portfolio/nova-mobile-app.png"
                           alt=""
                           className="video-img"
                         />
@@ -484,9 +575,9 @@ export default function VisionProject() {
               </div>
             </div>
           </div>
-          <div className="wpr-project-scroll-runway" aria-hidden="true" />
         </div>
       </div>
+      <div className="wpr-project-scroll-runway" aria-hidden="true" />
     </section>
   );
 }
