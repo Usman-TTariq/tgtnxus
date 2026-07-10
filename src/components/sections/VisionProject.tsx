@@ -421,7 +421,7 @@ export default function VisionProject() {
                       <div className="slide-content">
                         <div className="product-intro">
                           <div className="top">
-                            <h2 className="h3 title">
+                            <h2 className="h3 title !text-[58px]">
                               <a href="/work-details">Axis Legal Website</a>
                             </h2>
                             <p className="desc">
@@ -491,7 +491,7 @@ export default function VisionProject() {
                       <div className="slide-content">
                         <div className="product-intro">
                           <div className="top">
-                            <h2 className="h3 title">
+                            <h2 className="h3 title !text-[58px]">
                               <a href="/work-details">
                                 Lunaris Co . Branding
                               </a>
@@ -542,7 +542,7 @@ export default function VisionProject() {
                   </div>
                 </div>
 
-                <div className="swiper-navigation">
+                {/* <div className="swiper-navigation">
                   <div className="swiper-btn slider-prev">
                     <svg
                       width="17"
@@ -571,7 +571,7 @@ export default function VisionProject() {
                       />
                     </svg>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
