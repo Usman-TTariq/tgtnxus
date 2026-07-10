@@ -11,6 +11,41 @@ import "swiper/css/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function syncThumbScale(
+  rootEl: HTMLElement,
+  wrapper: HTMLElement,
+  thumb: HTMLElement
+) {
+  const thumbRect = thumb.getBoundingClientRect();
+  const wrapRect = wrapper.getBoundingClientRect();
+
+  if (!wrapRect.width || !wrapRect.height) {
+    gsap.set(wrapper, {
+      scale: 0.1,
+      opacity: 0,
+      transformOrigin: "center center",
+    });
+    return 0.1;
+  }
+
+  const originX =
+    ((thumbRect.left + thumbRect.width / 2 - wrapRect.left) / wrapRect.width) *
+    100;
+  const originY =
+    ((thumbRect.top + thumbRect.height / 2 - wrapRect.top) / wrapRect.height) *
+    100;
+  const startScale = thumbRect.width / wrapRect.width;
+
+  gsap.set(wrapper, {
+    scale: startScale,
+    opacity: 0,
+    transformOrigin: `${originX}% ${originY}%`,
+    willChange: "transform, opacity",
+  });
+
+  return startScale;
+}
+
 export default function VisionProject() {
   const root = useRef<HTMLElement>(null);
 
@@ -49,28 +84,31 @@ export default function VisionProject() {
       mm = gsap.matchMedia();
 
       mm.add("(min-width: 769px)", () => {
+        const sectionInner = el.querySelector(".section-inner") as HTMLElement;
         const pinWrap = el.querySelector(".wpr-video-pin") as HTMLElement;
         const wrapper = el.querySelector(".wpr-video-wrapper") as HTMLElement;
+        const thumb = el.querySelector(
+          ".vision-inline-thumb"
+        ) as HTMLElement;
         const slideContents = wrapper?.querySelectorAll(".slide-content");
         const featureProjects =
           wrapper?.querySelectorAll(".feature-project");
         const swiperNav = wrapper?.querySelector(".swiper-navigation");
 
         if (
+          !sectionInner ||
           !pinWrap ||
           !wrapper ||
+          !thumb ||
           !slideContents?.length ||
           !featureProjects?.length ||
           !swiperNav
         )
           return;
 
-        gsap.set(wrapper, {
-          scale: 0.1,
-          opacity: 0,
-          transformOrigin: "center center",
-          willChange: "transform, opacity",
-        });
+        const applyThumbStart = () => syncThumbScale(el, wrapper, thumb);
+
+        applyThumbStart();
 
         gsap.set([...slideContents, swiperNav], {
           opacity: 0,
@@ -84,21 +122,25 @@ export default function VisionProject() {
         const tl = gsap
           .timeline({
             scrollTrigger: {
-              trigger: pinWrap,
+              trigger: sectionInner,
               start: "top top",
               end: () => "+=" + window.innerHeight,
               scrub: 0.8,
-              pin: true,
+              pin: sectionInner,
               pinType: "transform",
               pinSpacing: true,
               anticipatePin: 1,
               invalidateOnRefresh: true,
+              onRefresh: applyThumbStart,
             },
           })
           .to(wrapper, {
             opacity: 1,
             duration: 0.25,
             ease: "power1.out",
+            onStart: () => {
+              thumb.style.visibility = "hidden";
+            },
           })
           .to(wrapper, {
             scale: 1,
@@ -120,11 +162,27 @@ export default function VisionProject() {
               pointerEvents: "auto",
             },
             ">"
+          )
+          .to(
+            pinWrap,
+            { pointerEvents: "auto", duration: 0 },
+            ">"
           );
 
-        requestAnimationFrame(() => ScrollTrigger.refresh());
+        const refresh = () => {
+          applyThumbStart();
+          ScrollTrigger.refresh();
+        };
+
+        window.addEventListener("resize", refresh);
+        ScrollTrigger.addEventListener("refreshInit", applyThumbStart);
+
+        requestAnimationFrame(() => requestAnimationFrame(refresh));
 
         return () => {
+          window.removeEventListener("resize", refresh);
+          ScrollTrigger.removeEventListener("refreshInit", applyThumbStart);
+          thumb.style.visibility = "";
           tl.scrollTrigger?.kill();
           tl.kill();
         };
@@ -157,7 +215,9 @@ export default function VisionProject() {
                     <img
                       src="/assets/images/portfolio/sm.webp"
                       width={147}
+                      height={83}
                       alt=""
+                      className="vision-inline-thumb"
                     />
                   </span>{" "}
                   with a
@@ -182,7 +242,7 @@ export default function VisionProject() {
                     <div className="slide feature-project">
                       <div className="image-area">
                         <img
-                          src="/assets/images/portfolio/01.webp"
+                          src="/assets/images/portfolio/sm.webp"
                           alt=""
                           className="video-img"
                         />
