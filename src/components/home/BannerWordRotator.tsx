@@ -12,8 +12,8 @@ type BannerWordRotatorProps = {
 
 export default function BannerWordRotator({ className }: BannerWordRotatorProps) {
   return (
-    <div className={className} data-node-id="3:3612">
-      <div className="relative h-[120px] w-full overflow-hidden">
+    <div className={`tgt-hero-word-rotator ${className ?? ""}`.trim()} data-node-id="3:3612">
+      <div className="tgt-hero-word-rotator-viewport relative h-[120px] w-full overflow-hidden">
         <div className="tgt-word-rotator-inner relative w-full">
           {LOOP_WORDS.map((word, index) => (
             <div

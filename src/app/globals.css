@@ -3,9 +3,12 @@
 @import "../styles/animations.css";
 @import "../styles/header.css";
 @import "../styles/services.css";
+@import "../styles/about.css";
 @import "../styles/marquee.css";
 @import "../styles/vision-project.css";
 @import "../styles/testimonials.css";
+@import "../styles/responsive-canvas.css";
+@import "../styles/mobile.css";
 
 :root {
   --background: #f3f4f6;
@@ -63,7 +66,7 @@ body {
   }
 }
 
-@media (max-width: 1919px) {
+@media (min-width: 769px) and (max-width: 1919px) {
   .responsive-page-wrapper {
     height: calc(9689px * (100vw / 1920px));
     overflow: hidden;

@@ -25,13 +25,13 @@ const brands = [
 
 export default function BrandArea() {
   return (
-    <div className="relative size-full border border-solid border-[rgba(3,7,18,0.1)] bg-white" data-node-id="3:3664">
+    <div className="tgt-brand-area relative size-full border border-solid border-[rgba(3,7,18,0.1)] bg-white" data-node-id="3:3664">
       <div className="tgt-brand-label absolute bottom-[77.77px] left-[53.2px] top-[77.77px] flex w-[93.8px] flex-col justify-center text-[#030712]">
         <p className="mb-0">{"//WE'RE"}</p>
         <p>TRUSTED BY</p>
       </div>
 
-      <div className="absolute left-[200px] top-1/2 flex h-[200px] w-[1206px] -translate-y-1/2 overflow-hidden border-l border-solid border-[rgba(3,7,18,0.1)]">
+      <div className="tgt-brand-logos-track absolute left-[200px] top-1/2 flex h-[200px] w-[1206px] -translate-y-1/2 overflow-hidden border-l border-solid border-[rgba(3,7,18,0.1)]">
         <BrandMarquee brands={brands} />
         <div
           className="h-[200px] w-[6px] shrink-0 border-l border-r border-solid border-[rgba(3,7,18,0.1)]"
@@ -39,7 +39,7 @@ export default function BrandArea() {
         />
       </div>
 
-      <div className="absolute inset-[calc(34.65%-0.31px)_calc(3.69%-0.93px)_calc(33.66%-0.33px)_calc(91.38%+0.83px)]">
+      <div className="tgt-brand-corner-decor absolute inset-[calc(34.65%-0.31px)_calc(3.69%-0.93px)_calc(33.66%-0.33px)_calc(91.38%+0.83px)]">
         <img alt="" className="absolute inset-0 block size-full max-w-none" src={imgVector} />
       </div>
       <div className="absolute left-[-3px] top-[-3px] size-[6px] bg-[#030712]" />

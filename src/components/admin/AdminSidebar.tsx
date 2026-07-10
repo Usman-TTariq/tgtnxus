@@ -8,6 +8,7 @@ import { LOGO_MARK, LOGO_TYPE } from "@/lib/brand";
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "📊", exact: true },
   { href: "/admin/applications", label: "Applications", icon: "📋", exact: false },
+  { href: "/admin/saved", label: "Saved", icon: "🔖", exact: false },
 ];
 
 export default function AdminSidebar() {

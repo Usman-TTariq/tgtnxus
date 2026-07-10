@@ -121,11 +121,11 @@ export default function ContactSection() {
       data-name="Section - wpr contact area start"
     >
       <div
-        className="absolute overflow-visible bg-[#111] h-[702px] left-0 right-[160px] top-0"
+        className="tgt-contact-panel absolute overflow-visible bg-[#111] h-[702px] left-0 right-[160px] top-0"
         data-node-id="58:1853"
         data-name="Background"
       >
-        <div className="-translate-y-1/2 absolute contents left-[152px] right-[738.89px] top-[calc(50%+0.25px)]" data-node-id="61:1912">
+        <div className="tgt-contact-info -translate-y-1/2 absolute contents left-[152px] right-[738.89px] top-[calc(50%+0.25px)]" data-node-id="61:1912">
           <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] left-[328.11px] right-[824.89px] text-[#f9fafb] text-[51.989px] top-[193px] whitespace-nowrap" data-node-id="58:1855">
             <a href="mailto:info@tgtnexus.com" className="leading-[51.989px] text-inherit no-underline">
               info@tgtnexus.com
@@ -163,7 +163,7 @@ export default function ContactSection() {
         <form
           onSubmit={handleSubmit}
           noValidate
-          className="-translate-y-1/2 absolute border-[rgba(255,255,255,0.15)] border-l border-solid h-[702px] left-[1004px] right-0 top-1/2"
+          className="tgt-contact-form -translate-y-1/2 absolute border-[rgba(255,255,255,0.15)] border-l border-solid h-[702px] left-[1004px] right-0 top-1/2"
           data-node-id="58:1870"
           data-name="VerticalBorder"
         >
@@ -352,7 +352,7 @@ export default function ContactSection() {
           <button
             type="submit"
             disabled={submitting}
-            className={submitButtonClass}
+            className={`tgt-contact-submit ${submitButtonClass}`}
             data-node-id="58:1891"
             data-name="Button"
             style={{
@@ -366,7 +366,7 @@ export default function ContactSection() {
           </button>
         </form>
 
-        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] left-[1045px] right-[76px] text-[#f9fafb] text-[39.591px] top-[60.22px] whitespace-nowrap" data-node-id="61:1911">
+        <div className="tgt-contact-form-heading -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] left-[1045px] right-[76px] text-[#f9fafb] text-[39.591px] top-[60.22px] whitespace-nowrap" data-node-id="61:1911">
           <p className="leading-[39.591px]">{`Fill The Form & Get Noticed`}</p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import type { ApplicationRow } from "@/lib/supabase/admin";
+import SaveApplicantButton from "@/components/admin/SaveApplicantButton";
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -13,9 +14,14 @@ function formatDate(value: string) {
 type Props = {
   applications: ApplicationRow[];
   compact?: boolean;
+  refreshOnSaveToggle?: boolean;
 };
 
-export default function ApplicationsTable({ applications, compact }: Props) {
+export default function ApplicationsTable({
+  applications,
+  compact,
+  refreshOnSaveToggle = false,
+}: Props) {
   const rows = compact ? applications.slice(-8) : applications;
 
   if (!rows.length) {
@@ -35,6 +41,9 @@ export default function ApplicationsTable({ applications, compact }: Props) {
         <table className="w-full min-w-[960px] border-collapse text-left">
           <thead>
             <tr className="border-b border-[#ece7e2] bg-[#faf8f6]">
+              <th className="px-4 py-3 font-primary text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
+                Save
+              </th>
               <th className="px-4 py-3 font-primary text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
                 Serial No
               </th>
@@ -75,6 +84,13 @@ export default function ApplicationsTable({ applications, compact }: Props) {
                 key={row.id}
                 className="border-b border-[#f0ebe6] last:border-b-0 hover:bg-[#fdfcfb]"
               >
+                <td className="px-4 py-3">
+                  <SaveApplicantButton
+                    applicationId={row.id}
+                    initialSaved={row.is_saved ?? false}
+                    refreshOnToggle={refreshOnSaveToggle}
+                  />
+                </td>
                 <td className="px-4 py-3 font-secondary text-sm font-semibold text-[#111]">
                   {row.serial_no}
                 </td>

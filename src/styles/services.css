@@ -12,6 +12,7 @@
   height: 665px;
   overflow: hidden;
   border-right: 1px solid rgba(3, 7, 18, 0.1);
+  background: #030712;
   transition: all 0.4s ease;
 }
 
@@ -44,16 +45,33 @@
   inset: 0;
 }
 
+.tgt-service-card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #030712;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.tgt-service-card:hover .tgt-service-card-image::after {
+  opacity: 0.45;
+}
+
 .tgt-service-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scale(1);
+  opacity: 1;
   transition: all 0.8s ease;
 }
 
 .tgt-service-card:hover .tgt-service-card-image img {
   transform: scale(1.15);
+  opacity: 0.72;
 }
 
 .tgt-service-card-content {
@@ -110,7 +128,7 @@
 
 .tgt-service-card:hover .tgt-service-card-desc {
   opacity: 1;
-  color: #d1d5db;
+  color: #e5e7eb;
 }
 
 .tgt-service-card-number {
@@ -126,7 +144,7 @@
 }
 
 .tgt-service-card:hover .tgt-service-card-number {
-  color: rgba(249, 250, 251, 0.8);
+  color: rgba(249, 250, 251, 0.55);
 }
 
 .tgt-service-card-bottom {

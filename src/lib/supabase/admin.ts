@@ -10,6 +10,7 @@ export type ApplicationRow = {
   position: string;
   resume_url: string | null;
   resume_filename: string | null;
+  is_saved: boolean;
   created_at: string;
 };
 

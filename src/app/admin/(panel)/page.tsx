@@ -38,7 +38,7 @@ export default async function AdminDashboardPage() {
         </div>
       ) : null}
 
-      <div className="mb-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         <StatCard label="Total applications" value={stats.total} />
         <StatCard label="Submitted today" value={stats.today} />
         <StatCard
@@ -46,6 +46,7 @@ export default async function AdminDashboardPage() {
           value={stats.byPosition.length}
           hint="Unique roles applied for"
         />
+        <StatCard label="Saved applicants" value={stats.saved} />
         <StatCard
           label="Latest serial no"
           value={applications.at(-1)?.serial_no ?? "—"}
@@ -90,6 +91,12 @@ export default async function AdminDashboardPage() {
               className="inline-flex items-center justify-center rounded-lg bg-[#5c1218] px-4 py-2.5 font-secondary text-sm font-semibold text-white transition hover:bg-[#4a0e13]"
             >
               View all applications
+            </Link>
+            <Link
+              href="/admin/saved"
+              className="inline-flex items-center justify-center rounded-lg border border-[#e8e0da] px-4 py-2.5 font-secondary text-sm font-medium text-[#374151] transition hover:bg-[#faf8f6]"
+            >
+              View saved applicants
             </Link>
             <Link
               href="/#contact"

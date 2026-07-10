@@ -14,6 +14,21 @@ export async function getApplications(): Promise<ApplicationRow[]> {
   return data ?? [];
 }
 
+export async function getSavedApplications(): Promise<ApplicationRow[]> {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("applications")
+    .select("*")
+    .eq("is_saved", true)
+    .order("serial_no", { ascending: true });
+
+  if (error) {
+    throw error;
+  }
+
+  return data ?? [];
+}
+
 export function getApplicationStats(applications: ApplicationRow[]) {
   const now = new Date();
   const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -27,9 +42,12 @@ export function getApplicationStats(applications: ApplicationRow[]) {
     return acc;
   }, {});
 
+  const savedCount = applications.filter((row) => row.is_saved).length;
+
   return {
     total: applications.length,
     today: todayCount,
+    saved: savedCount,
     byPosition: Object.entries(byPosition)
       .sort((a, b) => b[1] - a[1])
       .slice(0, 6),
