@@ -1,13 +1,19 @@
 import TeamTalentCta from "./TeamTalentCta";
 
 const SHAPE_TR = "/agenio/assets/images/team/shape-top-right.svg";
+const TEAM_IMAGE = (file: string) => `/assets/images/${file}`;
+
+const TEAM_SOCIAL = [
+  { label: "X", href: "#", icon: "/agenio/assets/images/team/twitter.svg" },
+  { label: "LinkedIn", href: "#", icon: "/agenio/assets/images/team/linkedin.svg" },
+  { label: "GitHub", href: "#", icon: "/agenio/assets/images/team/github.svg" },
+] as const;
 
 const leaders = [
-  {
-    name: "Usman Rogatia",
+  {    name: "Usman Rogatia",
     role: "CEO",
     variant: "photo" as const,
-    tone: "warm",
+    image: TEAM_IMAGE("usman-ragatia.png"),
   },
   {
     name: "Ibad Alvi",
@@ -18,7 +24,7 @@ const leaders = [
     name: "Tariq Fattani",
     role: "Managing Director",
     variant: "photo" as const,
-    tone: "light",
+    image: TEAM_IMAGE("tariq-fattani.png"),
   },
   {
     name: "Junaid Hanif",
@@ -40,36 +46,52 @@ function PersonSilhouette() {
   );
 }
 
-function LeaderCard({
-  name,
-  role,
-  variant,
-  tone,
-}: (typeof leaders)[number]) {
+type Leader = (typeof leaders)[number];
+
+function LeaderCard({ name, role, variant, ...rest }: Leader) {
+  const image = variant === "photo" ? rest.image : undefined;
+
   return (
     <article className={`tgt-team-card tgt-team-card--${variant} tgt-reveal-right`}>
-      <div className={`tgt-team-card-media${tone ? ` tgt-team-card-media--${tone}` : ""}`}>
-        {variant === "placeholder" ? (
-          <>
-            <img src={SHAPE_TR} alt="" className="tgt-team-card-decor" aria-hidden />
-            <PersonSilhouette />
-          </>
-        ) : null}
+      <div className="tgt-team-card-media">
+        {variant === "photo" && image ? (
+          <img src={image} alt={name} className="tgt-team-card-photo" />
+        ) : (
+          <PersonSilhouette />
+        )}
+        <img src={SHAPE_TR} alt="" className="tgt-team-card-decor" aria-hidden />
       </div>
 
       <div className="tgt-team-card-info">
         <h3 className="tgt-team-name">{name}</h3>
         <p className="tgt-team-role">{role}</p>
+        <div className="tgt-team-card-social">
+          <ul>
+            {TEAM_SOCIAL.map(({ label, href, icon }) => (
+              <li key={label}>
+                <a href={href} aria-label={`${name} on ${label}`}>
+                  <img src={icon} alt="" width={20} height={20} aria-hidden />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </article>
-  );
+    </article>  );
 }
 
 export default function TeamSection() {
   return (
     <section id="team" className="tgt-team-section">
-      <div className="tgt-team-grid tgt-reveal-stagger">
-        {leaders.map((leader) => (
+      <header className="tgt-team-section-header tgt-reveal">
+        <div className="tgt-team-section-eyebrow">
+          <span className="tgt-team-section-eyebrow-mark" aria-hidden />
+          <span>OUR LEADERS</span>
+        </div>
+        <h2 className="tgt-team-section-title">The People Behind TGT Nexus</h2>
+      </header>
+
+      <div className="tgt-team-grid tgt-reveal-stagger">        {leaders.map((leader) => (
           <LeaderCard key={leader.name} {...leader} />
         ))}
       </div>

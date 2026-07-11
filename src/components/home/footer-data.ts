@@ -8,8 +8,9 @@ export const FOOTER_NAV = [
 ] as const;
 
 export const FOOTER_SOCIAL = [
-  "Instagram",
-  "Linkedin",
-  "Dribbble",
-  "Behance",
+  { label: "Linkedin", href: "https://www.linkedin.com/company/tgtnexus/" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/tgtnexus_pvtltd?igsh=MTNxaHg1N3lzZHZqbQ==",
+  },
 ] as const;

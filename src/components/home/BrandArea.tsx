@@ -52,7 +52,7 @@ export default function BrandArea({ variant = "canvas" }: BrandAreaProps) {
       {isHome ? (
         <>
           <div className="tgt-brand-corner-decor tgt-brand-corner-decor--home" aria-hidden>
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src={imgVector} />
+            {/* <img alt="" className="absolute inset-0 block size-full max-w-none" src={imgVector} /> */}
           </div>
           <div className="tgt-brand-pixel tgt-brand-pixel--tl" aria-hidden />
           <div className="tgt-brand-pixel tgt-brand-pixel--bl" aria-hidden />

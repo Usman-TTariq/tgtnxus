@@ -10,6 +10,10 @@
   gap: 2rem;
 }
 
+.site-page-main--hero-flush {
+  gap: 0;
+}
+
 .site-page-hero {
   width: 100%;
 }

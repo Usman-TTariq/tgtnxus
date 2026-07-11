@@ -120,20 +120,23 @@ export default function Footer() {
               data-node-id="61:1967"
               data-name="List"
             >
-              {FOOTER_SOCIAL.map((label, index) => (
+              {FOOTER_SOCIAL.map((item, index) => (
                 <li
-                  key={label}
+                  key={item.href}
                   data-node-id={
                     index === 0
                       ? "61:1968"
-                      : index === 1
-                        ? "61:1969"
-                        : index === 2
-                          ? "61:1970"
-                          : "61:1971"
+                      : "61:1969"
                   }
                 >
-                  {label}
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-opacity hover:opacity-70"
+                  >
+                    {item.label}
+                  </a>
                 </li>
               ))}
             </ul>

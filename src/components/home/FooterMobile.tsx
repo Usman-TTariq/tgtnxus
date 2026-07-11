@@ -21,9 +21,16 @@ export default function FooterMobile() {
 
         <div className="tgt-footer-mobile-bottom">
           <ul className="tgt-footer-mobile-social">
-            {FOOTER_SOCIAL.map((label) => (
-              <li key={label}>
-                <span className="tgt-footer-mobile-social-item">{label}</span>
+            {FOOTER_SOCIAL.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tgt-footer-mobile-social-item"
+                >
+                  {item.label}
+                </a>
               </li>
             ))}
           </ul>

@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LOGO_MARK, LOGO_TYPE } from "@/lib/brand";
 
-const imgGreenLeft = "https://www.figma.com/api/mcp/asset/1435748f-c8bf-41b7-afdf-f1c58f068308";
-const imgGreenRight = "https://www.figma.com/api/mcp/asset/1e6dc01d-5914-4fb3-ba06-416336d11993";
+const HIRING_ARROW_LEFT = "/agenio/assets/images/banner/icon/arrow-right-red.svg";
+const HIRING_ARROW_RIGHT = "/agenio/assets/images/banner/icon/arrow-left-red.svg";
 
 const NAV_ITEMS: { label: string; href: string }[] = [
   { label: "HOME", href: "/" },
@@ -49,14 +49,14 @@ export default function Header() {
           <div className="tgt-container">
             <div className="header-top-inner">
               <div className="left-icon">
-                <img alt="" src={imgGreenLeft} width={13} height={16} />
+                <img alt="" src={HIRING_ARROW_LEFT} width={13} height={16} />
               </div>
               <p className="text">
                 WE ARE HIRING
                 <span>MULTIPLE POSITIONS</span>
               </p>
               <div className="right-icon">
-                <img alt="" src={imgGreenRight} width={13} height={16} />
+                <img alt="" src={HIRING_ARROW_RIGHT} width={13} height={16} />
               </div>
             </div>
           </div>
