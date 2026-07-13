@@ -89,13 +89,13 @@ body {
 
 @media (min-width: 769px) and (max-width: 1919px) {
   .responsive-page-wrapper {
-    height: calc(8346px * (100vw / 1920px));
+    height: calc(7516px * (100vw / 1920px));
     overflow: hidden;
   }
 
   .responsive-page-inner {
     transform: scale(calc(100vw / 1920px));
     transform-origin: top left;
-    margin-bottom: calc(8346px * (100vw / 1920px - 1));
+    margin-bottom: calc(7516px * (100vw / 1920px - 1));
   }
 }
