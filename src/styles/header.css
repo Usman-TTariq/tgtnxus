@@ -436,7 +436,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1023px) {
   .main-nav-area {
     display: none;
   }

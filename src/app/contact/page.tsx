@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SitePageLayout from "@/components/layout/SitePageLayout";
-import ContactSection from "@/components/home/ContactSection";
+import SiteContactSection from "@/components/layout/SiteContactSection";
+import ContactInfoCards from "@/components/home/ContactInfoCards";
 
 export const metadata: Metadata = {
   title: "Contact Us | TGT Nexus",
@@ -10,7 +11,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <SitePageLayout>
-      <ContactSection variant="page" />
+      <ContactInfoCards />
+      <SiteContactSection formMode="inquiry" />
     </SitePageLayout>
   );
 }

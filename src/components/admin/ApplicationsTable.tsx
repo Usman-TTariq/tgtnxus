@@ -1,5 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import type { ApplicationRow } from "@/lib/supabase/admin";
 import SaveApplicantButton from "@/components/admin/SaveApplicantButton";
+import DeleteApplicantButton from "@/components/admin/DeleteApplicantButton";
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -20,7 +24,17 @@ export default function ApplicationsTable({
   applications,
   compact,
 }: Props) {
-  const rows = compact ? applications.slice(-8) : applications;
+  const [rows, setRows] = useState(() =>
+    compact ? applications.slice(-8) : applications
+  );
+
+  useEffect(() => {
+    setRows(compact ? applications.slice(-8) : applications);
+  }, [applications, compact]);
+
+  function handleDeleted(id: string) {
+    setRows((prev) => prev.filter((row) => row.id !== id));
+  }
 
   if (!rows.length) {
     return (
@@ -63,6 +77,9 @@ export default function ApplicationsTable({
               {!compact ? (
                 <>
                   <th className="px-4 py-3 font-primary text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
+                    Message
+                  </th>
+                  <th className="px-4 py-3 font-primary text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
                     Resume
                   </th>
                   <th className="px-4 py-3 font-primary text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
@@ -74,6 +91,9 @@ export default function ApplicationsTable({
                   Resume
                 </th>
               )}
+              <th className="px-4 py-3 font-primary text-[11px] font-semibold uppercase tracking-wider text-[#6b7280]">
+                Delete
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -110,6 +130,15 @@ export default function ApplicationsTable({
                 </td>
                 {!compact ? (
                   <>
+                    <td className="max-w-[220px] px-4 py-3 font-secondary text-sm text-[#374151]">
+                      {row.message ? (
+                        <span className="line-clamp-2" title={row.message}>
+                          {row.message}
+                        </span>
+                      ) : (
+                        <span className="text-[#9ca3af]">—</span>
+                      )}
+                    </td>
                     <td className="px-4 py-3">
                       {row.resume_url ? (
                         <div className="flex flex-wrap items-center gap-2">
@@ -152,6 +181,13 @@ export default function ApplicationsTable({
                     )}
                   </td>
                 )}
+                <td className="px-4 py-3">
+                  <DeleteApplicantButton
+                    applicationId={row.id}
+                    applicantName={row.full_name}
+                    onDeleted={handleDeleted}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>

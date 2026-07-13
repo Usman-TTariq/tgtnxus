@@ -1,43 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 type Brand = {
-  mask: string;
   src: string;
-  width: string;
-  height: string;
-  maskSize: string;
-  inset?: string;
-  maskPosition?: string;
+  alt: string;
 };
 
-function BrandLogo({
-  mask,
-  src,
-  width,
-  height,
-  maskSize,
-  inset,
-  maskPosition,
-}: Brand) {
+function BrandLogo({ src, alt }: Brand) {
   return (
-    <div className="tgt-brand-marquee-item flex shrink-0 items-center justify-center">
-      <div className={`relative overflow-clip ${width} ${height}`}>
-        <div className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-clip ${width} ${height}`}>
-          <div
-            className={`absolute mask-alpha mask-intersect mask-no-clip mask-no-repeat ${inset ?? "inset-0"}`}
-            style={{
-              maskImage: `url("${mask}")`,
-              maskSize,
-              ...(maskPosition ? { maskPosition } : {}),
-            }}
-          >
-            <img alt="" className="absolute inset-0 block size-full max-w-none" src={src} />
-          </div>
-        </div>
-      </div>
+    <div className="tgt-brand-marquee-item">
+      <img alt={alt} className="tgt-brand-marquee-logo" src={src} />
     </div>
   );
 }
@@ -47,14 +21,55 @@ type BrandMarqueeProps = {
   fullWidth?: boolean;
 };
 
+/** Aim for ~2.75 visible cells so the strip always overflows (no trailing blank). */
+function itemWidthForContainer(containerWidth: number, viewportWidth: number) {
+  if (viewportWidth > 768) return 200;
+  const visible = viewportWidth <= 640 ? 2.5 : 3.25;
+  const raw = Math.floor(containerWidth / visible);
+  if (viewportWidth <= 640) return Math.min(150, Math.max(128, raw));
+  return Math.min(180, Math.max(150, raw));
+}
+
 export default function BrandMarquee({ brands, fullWidth = false }: BrandMarqueeProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
+  const [copies, setCopies] = useState(4);
+  const [itemWidth, setItemWidth] = useState(200);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport || brands.length === 0) return;
+
+    const measure = () => {
+      const vw = window.innerWidth;
+      const cw = viewport.clientWidth || vw;
+      const nextWidth = itemWidthForContainer(cw, vw);
+      setItemWidth(nextWidth);
+      viewport.style.setProperty("--brand-item-width", `${nextWidth}px`);
+
+      const need = Math.ceil((cw * 2.5) / (nextWidth * brands.length));
+      setCopies(Math.max(4, need));
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(viewport);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [brands.length]);
+
+  const sequence = useMemo(() => {
+    if (brands.length === 0) return [];
+    return Array.from({ length: copies }, () => brands).flat();
+  }, [brands, copies]);
 
   useEffect(() => {
     const track = trackRef.current;
     const viewport = viewportRef.current;
-    if (!track) return;
+    if (!track || sequence.length === 0) return;
 
     let tween: gsap.core.Tween | null = null;
     const mm = gsap.matchMedia();
@@ -72,7 +87,7 @@ export default function BrandMarquee({ brands, fullWidth = false }: BrandMarquee
         { x: 0 },
         {
           x: -loopWidth,
-          duration: 22,
+          duration: 28,
           ease: "none",
           repeat: -1,
         }
@@ -138,18 +153,19 @@ export default function BrandMarquee({ brands, fullWidth = false }: BrandMarquee
       tween?.kill();
       mm.revert();
     };
-  }, [brands]);
+  }, [sequence, itemWidth]);
 
   return (
     <div
       ref={viewportRef}
-      className={`tgt-brand-marquee-viewport h-[200px] shrink-0 overflow-hidden ${fullWidth ? "w-full" : "w-[1200px]"}`}
+      className={`tgt-brand-marquee-viewport shrink-0 overflow-hidden ${fullWidth ? "w-full" : "w-[1200px]"}`}
+      style={{ ["--brand-item-width" as string]: `${itemWidth}px` }}
     >
       <div ref={trackRef} className="tgt-brand-marquee-inner flex h-full w-max">
-        {brands.map((brand, i) => (
+        {sequence.map((brand, i) => (
           <BrandLogo key={`a-${i}`} {...brand} />
         ))}
-        {brands.map((brand, i) => (
+        {sequence.map((brand, i) => (
           <BrandLogo key={`b-${i}`} {...brand} />
         ))}
       </div>

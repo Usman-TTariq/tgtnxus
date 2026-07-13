@@ -4,9 +4,7 @@
   --tgt-banner-word-height: 44px;
   display: none;
   width: 100%;
-  background:
-    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(255, 13, 22, 0.07) 0%, transparent 65%),
-    #f3f4f6;
+  background-color: #f3f4f6;
   border-top: 1px solid rgba(3, 7, 18, 0.08);
   border-bottom: 1px solid rgba(3, 7, 18, 0.08);
 }

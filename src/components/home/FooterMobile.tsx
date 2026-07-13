@@ -3,7 +3,7 @@ import { FOOTER_LOGO, FOOTER_NAV, FOOTER_SOCIAL } from "./footer-data";
 
 export default function FooterMobile() {
   return (
-    <footer className="tgt-footer-mobile md:hidden" aria-label="Site footer">
+    <footer className="tgt-footer-mobile max-[640px]:block hidden" aria-label="Site footer">
       <div className="tgt-footer-mobile-card">
         <nav className="tgt-footer-mobile-nav" aria-label="Footer navigation">
           {FOOTER_NAV.map((item) => (

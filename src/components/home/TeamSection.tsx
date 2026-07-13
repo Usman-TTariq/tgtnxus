@@ -1,3 +1,5 @@
+import TeamBusinessGrowth from "./TeamBusinessGrowth";
+import TeamExpertise from "./TeamExpertise";
 import TeamTalentCta from "./TeamTalentCta";
 
 const SHAPE_TR = "/agenio/assets/images/team/shape-top-right.svg";
@@ -83,20 +85,25 @@ function LeaderCard({ name, role, variant, ...rest }: Leader) {
 export default function TeamSection() {
   return (
     <section id="team" className="tgt-team-section">
-      <header className="tgt-team-section-header tgt-reveal">
-        <div className="tgt-team-section-eyebrow">
-          <span className="tgt-team-section-eyebrow-mark" aria-hidden />
-          <span>OUR LEADERS</span>
-        </div>
-        <h2 className="tgt-team-section-title">The People Behind TGT Nexus</h2>
-      </header>
+      <div className="tgt-team-leaders">
+        <header className="tgt-team-section-header tgt-reveal">
+          <div className="tgt-team-section-eyebrow">
+            <span className="tgt-team-section-eyebrow-mark" aria-hidden />
+            <span>OUR LEADERS</span>
+          </div>
+          <h2 className="tgt-team-section-title">The People Behind TGT Nexus</h2>
+        </header>
 
-      <div className="tgt-team-grid tgt-reveal-stagger">        {leaders.map((leader) => (
-          <LeaderCard key={leader.name} {...leader} />
-        ))}
+        <div className="tgt-team-grid tgt-reveal-stagger">
+          {leaders.map((leader) => (
+            <LeaderCard key={leader.name} {...leader} />
+          ))}
+        </div>
       </div>
 
       <TeamTalentCta />
+      <TeamBusinessGrowth />
+      <TeamExpertise />
     </section>
   );
 }

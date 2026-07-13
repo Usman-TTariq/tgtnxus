@@ -1,0 +1,144 @@
+/* Inner pages — mobile / tablet layout */
+
+@media (max-width: 768px) {
+  .site-page-canvas-wrapper {
+    height: auto !important;
+    overflow: visible;
+  }
+
+  .site-page-canvas-inner {
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  .site-page-canvas-main,
+  .site-page-canvas-footer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .site-page-canvas-main {
+    padding-top: 0 !important;
+  }
+
+  .site-page-main > .tgt-careers-intro,
+  .site-page-main--hero-flush > .tgt-team-page-intro {
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}
+
+/* Services hero — slightly smaller title so long line fits on phone */
+@media (max-width: 768px) {
+  .tgt-team-page-intro:has(#services-hero-title) .tgt-team-hero-title {
+    font-size: clamp(24px, 6.5vw, 34px);
+  }
+}
+
+@media (max-width: 480px) {
+  .tgt-team-page-intro:has(#services-hero-title) .tgt-team-hero-title {
+    font-size: clamp(22px, 6.2vw, 28px);
+  }
+}
+
+/* Navbar — never rounded on any page */
+.site-page .site-chrome-header .header-style-one-wrapper,
+.header-style-one .header-style-one-wrapper {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Home mobile banner — grid (≤768) */
+@media (max-width: 768px) {
+  .tgt-banner-mobile {
+    background-color: #f3f4f6;
+    background-image: url("/agenio/assets/images/cta/grid.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+/* Careers hero — Border.png full-bleed under nav */
+.site-page-main--hero-flush > .tgt-careers-intro .tgt-grid-page-hero {
+  border-top: 1px solid rgba(3, 7, 18, 0.1);
+}
+
+@media (max-width: 1023px) {
+  .tgt-careers-intro .tgt-grid-page-hero {
+    min-height: 440px;
+    padding: 64px 24px;
+  }
+
+  .tgt-careers-intro .tgt-grid-page-hero-bg {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .tgt-careers-intro .tgt-grid-page-hero-shape {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tgt-careers-intro .tgt-grid-page-hero {
+    min-height: 400px;
+    padding: 56px 20px 64px;
+  }
+
+  .tgt-careers-intro .tgt-grid-page-hero-content {
+    padding: 0 8px;
+  }
+}
+
+/* Team hero mobile/tablet: same Border.png as desktop, full-bleed & large enough */
+@media (max-width: 1023px) {
+  .tgt-team-hero {
+    min-height: 0;
+    background-color: #f3f4f6;
+    border-top: 1px solid rgba(3, 7, 18, 0.1);
+    line-height: 0;
+  }
+
+  .tgt-team-hero-bg {
+    display: block !important;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    min-height: 360px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .tgt-team-hero-grid,
+  .tgt-team-hero-shape {
+    display: none !important;
+  }
+
+  .tgt-team-hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 20px;
+    line-height: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .tgt-team-hero-bg {
+    min-height: 320px;
+  }
+
+  .tgt-team-hero-content {
+    padding: 40px 16px;
+  }
+}

@@ -26,6 +26,14 @@
     margin-top: 12px !important;
   }
 
+  .site-page-main .site-chrome-cta {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin-top: 12px !important;
+  }
+
   .tgt-cta-mobile-card {
     overflow: hidden;
     border: 1px solid rgba(3, 7, 18, 0.08);

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import SitePageLayout from "@/components/layout/SitePageLayout";
+// import SiteCtaSection from "@/components/layout/SiteCtaSection";
+import SiteContactSection from "@/components/layout/SiteContactSection";
 import CareersHero from "@/components/home/CareersHero";
 import BrandArea from "@/components/home/BrandArea";
-import CtaSection from "@/components/home/CtaSection";
 import CareersOpportunities from "@/components/home/CareersOpportunities";
-import ContactSection from "@/components/home/ContactSection";
+import ContactInfoCards from "@/components/home/ContactInfoCards";
 
 export const metadata: Metadata = {
   title: "Careers | TGT Nexus",
@@ -13,18 +14,17 @@ export const metadata: Metadata = {
 
 export default function CareersPage() {
   return (
-    <SitePageLayout>
+    <SitePageLayout heroFlush>
       <div className="tgt-careers-intro tgt-reveal w-full">
         <CareersHero />
         <div className="site-page-section relative w-full">
           <BrandArea variant="page" />
         </div>
       </div>
-      <div className="tgt-reveal w-full">
-        <CtaSection />
-      </div>
       <CareersOpportunities />
-      <ContactSection variant="page" formOnly />
+      <ContactInfoCards />
+      {/* <SiteCtaSection /> */}
+      <SiteContactSection />
     </SitePageLayout>
   );
 }

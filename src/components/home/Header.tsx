@@ -24,14 +24,6 @@ function isActive(pathname: string, href: string) {
 export default function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [sticky, setSticky] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setSticky(window.scrollY > 150);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -44,7 +36,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`header-style-one header--sticky${sticky ? " sticky" : ""}`}>
+      <header className="header-style-one">
         <div className="header-top">
           <div className="tgt-container">
             <div className="header-top-inner">

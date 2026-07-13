@@ -9,6 +9,10 @@ import {
 } from "@/lib/applications/normalize";
 import { findDuplicateApplication } from "@/lib/applications/duplicate";
 import { ensureResumeBucket, RESUME_BUCKET } from "@/lib/supabase/storage";
+import {
+  CONTACT_TO_EMAIL,
+  sendInquiryEmailWithNodemailer,
+} from "@/lib/mail/inquiry";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -17,13 +21,9 @@ function validateEmail(value: string) {
 }
 
 function resolveResumeContentType(file: File) {
-  if (file.type === "application/pdf") {
-    return file.type;
-  }
-
+  if (file.type === "application/pdf") return file.type;
   const lower = file.name.toLowerCase();
   if (lower.endsWith(".pdf")) return "application/pdf";
-
   return file.type || "application/octet-stream";
 }
 
@@ -33,14 +33,67 @@ function isAllowedResume(file: File) {
   return file.type === "application/pdf";
 }
 
+async function handleInquiry(payload: {
+  fullName: string;
+  email: string;
+  phone: string;
+  message: string;
+}) {
+  const emailResult = await sendInquiryEmailWithNodemailer(payload);
+
+  const webhook = process.env.CONTACT_WEBHOOK_URL;
+  let webhookOk = false;
+  if (webhook) {
+    const outbound = new FormData();
+    outbound.append("mode", "inquiry");
+    outbound.append("fullName", payload.fullName);
+    outbound.append("email", payload.email);
+    outbound.append("phone", payload.phone);
+    outbound.append("message", payload.message);
+    outbound.append("to", CONTACT_TO_EMAIL);
+
+    try {
+      const webhookRes = await fetch(webhook, {
+        method: "POST",
+        body: outbound,
+      });
+      webhookOk = webhookRes.ok;
+      if (!webhookRes.ok) {
+        console.warn("[contact] inquiry webhook delivery failed");
+      }
+    } catch (error) {
+      console.warn("[contact] inquiry webhook error", error);
+    }
+  }
+
+  if (!emailResult.sent && !webhookOk) {
+    return NextResponse.json(
+      {
+        error:
+          emailResult.reason === "missing_smtp"
+            ? "Email is not configured. Add SMTP settings in .env.local and restart the server."
+            : "Unable to send your message right now. Please email info@tgtnexus.com directly, or try again later.",
+      },
+      { status: 503 }
+    );
+  }
+
+  return NextResponse.json({
+    message: "Thanks — your message was sent successfully.",
+  });
+}
+
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
+    const mode = String(formData.get("mode") ?? "application").trim();
+    const isInquiry = mode === "inquiry";
 
     const fullName = String(formData.get("fullName") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
     const phone = String(formData.get("phone") ?? "").trim();
     const position = String(formData.get("position") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
     const resume = formData.get("resume");
 
     if (!fullName) {
@@ -52,6 +105,35 @@ export async function POST(request: Request) {
     if (!phone) {
       return NextResponse.json({ error: "Phone number is required." }, { status: 400 });
     }
+
+    const normalizedPhone = normalizeApplicationPhone(phone);
+    if (!normalizedPhone) {
+      return NextResponse.json(
+        { error: "A valid phone number is required." },
+        { status: 400 }
+      );
+    }
+
+    /* /contact — Nodemailer email only, never save to dashboard */
+    if (isInquiry) {
+      if (!message) {
+        return NextResponse.json({ error: "Message is required." }, { status: 400 });
+      }
+      if (message.length > 5000) {
+        return NextResponse.json(
+          { error: "Message must be 5000 characters or fewer." },
+          { status: 400 }
+        );
+      }
+
+      return handleInquiry({
+        fullName,
+        email,
+        phone: phone.trim(),
+        message,
+      });
+    }
+
     if (!position) {
       return NextResponse.json({ error: "Position is required." }, { status: 400 });
     }
@@ -72,15 +154,6 @@ export async function POST(request: Request) {
     }
 
     const normalizedEmail = normalizeApplicationEmail(email);
-    const normalizedPhone = normalizeApplicationPhone(phone);
-
-    if (!normalizedPhone) {
-      return NextResponse.json(
-        { error: "A valid phone number is required." },
-        { status: 400 }
-      );
-    }
-
     const supabase = createAdminClient();
 
     let duplicateReason: "email" | "phone" | null = null;
@@ -89,7 +162,7 @@ export async function POST(request: Request) {
     } catch (duplicateError) {
       console.error("[contact] duplicate check failed", duplicateError);
       return NextResponse.json(
-        { error: "Unable to verify your application. Please try again." },
+        { error: "Unable to verify your submission. Please try again." },
         { status: 500 }
       );
     }
@@ -97,8 +170,7 @@ export async function POST(request: Request) {
     if (duplicateReason === "email") {
       return NextResponse.json(
         {
-          error:
-            "You have already submitted an application with this email address.",
+          error: "You have already submitted with this email address.",
         },
         { status: 409 }
       );
@@ -107,21 +179,17 @@ export async function POST(request: Request) {
     if (duplicateReason === "phone") {
       return NextResponse.json(
         {
-          error:
-            "You have already submitted an application with this phone number.",
+          error: "You have already submitted with this phone number.",
         },
         { status: 409 }
       );
     }
 
+    const applicationId = generateApplicationId();
     const contentType = resolveResumeContentType(resume);
-
     await ensureResumeBucket(supabase);
 
-    const applicationId = generateApplicationId();
-    let resumeUrl: string | null = null;
     const resumeFilename = resume.name;
-
     const storagePath = `${applicationId}/${Date.now()}-${resume.name.replace(/[^\w.\-()+\s]/g, "_")}`;
     const fileBuffer = Buffer.from(await resume.arrayBuffer());
 
@@ -144,7 +212,7 @@ export async function POST(request: Request) {
       .from(RESUME_BUCKET)
       .getPublicUrl(storagePath);
 
-    resumeUrl = publicUrlData.publicUrl;
+    const resumeUrl = publicUrlData.publicUrl;
 
     const { error: insertError } = await supabase.from("applications").insert({
       application_id: applicationId,
@@ -164,14 +232,14 @@ export async function POST(request: Request) {
         return NextResponse.json(
           {
             error:
-              "You have already submitted an application. Each email and phone number can only be used once.",
+              "You have already submitted. Each email and phone number can only be used once.",
           },
           { status: 409 }
         );
       }
 
       return NextResponse.json(
-        { error: "Unable to save your application. Please try again." },
+        { error: "Unable to save your submission. Please try again." },
         { status: 500 }
       );
     }
@@ -179,6 +247,7 @@ export async function POST(request: Request) {
     const webhook = process.env.CONTACT_WEBHOOK_URL;
     if (webhook) {
       const outbound = new FormData();
+      outbound.append("mode", "application");
       outbound.append("fullName", fullName);
       outbound.append("email", email);
       outbound.append("phone", phone);

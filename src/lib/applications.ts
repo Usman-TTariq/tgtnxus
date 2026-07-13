@@ -7,6 +7,7 @@ export async function getApplications(): Promise<ApplicationRow[]> {
   const { data, error } = await supabase
     .from("applications")
     .select("*")
+    .neq("position", "Contact Inquiry")
     .order("serial_no", { ascending: true });
 
   if (error) {
@@ -23,6 +24,7 @@ export async function getSavedApplications(): Promise<ApplicationRow[]> {
     .from("applications")
     .select("*")
     .eq("is_saved", true)
+    .neq("position", "Contact Inquiry")
     .order("serial_no", { ascending: true });
 
   if (error) {

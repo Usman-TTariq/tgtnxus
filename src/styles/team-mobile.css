@@ -1,0 +1,142 @@
+/* Team page - mobile reflow */
+
+@media (max-width: 767px) {
+  .tgt-team-section-header {
+    margin-bottom: 32px;
+    padding-inline: 4px;
+  }
+
+  .tgt-team-section-title {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .tgt-team-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 360px;
+    margin: 0 auto;
+    padding-inline: 4px;
+  }
+
+  .tgt-team-card {
+    min-height: 380px;
+  }
+
+  .tgt-team-card:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .tgt-team-talent-cta-band {
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 40px 1rem 44px;
+  }
+
+  .tgt-team-talent-cta {
+    margin-top: 0;
+    padding: 56px 20px 64px;
+    border-radius: 20px;
+  }
+
+  .tgt-team-talent-cta-desc {
+    margin-bottom: 28px;
+    font-size: 15px;
+  }
+
+  .tgt-banner-cta--apply {
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+  }
+
+  .tgt-team-business-growth {
+    margin-top: 48px;
+  }
+
+  .tgt-team-expertise {
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-top: 0;
+    padding: 56px 1rem 64px;
+  }
+
+  .tgt-team-expertise-header {
+    margin-bottom: 32px;
+    padding-inline: 4px;
+  }
+
+  .tgt-team-expertise-title {
+    font-size: clamp(28px, 7.5vw, 40px);
+  }
+
+  .tgt-team-expertise-label,
+  .tgt-team-expertise-stat {
+    padding-inline: 20px;
+  }
+
+  .tgt-team-expertise-name {
+    font-size: clamp(18px, 5vw, 22px);
+  }
+}
+
+@media (max-width: 480px) {
+  .tgt-team-hero-content {
+    padding: 40px 16px 36px;
+  }
+
+  .tgt-team-hero-title {
+    font-size: clamp(24px, 7vw, 30px);
+  }
+
+  .tgt-team-hero-desc {
+    font-size: 14px;
+  }
+
+  .tgt-team-leaders {
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 40px 1rem 44px;
+  }
+
+  .tgt-team-section-header,
+  .tgt-team-expertise-header {
+    padding-inline: 0;
+  }
+
+  .tgt-team-grid {
+    max-width: 100%;
+    padding-inline: 0;
+  }
+
+  .tgt-team-card {
+    min-height: 360px;
+  }
+
+  .tgt-team-talent-cta {
+    padding: 48px 16px 56px;
+    border-radius: 16px;
+  }
+
+  .tgt-team-business-growth-panel {
+    padding: 24px 16px 28px;
+  }
+
+  .tgt-team-expertise {
+    width: calc(100% + 2rem);
+    max-width: calc(100% + 2rem);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 48px 1rem 56px;
+  }
+
+  .tgt-team-expertise-label,
+  .tgt-team-expertise-stat {
+    padding-inline: 16px;
+  }
+}

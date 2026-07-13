@@ -1,12 +1,6 @@
 import ContactForm from "./ContactForm";
 import ContactSectionMobile from "./ContactSectionMobile";
 
-type ContactSectionProps = {
-  variant?: "canvas" | "page";
-  /** On careers page — form only, no contact info column */
-  formOnly?: boolean;
-};
-
 function ContactInfoCanvas() {
   return (
     <div className="tgt-contact-info -translate-y-1/2 absolute contents left-[152px] right-[738.89px] top-[calc(50%+0.25px)]">
@@ -47,63 +41,22 @@ function ContactInfoCanvas() {
   );
 }
 
-function ContactInfoPage() {
-  return (
-    <div className="tgt-contact-page-info">
-      <div className="tgt-contact-page-badge">
-        <span className="tgt-contact-page-badge-mark" aria-hidden />
-        <span>Contact</span>
-      </div>
+type ContactSectionProps = {
+  /** inquiry = /contact page only (message form). application = careers/home (resume). */
+  formMode?: "application" | "inquiry";
+};
 
-      <div className="tgt-contact-page-emails">
-        <a href="mailto:info@tgtnexus.com">info@tgtnexus.com</a>
-        <a href="mailto:careers@tgtnexus.com">careers@tgtnexus.com</a>
-      </div>
-
-      <div className="tgt-contact-page-badge tgt-contact-page-badge--office">
-        <span className="tgt-contact-page-badge-mark" aria-hidden />
-        <span>Office</span>
-      </div>
-
-      <h3 className="tgt-contact-page-city">Karachi</h3>
-      <p className="tgt-contact-page-address">
-        Plot # 176-A, Sindhi Muslim Cooperative Housing Society Block A Sindhi Muslim CHS
-        (SMCHS), Karachi, 74400
-      </p>
-    </div>
-  );
-}
-
-export default function ContactSection({
-  variant = "canvas",
-  formOnly = false,
-}: ContactSectionProps) {
-  if (variant === "page") {
-    return (
-      <section
-        id="contact"
-        className={`tgt-contact-page${formOnly ? " tgt-contact-page--form-only" : ""}`}
-      >
-        <div className="tgt-contact-page-inner">
-          {!formOnly && <ContactInfoPage />}
-          <div className="tgt-contact-page-form">
-            <h2 className="tgt-contact-page-form-title">Fill The Form &amp; Get Noticed</h2>
-            <ContactForm layout="page" />
-          </div>
-        </div>
-      </section>
-    );
-  }
-
+/** Home contact — desktop canvas + shared mobile cards everywhere. */
+export default function ContactSection({ formMode = "application" }: ContactSectionProps) {
   return (
     <>
-      <ContactSectionMobile />
+      <ContactSectionMobile formMode={formMode} />
 
       <div className="tgt-contact-desktop border-[rgba(0,0,0,0)] border-b border-solid border-t relative hidden size-full md:block">
         <div className="tgt-contact-panel absolute overflow-visible bg-[#111] h-[702px] left-0 right-[160px] top-0">
           <ContactInfoCanvas />
-          <ContactForm layout="canvas" />
-          <div className="tgt-contact-form-heading -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-secondary font-semibold justify-center leading-[0] left-[1045px] right-[76px] text-[#f9fafb] text-[39.591px] top-[60.22px] whitespace-nowrap">
+          <ContactForm layout="canvas" mode={formMode} />
+          <div className="tgt-contact-form-heading pointer-events-none -translate-y-1/2 [word-break:break-word] absolute z-[1] flex flex-col font-secondary font-semibold justify-center leading-[0] left-[1045px] right-[76px] text-[#f9fafb] text-[39.591px] top-[60.22px] whitespace-nowrap">
             <p className="leading-[39.591px]">{`Fill The Form & Get Noticed`}</p>
           </div>
         </div>

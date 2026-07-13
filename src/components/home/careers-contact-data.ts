@@ -21,7 +21,12 @@ export const CONTACT_INFO = {
     { label: "info@tgtnexus.com", href: "mailto:info@tgtnexus.com" },
     { label: "careers@tgtnexus.com", href: "mailto:careers@tgtnexus.com" },
   ],
+  phone: {
+    label: "+92 123 4567 890",
+    href: "tel:+921234567890",
+  },
   city: "Karachi",
+  shortAddress: "Plot # 176-A, SMCHS, Karachi",
   address:
     "Plot # 176-A, Sindhi Muslim Cooperative Housing Society Block A Sindhi Muslim CHS (SMCHS), Karachi, 74400",
 } as const;

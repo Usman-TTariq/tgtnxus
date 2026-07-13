@@ -1,0 +1,84 @@
+/* Inner pages — responsive parity with homepage (tablet scale column + mobile reflow) */
+
+/* 769px–1919px: scaled desktop chrome (home laptop behavior at 1024 etc.) */
+@media (min-width: 769px) and (max-width: 1919px) {
+  .site-chrome-cta .tgt-cta-desktop.tgt-cta-section {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1600 / 614;
+  }
+
+  /* Desktop chrome only — hide mobile cards on tablet/laptop */
+  .site-chrome-cta .tgt-cta-mobile,
+  .site-chrome-contact .tgt-contact-mobile {
+    display: none !important;
+  }
+
+  .site-chrome-cta .tgt-cta-desktop,
+  .site-chrome-contact .tgt-contact-desktop {
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+  }
+
+  .site-chrome-contact .tgt-contact-desktop {
+    height: 703px !important;
+    min-height: 703px !important;
+  }
+}
+
+/* Mobile: real reflow (matches homepage mobile.css) */
+@media (max-width: 768px) {
+  .site-page-main .site-chrome-cta,
+  .site-page-main .site-chrome-contact {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .site-page-main .site-chrome-cta {
+    margin-top: 12px;
+    padding: 0;
+  }
+
+  .site-page-main .site-chrome-contact {
+    margin-top: 12px;
+    padding: 0;
+  }
+
+  .site-chrome-contact .tgt-contact-mobile {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  /* Avoid double horizontal padding inside site-page-main */
+  .site-page-main .tgt-about-mobile-card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .site-page-section .tgt-services-mobile-header {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .site-page-section .tgt-services-mobile-cards {
+    padding-inline: 0;
+  }
+
+  .site-page-section .tgt-testimonials-mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .site-page-section .tgt-contact-mobile {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

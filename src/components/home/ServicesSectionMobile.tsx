@@ -1,16 +1,23 @@
 import { SERVICE_ARROW_ICON, SERVICES, SERVICES_HEADER } from "./services-data";
 
-export default function ServicesSectionMobile() {
+type ServicesSectionMobileProps = {
+  /** Hide eyebrow/title/desc when a page hero already covers that. */
+  hideHeader?: boolean;
+};
+
+export default function ServicesSectionMobile({ hideHeader = false }: ServicesSectionMobileProps) {
   return (
     <section className="tgt-services-mobile md:hidden" aria-label="Our services">
-      <div className="tgt-services-mobile-header">
-        <div className="tgt-services-mobile-label">
-          <span className="tgt-services-mobile-label-mark" aria-hidden />
-          <span className="tgt-services-mobile-label-text">{SERVICES_HEADER.eyebrow}</span>
+      {!hideHeader ? (
+        <div className="tgt-services-mobile-header">
+          <div className="tgt-services-mobile-label">
+            <span className="tgt-services-mobile-label-mark" aria-hidden />
+            <span className="tgt-services-mobile-label-text">{SERVICES_HEADER.eyebrow}</span>
+          </div>
+          <h2 className="tgt-services-mobile-title">{SERVICES_HEADER.title}</h2>
+          <p className="tgt-services-mobile-desc">{SERVICES_HEADER.description}</p>
         </div>
-        <h2 className="tgt-services-mobile-title">{SERVICES_HEADER.title}</h2>
-        <p className="tgt-services-mobile-desc">{SERVICES_HEADER.description}</p>
-      </div>
+      ) : null}
 
       <div className="tgt-services-mobile-cards">
         {SERVICES.map((service) => (

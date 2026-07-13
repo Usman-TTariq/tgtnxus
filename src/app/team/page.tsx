@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import SitePageLayout from "@/components/layout/SitePageLayout";
+import SiteCtaSection from "@/components/layout/SiteCtaSection";
+import SiteContactSection from "@/components/layout/SiteContactSection";
 import TeamHero from "@/components/home/TeamHero";
 import TeamSection from "@/components/home/TeamSection";
 
@@ -10,11 +12,13 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <SitePageLayout>
-      <div className="tgt-team-page-intro tgt-reveal w-full">
+    <SitePageLayout heroFlush>
+      <div className="tgt-team-page-intro w-full">
         <TeamHero />
       </div>
       <TeamSection />
+      <SiteCtaSection />
+      <SiteContactSection />
     </SitePageLayout>
   );
 }

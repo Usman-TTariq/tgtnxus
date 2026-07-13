@@ -12,10 +12,14 @@
 @import "../styles/responsive-canvas.css";
 @import "../styles/mobile.css";
 @import "../styles/inner-pages.css";
+@import "../styles/inner-pages-responsive.css";
+@import "../styles/site-chrome.css";
 @import "../styles/team.css";
+@import "../styles/team-mobile.css";
 @import "../styles/contact-page.css";
 @import "../styles/grid-page-hero.css";
 @import "../styles/careers-opportunities.css";
+@import "../styles/contact-info-cards.css";
 @import "../styles/banner.css";
 @import "../styles/banner-mobile.css";
 @import "../styles/services-mobile.css";
@@ -25,6 +29,7 @@
 @import "../styles/cta-mobile.css";
 @import "../styles/contact-mobile.css";
 @import "../styles/footer-mobile.css";
+@import "../styles/inner-pages-mobile.css";
 
 :root {
   --background: #f3f4f6;
@@ -84,13 +89,13 @@ body {
 
 @media (min-width: 769px) and (max-width: 1919px) {
   .responsive-page-wrapper {
-    height: calc(8289px * (100vw / 1920px));
+    height: calc(8346px * (100vw / 1920px));
     overflow: hidden;
   }
 
   .responsive-page-inner {
     transform: scale(calc(100vw / 1920px));
     transform-origin: top left;
-    margin-bottom: calc(8289px * (100vw / 1920px - 1));
+    margin-bottom: calc(8346px * (100vw / 1920px - 1));
   }
 }

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import FooterMobile from "./FooterMobile";
 import { FOOTER_LOGO, FOOTER_NAV, FOOTER_SOCIAL } from "./footer-data";
 
 const imgShape01Svg = "/agenio/assets/images/logo/shape-01.svg";
@@ -7,14 +6,11 @@ const imgShape02Svg = "/agenio/assets/images/logo/shape-02.svg";
 
 export default function Footer() {
   return (
-    <>
-      <FooterMobile />
-
-      <section
-        className="tgt-footer-desktop hidden h-full w-full border border-solid border-[rgba(3,7,18,0.1)] bg-[#f3f4f6] md:block"
-        data-node-id="61:1913"
-        data-name="wpr footer area start"
-      >
+    <section
+      className="tgt-footer-desktop relative w-full border border-solid border-[rgba(3,7,18,0.1)] bg-[#f3f4f6]"
+      data-node-id="61:1913"
+      data-name="wpr footer area start"
+    >
         <div className="mx-auto w-full max-w-[1600px]">
           <nav
             className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 pt-10 pb-8 font-secondary text-lg font-semibold leading-6 text-[#030712] md:px-8 lg:flex-nowrap lg:justify-between lg:gap-x-0 lg:px-[152px] lg:pt-[64px] lg:pb-[62px] lg:text-2xl"
@@ -41,7 +37,7 @@ export default function Footer() {
                 </Link>
                 {index < FOOTER_NAV.length - 1 ? (
                   <span
-                    className="hidden size-3 shrink-0 bg-[#d1d5db] lg:block"
+                    className="size-3 shrink-0 bg-[#d1d5db]"
                     aria-hidden
                     data-node-id={
                       index === 0
@@ -58,7 +54,7 @@ export default function Footer() {
           </nav>
 
           <div
-            className="relative flex min-h-[240px] items-center justify-center border-y border-solid border-[rgba(3,7,18,0.1)] px-4 py-10 sm:min-h-[320px] md:min-h-[400px] lg:min-h-[475px] lg:py-0"
+            className="relative flex min-h-[200px] items-center justify-center border-y border-solid border-[rgba(3,7,18,0.1)] px-4 py-10 sm:min-h-[240px] md:min-h-[280px] lg:min-h-[475px] lg:py-0"
             data-node-id="61:1922"
             data-name="Border"
           >
@@ -114,9 +110,9 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="flex flex-col items-center gap-5 px-4 py-8 font-secondary text-[#030712] md:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-9">
+          <div className="tgt-footer-copyright flex flex-col items-center gap-5 px-0 py-9 font-secondary text-[#030712] md:flex-row md:items-center md:justify-between md:px-0">
             <ul
-              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold leading-[14px] lg:justify-start"
+              className="tgt-footer-social flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold leading-[14px] md:justify-start"
               data-node-id="61:1967"
               data-name="List"
             >
@@ -142,21 +138,20 @@ export default function Footer() {
             </ul>
 
             <p
-              className="text-center text-base font-medium leading-[14px] text-black lg:flex-1"
+              className="text-center text-base font-medium leading-[14px] text-black md:flex-1"
               data-node-id="61:1962"
             >
               &copy; 2026 TGTNexus - All Rights Reserved
             </p>
 
             <p
-              className="text-center text-sm font-semibold leading-normal lg:text-right"
+              className="text-center text-sm font-semibold leading-normal md:text-right"
               data-node-id="61:1964"
             >
               Terms & Conditions | Privacy Policy
             </p>
           </div>
         </div>
-      </section>
-    </>
+    </section>
   );
 }

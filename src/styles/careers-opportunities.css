@@ -1,10 +1,13 @@
 /* Careers — job opportunities section */
 
 .tgt-careers-opportunities {
+  position: relative;
+  isolation: isolate;
   width: 100%;
   padding: 72px 48px 80px;
   border: 1px solid rgba(3, 7, 18, 0.1);
   background: #fff;
+  overflow: hidden;
 }
 
 .tgt-careers-opportunities-eyebrow {
@@ -30,7 +33,8 @@
 }
 
 .tgt-careers-opportunities-title {
-  max-width: 1180px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 0 48px;
   font-family: var(--font-secondary);
   font-size: clamp(32px, 4.5vw, 56px);
@@ -60,7 +64,8 @@
 .tgt-careers-opportunities-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border: 1px solid rgba(3, 7, 18, 0.1);
+  border: 1px solid rgba(3, 7, 18, 0.14);
+  overflow: visible;
 }
 
 .tgt-job-card {
@@ -68,115 +73,181 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 300px;
-  padding: 32px 28px 28px;
-  background: #fff;
-  border-right: 1px solid rgba(3, 7, 18, 0.1);
-  transition: outline-color 0.25s ease;
+  min-height: 280px;
+  padding: 28px 24px 24px;
+  background: transparent;
+  border-right: 1px solid rgba(3, 7, 18, 0.14);
+  overflow: visible;
+  transition: background 0.3s ease;
 }
 
 .tgt-job-card:last-child {
   border-right: none;
 }
 
-.tgt-job-card:hover {
-  outline: 1px solid #030712;
-  outline-offset: -1px;
-  z-index: 1;
+/* Corner nodes — Figma-style black squares on every card corner */
+.tgt-job-card-dot {
+  position: absolute;
+  z-index: 3;
+  width: 6px;
+  height: 6px;
+  background: #030712;
+  pointer-events: none;
+}
+
+.tgt-job-card-dot--tl {
+  top: -3px;
+  left: -3px;
+}
+
+.tgt-job-card-dot--tr {
+  top: -3px;
+  right: -3px;
+}
+
+.tgt-job-card-dot--bl {
+  bottom: -3px;
+  left: -3px;
+}
+
+.tgt-job-card-dot--br {
+  bottom: -3px;
+  right: -3px;
 }
 
 .tgt-job-card-title {
-  margin: 0 0 18px;
+  margin: 0 0 12px;
   font-family: var(--font-secondary);
   font-size: 24px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: #030712;
 }
 
 .tgt-job-card-desc {
   margin: 0;
-  max-width: 260px;
+  max-width: 240px;
   font-family: var(--font-secondary);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.55;
-  color: #6b7280;
+  line-height: 1.5;
+  color: #030712;
 }
 
 .tgt-job-card-footer {
+  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 20px;
-  margin-top: 40px;
+  gap: 16px;
+  margin-top: 28px;
+  min-height: 120px;
+  padding-right: 130px;
 }
 
 .tgt-job-card-btn {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border: 1px solid rgba(3, 7, 18, 0.14);
-  border-radius: 6px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 10px;
   background: #fff;
   color: #030712;
   text-decoration: none;
+  box-shadow:
+    0 2px 0 rgba(3, 7, 18, 0.06),
+    0 6px 14px rgba(3, 7, 18, 0.12);
   transition:
-    background 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease;
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .tgt-job-card-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   display: block;
 }
 
+/* Corner icons — landscape card scale (~20–30% crop) */
+.tgt-job-card-visual {
+  position: absolute;
+  right: -24px;
+  bottom: -24px;
+  z-index: 1;
+  width: 160px;
+  height: 145px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Vector.png grid — flush bottom-right; hide until hover */
+.tgt-job-card-icon-grid {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 360px;
+  height: 200px;
+  background-image: url("/assets/images/Vector.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 360px 200px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.tgt-job-card-icon {
+  position: absolute;
+  right: -4px;
+  bottom: -6px;
+  z-index: 1;
+  width: auto;
+  height: 132px;
+  max-width: 150px;
+  object-fit: contain;
+  object-position: right bottom;
+  mix-blend-mode: lighten;
+  filter: grayscale(1) brightness(1.15) contrast(1.05);
+  opacity: 0.95;
+  transform: translate(4px, 5px) scale(0.97);
+  transform-origin: right bottom;
+  transition:
+    filter 0.35s ease,
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* Hover — #D21017 button (no grid), 3D shadow, icon grid + pop */
 .tgt-job-card:hover .tgt-job-card-btn {
-  background: #ff0d16;
-  border-color: #ff0d16;
-  color: #fff;
+  background: #d21017;
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow:
+    0 5px 0 #9a0c12,
+    0 10px 14px rgba(210, 16, 23, 0.5),
+    0 18px 28px rgba(210, 16, 23, 0.35);
+  transform: translateY(-3px);
 }
 
-.tgt-job-card-icon-art {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 88px;
-  height: 88px;
-  color: #9ca3af;
-  transition: color 0.25s ease, filter 0.25s ease;
+.tgt-job-card:hover .tgt-job-card-icon-grid {
+  opacity: 1;
+  visibility: visible;
 }
 
-.tgt-job-card-icon-art svg {
-  width: 64px;
-  height: 64px;
-  display: block;
-}
-
-.tgt-job-card-icon-glyph {
-  font-family: var(--font-primary);
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.tgt-job-card-icon-art--sales {
-  border-radius: 14px;
-  background: linear-gradient(145deg, #f3f4f6 0%, #e5e7eb 100%);
-}
-
-.tgt-job-card:hover .tgt-job-card-icon-art {
-  color: #ff0d16;
-}
-
-.tgt-job-card:hover .tgt-job-card-icon-art--sales {
-  background: linear-gradient(145deg, #ffe5e7 0%, #ffc9cd 100%);
+.tgt-job-card:hover .tgt-job-card-icon {
+  filter: none;
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
 }
 
 .tgt-careers-opportunities-more {
@@ -208,15 +279,20 @@
     radial-gradient(62.56% 62.56% at 28.14% -10.42%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%),
     linear-gradient(147.64deg, #555555 21.13%, #2f2f2f 80.53%);
   box-shadow:
-    0 3px 3px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
     inset 0 -3px 0 #1a1a1a,
-    inset 0 -4px 0 1px rgba(255, 255, 255, 0.1);
-  transition: transform 0.25s ease;
+    0 10px 24px rgba(0, 0, 0, 0.35),
+    0 18px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .tgt-careers-opportunities-apply:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -3px 0 #1a1a1a,
+    0 12px 28px rgba(0, 0, 0, 0.4),
+    0 22px 48px rgba(0, 0, 0, 0.26);
 }
 
 @media (max-width: 1100px) {
@@ -224,17 +300,19 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .tgt-job-card:nth-child(2) {
+  /* End of each row — no right border */
+  .tgt-job-card:nth-child(2n) {
     border-right: none;
   }
 
-  .tgt-job-card:nth-child(1),
-  .tgt-job-card:nth-child(2) {
-    border-bottom: 1px solid rgba(3, 7, 18, 0.1);
+  /* Top row only — bottom divider */
+  .tgt-job-card:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(3, 7, 18, 0.14);
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet keeps 2-up (768–1100 incl. 1024); phone only stacks */
+@media (max-width: 767px) {
   .tgt-careers-opportunities {
     padding: 48px 24px 56px;
   }
@@ -249,17 +327,59 @@
 
   .tgt-job-card {
     border-right: none;
-    border-bottom: 1px solid rgba(3, 7, 18, 0.1);
+    border-bottom: 1px solid rgba(3, 7, 18, 0.14);
     min-height: 260px;
+  }
+
+  .tgt-job-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .tgt-job-card:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(3, 7, 18, 0.14);
   }
 
   .tgt-job-card:last-child {
     border-bottom: none;
+  }
+
+  /* Restore all 4 corners on stacked cards */
+  .tgt-job-card .tgt-job-card-dot {
+    display: block;
+  }
+
+  .tgt-job-card-footer {
+    padding-right: 120px;
+    min-height: 110px;
+    margin-top: 24px;
+  }
+
+  .tgt-job-card-visual {
+    width: 140px;
+    height: 128px;
+    right: -24px;
+    bottom: -24px;
+  }
+
+  .tgt-job-card-icon {
+    height: 118px;
+    max-width: 132px;
+    right: -2px;
+    bottom: -4px;
+    transform: translate(3px, 4px) scale(0.97);
+  }
+
+  .tgt-job-card:hover .tgt-job-card-icon {
+    transform: translate(0, 0) scale(1);
   }
 }
 
 @media (max-width: 480px) {
   .tgt-careers-opportunities-highlight {
     white-space: normal;
+  }
+
+  .tgt-job-card-title {
+    font-size: 24px;
   }
 }

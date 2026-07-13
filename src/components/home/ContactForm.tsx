@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useCallback, useRef, useState } from "react";
+import ContactThankYouModal from "./ContactThankYouModal";
 
 const imgIcon =
   "https://www.figma.com/api/mcp/asset/8ee10799-1f4a-42ca-ab80-b5d792b8ede9";
@@ -16,8 +17,12 @@ export const POSITIONS = [
   "Other",
 ] as const;
 
-type FieldErrors = Partial<
+type ApplicationFieldErrors = Partial<
   Record<"fullName" | "email" | "phone" | "position" | "resume", string>
+>;
+
+type InquiryFieldErrors = Partial<
+  Record<"fullName" | "email" | "phone" | "message", string>
 >;
 
 function validateEmail(value: string) {
@@ -39,6 +44,9 @@ function isPdfResume(file: File) {
 const canvasInputClass =
   "w-full h-[40px] border-0 border-b border-solid border-[rgba(255,255,255,0.3)] bg-transparent font-secondary text-[16px] font-semibold text-[#f9fafb] outline-none placeholder:text-[rgba(249,250,251,0.6)]";
 
+const canvasTextareaClass =
+  "w-full min-h-[96px] resize-y border-0 border-b border-solid border-[rgba(255,255,255,0.3)] bg-transparent py-2 font-secondary text-[16px] font-semibold text-[#f9fafb] outline-none placeholder:text-[rgba(249,250,251,0.6)]";
+
 const canvasLabelClass =
   "mb-[8px] font-secondary text-[16px] font-normal leading-[21px] text-[#f9fafb]";
 
@@ -47,23 +55,35 @@ const canvasSelectClass =
 
 type ContactFormProps = {
   layout?: "canvas" | "page";
+  /** application = careers/home (resume). inquiry = /contact only (message → info@). */
+  mode?: "application" | "inquiry";
 };
 
-export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
+export default function ContactForm({
+  layout = "canvas",
+  mode = "application",
+}: ContactFormProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState<string>(POSITIONS[0]);
+  const [message, setMessage] = useState("");
   const [resume, setResume] = useState<File | null>(null);
-  const [errors, setErrors] = useState<FieldErrors>({});
-  const [status, setStatus] = useState<{
-    type: "success" | "error";
-    message: string;
-  } | null>(null);
+  const [errors, setErrors] = useState<ApplicationFieldErrors & InquiryFieldErrors>({});
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [thankYouOpen, setThankYouOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const isPage = layout === "page";
+  const isInquiry = mode === "inquiry";
+  /* Mobile + desktop both mount on home — unique ids so file picker targets this form */
+  const uid = `${layout}-${mode}`;
+  const fieldId = (name: string) => `contact-${uid}-${name}`;
+
+  const closeThankYou = useCallback(() => {
+    setThankYouOpen(false);
+  }, []);
 
   const clearResume = () => {
     setResume(null);
@@ -72,31 +92,43 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
   };
 
   const validate = () => {
-    const next: FieldErrors = {};
+    const next: ApplicationFieldErrors & InquiryFieldErrors = {};
     if (!fullName.trim()) next.fullName = "Required";
     if (!email.trim()) next.email = "Required";
     else if (!validateEmail(email)) next.email = "Invalid email";
     if (!phone.trim()) next.phone = "Required";
-    if (!position) next.position = "Required";
-    if (!resume) next.resume = "Required";
-    else if (!isPdfResume(resume)) next.resume = "Resume must be a PDF file.";
+
+    if (isInquiry) {
+      if (!message.trim()) next.message = "Required";
+    } else {
+      if (!position) next.position = "Required";
+      if (!resume) next.resume = "Required";
+      else if (!isPdfResume(resume)) next.resume = "Resume must be a PDF file.";
+    }
+
     setErrors(next);
     return Object.keys(next).length === 0;
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setStatus(null);
+    setErrorMessage(null);
     if (!validate()) return;
 
     setSubmitting(true);
     try {
       const body = new FormData();
+      body.append("mode", isInquiry ? "inquiry" : "application");
       body.append("fullName", fullName.trim());
       body.append("email", email.trim());
       body.append("phone", phone.trim());
-      body.append("position", position);
-      if (resume) body.append("resume", resume);
+
+      if (isInquiry) {
+        body.append("message", message.trim());
+      } else {
+        body.append("position", position);
+        if (resume) body.append("resume", resume);
+      }
 
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -105,19 +137,17 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
       const data = (await res.json()) as { message?: string; error?: string };
       if (!res.ok) throw new Error(data.error || "Submit failed");
 
-      setStatus({ type: "success", message: data.message || "Submitted!" });
       setFullName("");
       setEmail("");
       setPhone("");
       setPosition(POSITIONS[0]);
+      setMessage("");
       setResume(null);
       setErrors({});
       if (fileInputRef.current) fileInputRef.current.value = "";
+      setThankYouOpen(true);
     } catch (err) {
-      setStatus({
-        type: "error",
-        message: err instanceof Error ? err.message : "Submit failed",
-      });
+      setErrorMessage(err instanceof Error ? err.message : "Submit failed");
     } finally {
       setSubmitting(false);
     }
@@ -126,11 +156,11 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
   const fields = (
     <>
       <div className={isPage ? "tgt-contact-page-field" : undefined}>
-        <label htmlFor="contact-full-name" className={isPage ? undefined : canvasLabelClass}>
+        <label htmlFor={fieldId("full-name")} className={isPage ? undefined : canvasLabelClass}>
           Full Name
         </label>
         <input
-          id="contact-full-name"
+          id={fieldId("full-name")}
           name="fullName"
           type="text"
           value={fullName}
@@ -148,11 +178,11 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
       </div>
 
       <div className={isPage ? "tgt-contact-page-field" : undefined}>
-        <label htmlFor="contact-email" className={isPage ? undefined : canvasLabelClass}>
+        <label htmlFor={fieldId("email")} className={isPage ? undefined : canvasLabelClass}>
           Email Address
         </label>
         <input
-          id="contact-email"
+          id={fieldId("email")}
           name="email"
           type="email"
           value={email}
@@ -170,11 +200,11 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
       </div>
 
       <div className={isPage ? "tgt-contact-page-field" : undefined}>
-        <label htmlFor="contact-phone" className={isPage ? undefined : canvasLabelClass}>
+        <label htmlFor={fieldId("phone")} className={isPage ? undefined : canvasLabelClass}>
           Phone Number
         </label>
         <input
-          id="contact-phone"
+          id={fieldId("phone")}
           name="phone"
           type="tel"
           value={phone}
@@ -191,121 +221,164 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
         />
       </div>
 
-      <div className={isPage ? "tgt-contact-page-field" : undefined}>
-        <label htmlFor="contact-position" className={isPage ? undefined : canvasLabelClass}>
-          Position Applying For:
-        </label>
-        <div className={isPage ? "tgt-contact-page-select-wrap" : "relative"}>
-          <select
-            id="contact-position"
-            name="position"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            className={
-              isPage
-                ? errors.position
-                  ? "tgt-contact-page-input-error"
-                  : undefined
-                : `${canvasSelectClass}${errors.position ? " border-[#ff272f]" : ""}`
-            }
-          >
-            {POSITIONS.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <span className="tgt-contact-page-select-arrow" aria-hidden>
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-              <path
-                d="M1 1.5L6 6.5L11 1.5"
-                stroke="#F9FAFB"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </div>
-      </div>
-
-      <div className={isPage ? "tgt-contact-page-field" : undefined}>
-        <input
-          ref={fileInputRef}
-          id="contact-resume"
-          name="resume"
-          type="file"
-          accept=".pdf,application/pdf"
-          className="sr-only"
-          onChange={(e) => {
-            const file = e.target.files?.[0] ?? null;
-            if (file && !isPdfResume(file)) {
-              setResume(null);
-              if (fileInputRef.current) fileInputRef.current.value = "";
-              setErrors((prev) => ({
-                ...prev,
-                resume: "Only PDF files are allowed.",
-              }));
-              return;
-            }
-            setResume(file);
-            setErrors((prev) => ({ ...prev, resume: undefined }));
-          }}
-        />
-
-        {resume ? (
-          <div className={isPage ? "tgt-contact-page-file tgt-contact-page-file--filled" : "flex items-center gap-4 rounded-[10px] border border-solid border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.06)] px-4 py-3"}>
-            <span className="flex h-[24px] w-[21px] shrink-0 items-center justify-center">
-              <span className="-scale-y-100 flex-none">
-                <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
-              </span>
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="truncate font-secondary text-[16px] font-medium leading-[1.3] text-[#f9fafb]" title={resume.name}>
-                {resume.name}
-              </p>
-              <p className="mt-1 font-secondary text-[13px] font-normal text-[rgba(255,255,255,0.55)]">
-                {formatFileSize(resume.size)}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={clearResume}
-              aria-label="Remove file"
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-secondary text-[20px] leading-none text-[rgba(255,255,255,0.65)] transition hover:bg-[rgba(255,255,255,0.1)] hover:text-[#f9fafb]"
-            >
-              x
-            </button>
-          </div>
-        ) : (
-          <label
-            htmlFor="contact-resume"
-            className={
-              isPage
-                ? "tgt-contact-page-file"
-                : "flex cursor-pointer items-center gap-4 rounded-[10px] border border-dashed border-[rgba(255,255,255,0.28)] px-4 py-3 transition hover:border-[rgba(255,255,255,0.45)] hover:bg-[rgba(255,255,255,0.04)]"
-            }
-          >
-            <span className="flex h-[24px] w-[21px] shrink-0 items-center justify-center">
-              <span className="-scale-y-100 flex-none">
-                <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
-              </span>
-            </span>
-            <span className="font-secondary text-[18px] font-normal leading-[1.4] text-[#f9fafb]">
-              Attach your resume
-            </span>
-            <span className="ml-auto font-secondary text-[13px] text-[rgba(255,255,255,0.45)]">
-              PDF only · max 5MB
-            </span>
+      {isInquiry ? (
+        <div className={isPage ? "tgt-contact-page-field" : undefined}>
+          <label htmlFor={fieldId("message")} className={isPage ? undefined : canvasLabelClass}>
+            Message
           </label>
-        )}
+          <textarea
+            id={fieldId("message")}
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Write your message"
+            rows={4}
+            className={
+              isPage
+                ? `tgt-contact-page-textarea${errors.message ? " tgt-contact-page-input-error" : ""}`
+                : `${canvasTextareaClass}${errors.message ? " border-[#ff272f]" : ""}`
+            }
+          />
+          {errors.message ? (
+            <p className={isPage ? "tgt-contact-page-error" : "mt-2 font-secondary text-[13px] text-[#ff272f]"}>
+              {errors.message}
+            </p>
+          ) : null}
+        </div>
+      ) : (
+        <>
+          <div className={isPage ? "tgt-contact-page-field" : undefined}>
+            <label htmlFor={fieldId("position")} className={isPage ? undefined : canvasLabelClass}>
+              Position Applying For:
+            </label>
+            <div className={isPage ? "tgt-contact-page-select-wrap" : "relative"}>
+              <select
+                id={fieldId("position")}
+                name="position"
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                className={
+                  isPage
+                    ? errors.position
+                      ? "tgt-contact-page-input-error"
+                      : undefined
+                    : `${canvasSelectClass}${errors.position ? " border-[#ff272f]" : ""}`
+                }
+              >
+                {POSITIONS.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
+              <span className="tgt-contact-page-select-arrow" aria-hidden>
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                  <path
+                    d="M1 1.5L6 6.5L11 1.5"
+                    stroke="#F9FAFB"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
 
-        {errors.resume ? (
-          <p className={isPage ? "tgt-contact-page-error" : "mt-2 font-secondary text-[13px] text-[#ff272f]"}>
-            {errors.resume}
-          </p>
-        ) : null}
-      </div>
+          <div className={isPage ? "tgt-contact-page-field" : undefined}>
+            <input
+              ref={fileInputRef}
+              id={fieldId("resume")}
+              name="resume"
+              type="file"
+              accept=".pdf,application/pdf"
+              className="sr-only"
+              onChange={(e) => {
+                const file = e.target.files?.[0] ?? null;
+                if (file && !isPdfResume(file)) {
+                  setResume(null);
+                  if (fileInputRef.current) fileInputRef.current.value = "";
+                  setErrors((prev) => ({
+                    ...prev,
+                    resume: "Only PDF files are allowed.",
+                  }));
+                  return;
+                }
+                setResume(file);
+                setErrors((prev) => ({ ...prev, resume: undefined }));
+              }}
+            />
+
+            {resume ? (
+              <div
+                className={
+                  isPage
+                    ? "tgt-contact-page-file tgt-contact-page-file--filled"
+                    : "flex items-center gap-4 rounded-[10px] border border-solid border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.06)] px-4 py-3"
+                }
+              >
+                <span className="flex h-[24px] w-[21px] shrink-0 items-center justify-center">
+                  <span className="-scale-y-100 flex-none">
+                    <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
+                  </span>
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p
+                    className="truncate font-secondary text-[16px] font-medium leading-[1.3] text-[#f9fafb]"
+                    title={resume.name}
+                  >
+                    {resume.name}
+                  </p>
+                  <p className="mt-1 font-secondary text-[13px] font-normal text-[rgba(255,255,255,0.55)]">
+                    {formatFileSize(resume.size)}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={clearResume}
+                  aria-label="Remove file"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-secondary text-[20px] leading-none text-[rgba(255,255,255,0.65)] transition hover:bg-[rgba(255,255,255,0.1)] hover:text-[#f9fafb]"
+                >
+                  ×
+                </button>
+              </div>
+            ) : (
+              <label
+                htmlFor={fieldId("resume")}
+                className={
+                  isPage
+                    ? "tgt-contact-page-file"
+                    : "relative z-[2] flex cursor-pointer items-center gap-4 rounded-[10px] border border-dashed border-[rgba(255,255,255,0.28)] px-4 py-3 transition hover:border-[rgba(255,255,255,0.45)] hover:bg-[rgba(255,255,255,0.04)]"
+                }
+              >
+                <span className="flex h-[24px] w-[21px] shrink-0 items-center justify-center">
+                  <span className="-scale-y-100 flex-none">
+                    <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
+                  </span>
+                </span>
+                <span className="font-secondary text-[18px] font-normal leading-[1.4] text-[#f9fafb]">
+                  Attach your resume
+                </span>
+                <span className="ml-auto font-secondary text-[13px] text-[rgba(255,255,255,0.45)]">
+                  PDF only · max 5MB
+                </span>
+              </label>
+            )}
+
+            {errors.resume ? (
+              <p
+                className={
+                  isPage
+                    ? "tgt-contact-page-error"
+                    : "mt-2 font-secondary text-[13px] text-[#ff272f]"
+                }
+              >
+                {errors.resume}
+              </p>
+            ) : null}
+          </div>
+        </>
+      )}
     </>
   );
 
@@ -327,18 +400,16 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
         </div>
       )}
 
-      {status ? (
+      {errorMessage ? (
         <p
           className={
             isPage
-              ? status.type === "success"
-                ? "tgt-contact-page-success"
-                : "tgt-contact-page-error"
-              : `font-secondary text-[14px] ${status.type === "success" ? "text-[#86efac]" : "text-[#ff272f]"}`
+              ? "tgt-contact-page-error"
+              : "font-secondary text-[14px] text-[#ff272f]"
           }
-          role="status"
+          role="alert"
         >
-          {status.message}
+          {errorMessage}
         </p>
       ) : null}
 
@@ -359,6 +430,17 @@ export default function ContactForm({ layout = "canvas" }: ContactFormProps) {
       >
         {submitting ? "Submitting..." : "Submit Message"}
       </button>
+
+      <ContactThankYouModal
+        open={thankYouOpen}
+        onClose={closeThankYou}
+        title={isInquiry ? "Message sent" : "Application received"}
+        description={
+          isInquiry
+            ? "Thanks for reaching out. Our team will review your message and get back to you shortly."
+            : "Thanks for applying. We’ve received your details and will review your profile soon."
+        }
+      />
     </form>
   );
 }

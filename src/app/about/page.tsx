@@ -22,7 +22,7 @@ export default function AboutPage() {
         <AboutSection />
       </div>
       <div className="site-page-section relative min-h-[202px] w-full tgt-reveal-left">
-        <BrandArea />
+        <BrandArea variant="page" />
       </div>
     </SitePageLayout>
   );
