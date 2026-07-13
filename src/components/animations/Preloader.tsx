@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
+import { LOGO_MARK, LOGO_TYPE } from "@/lib/brand";
 
 export default function Preloader() {
   const [hidden, setHidden] = useState(false);
@@ -57,8 +58,22 @@ export default function Preloader() {
 
   return (
     <div className="tgt-preloader">
-      <div className="tgt-preloader-name">
-        TGT <span>NEXUS</span>
+      <div className="tgt-preloader-brand">
+        <img
+          className="tgt-preloader-logo-mark"
+          src={LOGO_MARK}
+          alt=""
+          width={40}
+          height={40}
+          aria-hidden
+        />
+        <img
+          className="tgt-preloader-logo-type"
+          src={LOGO_TYPE}
+          alt="TGT Nexus"
+          width={160}
+          height={26}
+        />
       </div>
       <div className="tgt-preloader-bars">
         {Array.from({ length: 8 }).map((_, i) => (

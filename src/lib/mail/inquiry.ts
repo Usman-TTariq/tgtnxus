@@ -1,10 +1,18 @@
 import nodemailer from "nodemailer";
 
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "info@tgtnexus.com";
-const CONTACT_FROM_EMAIL =
-  process.env.CONTACT_FROM_EMAIL ??
-  process.env.SMTP_FROM ??
-  `"TGT Nexus" <${process.env.SMTP_USER ?? "noreply@tgtnexus.com"}>`;
+
+/**
+ * Gmail / Workspace: authenticate with the *real* mailbox (SMTP_USER).
+ * info@ can be a receive-only alias — put that in CONTACT_TO_EMAIL only.
+ * CONTACT_FROM_EMAIL may use the alias only if “Send mail as” is enabled for it;
+ * otherwise From must match SMTP_USER.
+ */
+function getFromAddress(smtpUser: string) {
+  const configured = process.env.CONTACT_FROM_EMAIL?.trim() || process.env.SMTP_FROM?.trim();
+  if (configured) return configured;
+  return `"TGT Nexus" <${smtpUser}>`;
+}
 
 export type InquiryMailPayload = {
   fullName: string;
@@ -82,7 +90,7 @@ export async function sendInquiryEmailWithNodemailer(payload: InquiryMailPayload
 
   try {
     await transporter.sendMail({
-      from: CONTACT_FROM_EMAIL,
+      from: getFromAddress(smtp.user),
       to: CONTACT_TO_EMAIL,
       replyTo: payload.email,
       subject: `Contact form — ${payload.fullName}`,

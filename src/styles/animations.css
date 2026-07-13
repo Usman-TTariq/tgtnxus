@@ -476,6 +476,11 @@
   position: fixed;
   inset: 0;
   z-index: 99999;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  padding: 24px 16px;
+  overflow: hidden;
   background: #060606;
   display: flex;
   flex-direction: column;
@@ -490,27 +495,44 @@
   visibility: hidden;
 }
 
-.tgt-preloader-name {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  font-size: 48px;
-  color: #fff;
-  letter-spacing: 0.2em;
+.tgt-preloader-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: min(280px, 100%);
   margin-bottom: 40px;
 }
 
-.tgt-preloader-name span {
-  color: #ff0d16;
+.tgt-preloader-logo-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.tgt-preloader-logo-type {
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 160px;
+  height: auto;
+  min-width: 0;
+  object-fit: contain;
+  /* Black wordmark → white on dark bg; red mark stays as-is */
+  filter: brightness(0) invert(1);
 }
 
 .tgt-preloader-bars {
   display: flex;
   gap: 8px;
-  width: 280px;
+  width: 100%;
+  max-width: min(280px, 100%);
 }
 
 .tgt-preloader-bar {
   flex: 1;
+  min-width: 0;
   height: 4px;
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
@@ -520,4 +542,59 @@
   height: 100%;
   width: 0;
   background: #ff0d16;
+}
+
+@media (max-width: 480px) {
+  .tgt-preloader {
+    padding: 20px 14px;
+  }
+
+  .tgt-preloader-brand {
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .tgt-preloader-logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tgt-preloader-logo-type {
+    max-width: 132px;
+  }
+
+  .tgt-preloader-bars {
+    gap: 5px;
+  }
+}
+
+/* Narrow phones (≤334) — keep logo + bars inside viewport */
+@media (max-width: 334px) {
+  .tgt-preloader {
+    padding: 16px 12px;
+  }
+
+  .tgt-preloader-brand {
+    gap: 8px;
+    margin-bottom: 22px;
+    max-width: 100%;
+  }
+
+  .tgt-preloader-logo-mark {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tgt-preloader-logo-type {
+    max-width: min(118px, calc(100% - 36px));
+  }
+
+  .tgt-preloader-bars {
+    gap: 4px;
+    max-width: 100%;
+  }
+
+  .tgt-preloader-bar {
+    height: 3px;
+  }
 }

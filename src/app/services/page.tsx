@@ -3,7 +3,6 @@ import SitePageLayout from "@/components/layout/SitePageLayout";
 import ServicesHero from "@/components/home/ServicesHero";
 import ServicesSectionMobile from "@/components/home/ServicesSectionMobile";
 import ServicesGrid from "@/components/home/ServicesGrid";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: "Services | TGT Nexus",
@@ -22,9 +21,6 @@ export default function ServicesPage() {
       </div>
       <div className="site-page-section tgt-services-grid-section relative min-h-[665px] w-full tgt-reveal-stagger max-md:hidden">
         <ServicesGrid />
-      </div>
-      <div className="site-page-section relative min-h-[798px] w-full tgt-reveal">
-        <TestimonialsSection />
       </div>
     </SitePageLayout>
   );

@@ -6,9 +6,7 @@ const SHAPE_TR = "/agenio/assets/images/team/shape-top-right.svg";
 const TEAM_IMAGE = (file: string) => `/assets/images/${file}`;
 
 const TEAM_SOCIAL = [
-  { label: "X", href: "#", icon: "/agenio/assets/images/team/twitter.svg" },
   { label: "LinkedIn", href: "#", icon: "/agenio/assets/images/team/linkedin.svg" },
-  { label: "GitHub", href: "#", icon: "/agenio/assets/images/team/github.svg" },
 ] as const;
 
 const leaders = [

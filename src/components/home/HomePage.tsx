@@ -9,7 +9,6 @@ import ServicesHeader from "./ServicesHeader";
 import ServicesGrid from "./ServicesGrid";
 import VisionProject from "../sections/VisionProject";
 import MarqueeSection from "./MarqueeSection";
-import TestimonialsSection from "./TestimonialsSection";
 import Preloader from "../animations/Preloader";
 import SiteAnimations from "../animations/SiteAnimations";
 
@@ -19,7 +18,7 @@ export default function HomePage() {
       <Preloader />
       <SiteAnimations />
     <div className="responsive-page-wrapper bg-[#f3f4f6]">
-    <div className="responsive-page-inner relative w-[1920px] h-[8346px] bg-[#f3f4f6] overflow-x-clip overflow-y-visible shrink-0">
+    <div className="responsive-page-inner relative w-[1920px] h-[7516px] bg-[#f3f4f6] overflow-x-clip overflow-y-visible shrink-0">
       <div className="tgt-home-slot tgt-home-slot--header absolute top-0 left-0 w-full min-h-[130px] z-[60]">
         <SiteHeader />
       </div>
@@ -44,16 +43,13 @@ export default function HomePage() {
       <div className="tgt-home-slot tgt-home-slot--marquee marquee-slot absolute top-[5020px] left-0 w-full h-[363px] z-[2] isolate bg-[#f3f4f6]">
         <MarqueeSection />
       </div>
-      <div className="tgt-home-slot tgt-home-slot--testimonials absolute top-[5416px] left-[160px] w-[1600px] h-[798px] z-[2] overflow-hidden">
-        <TestimonialsSection />
-      </div>
-      <div id="careers" className="tgt-home-slot tgt-home-slot--careers absolute top-[6246px] left-[160px] w-[1600px] h-[614px] z-[3] overflow-hidden">
+      <div id="careers" className="tgt-home-slot tgt-home-slot--careers absolute top-[5416px] left-[160px] w-[1600px] h-[614px] z-[3] overflow-hidden">
         <SiteCtaSection />
       </div>
-      <div className="tgt-home-slot tgt-home-slot--contact absolute top-[6892px] left-[160px] w-[1760px] h-[703px] tgt-reveal">
+      <div className="tgt-home-slot tgt-home-slot--contact absolute top-[6062px] left-[160px] w-[1760px] h-[703px] tgt-reveal">
         <SiteContactSection />
       </div>
-      <div className="tgt-home-slot tgt-home-slot--footer absolute top-[7618px] left-[160px] w-[1600px] min-h-[704px] tgt-reveal">
+      <div className="tgt-home-slot tgt-home-slot--footer absolute top-[6788px] left-[160px] w-[1600px] min-h-[704px] tgt-reveal">
         <SiteFooter />
       </div>
     </div>
