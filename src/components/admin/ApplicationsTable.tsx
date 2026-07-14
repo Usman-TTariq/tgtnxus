@@ -15,6 +15,14 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
+function toDisplayRows(applications: ApplicationRow[], compact?: boolean) {
+  const source = compact ? applications.slice(-8) : applications;
+  return source.map((row, index) => ({
+    ...row,
+    serial_no: index + 1,
+  }));
+}
+
 type Props = {
   applications: ApplicationRow[];
   compact?: boolean;
@@ -24,16 +32,18 @@ export default function ApplicationsTable({
   applications,
   compact,
 }: Props) {
-  const [rows, setRows] = useState(() =>
-    compact ? applications.slice(-8) : applications
-  );
+  const [rows, setRows] = useState(() => toDisplayRows(applications, compact));
 
   useEffect(() => {
-    setRows(compact ? applications.slice(-8) : applications);
+    setRows(toDisplayRows(applications, compact));
   }, [applications, compact]);
 
   function handleDeleted(id: string) {
-    setRows((prev) => prev.filter((row) => row.id !== id));
+    setRows((prev) =>
+      prev
+        .filter((row) => row.id !== id)
+        .map((row, index) => ({ ...row, serial_no: index + 1 }))
+    );
   }
 
   if (!rows.length) {
@@ -49,7 +59,10 @@ export default function ApplicationsTable({
 
   return (
     <div className="overflow-hidden rounded-xl border border-[#e8e0da] bg-white shadow-sm">
-      <div className="overflow-x-auto">
+      <p className="border-b border-[#f0ebe6] px-4 py-2 font-secondary text-xs text-[#9ca3af] lg:hidden">
+        Swipe sideways to see all columns
+      </p>
+      <div className="overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch]">
         <table className="w-full min-w-[960px] border-collapse text-left">
           <thead>
             <tr className="border-b border-[#ece7e2] bg-[#faf8f6]">
@@ -97,7 +110,7 @@ export default function ApplicationsTable({
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {rows.map((row, index) => (
               <tr
                 key={row.id}
                 className="border-b border-[#f0ebe6] last:border-b-0 hover:bg-[#fdfcfb]"
@@ -109,7 +122,7 @@ export default function ApplicationsTable({
                   />
                 </td>
                 <td className="px-4 py-3 font-secondary text-sm font-semibold text-[#111]">
-                  {row.serial_no}
+                  {index + 1}
                 </td>
                 <td className="px-4 py-3 font-mono text-xs text-[#374151]">
                   {row.application_id}

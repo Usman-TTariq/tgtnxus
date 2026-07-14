@@ -19,15 +19,15 @@ export default async function AdminDashboardPage() {
   const stats = getApplicationStats(applications);
 
   return (
-    <div className="px-8 py-8">
-      <header className="mb-8">
+    <div className="px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+      <header className="mb-6 sm:mb-8">
         <p className="font-primary text-xs font-semibold uppercase tracking-[0.2em] text-[#6b7280]">
           Admin
         </p>
-        <h1 className="mt-1 font-secondary text-3xl font-semibold text-[#111]">
+        <h1 className="mt-1 font-secondary text-2xl font-semibold text-[#111] sm:text-3xl">
           Dashboard
         </h1>
-        <p className="mt-2 max-w-2xl font-secondary text-sm text-[#6b7280]">
+        <p className="mt-2 max-w-2xl font-secondary text-sm leading-relaxed text-[#6b7280]">
           Overview of career applications submitted from the home contact form.
         </p>
       </header>
@@ -49,7 +49,7 @@ export default async function AdminDashboardPage() {
         <StatCard label="Saved applicants" value={stats.saved} />
         <StatCard
           label="Latest serial no"
-          value={applications.at(-1)?.serial_no ?? "—"}
+          value={applications.length ? applications.length : "—"}
         />
       </div>
 

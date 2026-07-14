@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
+import { resequenceApplicationSerials } from "@/lib/applications";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getResumeStoragePath } from "@/lib/supabase/resume-path";
 import { RESUME_BUCKET } from "@/lib/supabase/storage";
@@ -68,6 +69,12 @@ export async function DELETE(_request: Request, context: RouteContext) {
         { error: deleteError.message || "Failed to delete application." },
         { status: 500 }
       );
+    }
+
+    try {
+      await resequenceApplicationSerials();
+    } catch (resequenceError) {
+      console.warn("[admin/applications/delete] resequence", resequenceError);
     }
 
     return NextResponse.json({ ok: true, id });

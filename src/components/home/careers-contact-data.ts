@@ -22,8 +22,8 @@ export const CONTACT_INFO = {
     { label: "careers@tgtnexus.com", href: "mailto:careers@tgtnexus.com" },
   ],
   phone: {
-    label: "+92 123 4567 890",
-    href: "tel:+921234567890",
+    label: "0335 2631218",
+    href: "tel:+923352631218",
   },
   city: "Karachi",
   shortAddress: "Plot # 176-A, SMCHS, Karachi",
