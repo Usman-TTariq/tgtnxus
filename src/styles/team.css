@@ -275,6 +275,15 @@
   transition: var(--transition);
 }
 
+/* Per-person framing (close crops need softer position, no extra zoom) */
+.tgt-team-card-photo--usman {
+  object-position: center 32%;
+}
+
+.tgt-team-card-photo--junaid {
+  object-position: center 28%;
+}
+
 .tgt-team-card--placeholder .tgt-team-card-media {
   display: flex;
   align-items: center;
@@ -806,10 +815,18 @@
 
 @media (min-width: 768px) and (max-width: 1100px) {
   .tgt-team-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    max-width: none;
-    margin: 0;
+    grid-template-columns: repeat(2, minmax(0, 360px));
+    justify-content: center;
+    gap: 28px 32px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .tgt-team-card {
+    /* Tall portrait cards — stops 2-col layout from cropping faces */
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+    width: 100%;
   }
 
   .tgt-team-card:nth-child(even) {
@@ -818,7 +835,32 @@
 
   .tgt-team-card:nth-child(4n + 2),
   .tgt-team-card:nth-child(4n) {
-    margin-top: 24px;
+    margin-top: 28px;
+  }
+
+  .tgt-team-card-photo {
+    object-fit: cover;
+    object-position: center top;
+    transform: none;
+  }
+
+  .tgt-team-card:hover .tgt-team-card-photo,
+  .tgt-team-card:focus-within .tgt-team-card-photo {
+    transform: scale(1.03);
+  }
+
+  .tgt-team-card-photo--usman {
+    object-position: center 14%;
+  }
+
+  .tgt-team-card-photo--junaid {
+    object-position: center 18%;
+  }
+
+  .tgt-team-card-info {
+    bottom: 14px;
+    width: calc(100% - 28px);
+    padding: 14px 16px 16px;
   }
 }
 

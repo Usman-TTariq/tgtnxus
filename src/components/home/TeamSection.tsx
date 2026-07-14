@@ -5,31 +5,37 @@ import TeamTalentCta from "./TeamTalentCta";
 const SHAPE_TR = "/agenio/assets/images/team/shape-top-right.svg";
 const TEAM_IMAGE = (file: string) => `/assets/images/${file}`;
 
-const TEAM_SOCIAL = [
-  { label: "LinkedIn", href: "#", icon: "/agenio/assets/images/team/linkedin.svg" },
-] as const;
+const LINKEDIN_ICON = "/agenio/assets/images/team/linkedin.svg";
 
 const leaders = [
-  {    name: "Usman Rogatia",
+  {
+    name: "Usman Rogatia",
     role: "CEO",
     variant: "photo" as const,
-    image: TEAM_IMAGE("usman-ragatia.png"),
+    image: TEAM_IMAGE("usman-ragatia-img.png"),
+    photoClass: "tgt-team-card-photo--usman",
+    linkedin: "https://www.linkedin.com/in/usman-rogatia-49727a70/",
   },
   {
     name: "Ibad Alvi",
     role: "Managing Director",
     variant: "placeholder" as const,
+    linkedin: "https://www.linkedin.com/in/ibad-alvi-92711b96/",
   },
   {
     name: "Tariq Fattani",
     role: "Managing Director",
     variant: "photo" as const,
     image: TEAM_IMAGE("tariq-fattani.png"),
+    linkedin: "#", // TODO: add LinkedIn URL
   },
   {
     name: "Junaid Hanif",
     role: "Managing Director",
-    variant: "placeholder" as const,
+    variant: "photo" as const,
+    image: TEAM_IMAGE("junaid-hanif.png"),
+    photoClass: "tgt-team-card-photo--junaid",
+    linkedin: "#", // TODO: add LinkedIn URL
   },
 ];
 
@@ -50,12 +56,23 @@ type Leader = (typeof leaders)[number];
 
 function LeaderCard({ name, role, variant, ...rest }: Leader) {
   const image = variant === "photo" ? rest.image : undefined;
+  const photoClass =
+    variant === "photo" && "photoClass" in rest && rest.photoClass
+      ? rest.photoClass
+      : "";
+  const linkedin =
+    "linkedin" in rest && rest.linkedin ? rest.linkedin : "#";
+  const hasLinkedin = Boolean(linkedin && linkedin !== "#");
 
   return (
     <article className={`tgt-team-card tgt-team-card--${variant} tgt-reveal-right`}>
       <div className="tgt-team-card-media">
         {variant === "photo" && image ? (
-          <img src={image} alt={name} className="tgt-team-card-photo" />
+          <img
+            src={image}
+            alt={name}
+            className={`tgt-team-card-photo${photoClass ? ` ${photoClass}` : ""}`}
+          />
         ) : (
           <PersonSilhouette />
         )}
@@ -67,17 +84,22 @@ function LeaderCard({ name, role, variant, ...rest }: Leader) {
         <p className="tgt-team-role">{role}</p>
         <div className="tgt-team-card-social">
           <ul>
-            {TEAM_SOCIAL.map(({ label, href, icon }) => (
-              <li key={label}>
-                <a href={href} aria-label={`${name} on ${label}`}>
-                  <img src={icon} alt="" width={20} height={20} aria-hidden />
-                </a>
-              </li>
-            ))}
+            <li>
+              <a
+                href={linkedin}
+                {...(hasLinkedin
+                  ? { target: "_blank" as const, rel: "noopener noreferrer" }
+                  : {})}
+                aria-label={`${name} on LinkedIn`}
+              >
+                <img src={LINKEDIN_ICON} alt="" width={20} height={20} aria-hidden />
+              </a>
+            </li>
           </ul>
         </div>
       </div>
-    </article>  );
+    </article>
+  );
 }
 
 export default function TeamSection() {
