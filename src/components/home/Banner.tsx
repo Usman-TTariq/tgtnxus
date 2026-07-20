@@ -1,17 +1,10 @@
-const imgRectangle39989 = "https://www.figma.com/api/mcp/asset/d533699e-53a0-4ee3-bbb0-08da1e5bd547";
-const imgBgShapeSvg = "https://www.figma.com/api/mcp/asset/76bb8249-6158-48d5-8646-a8b26eff86a5";
-const imgGroup = "https://www.figma.com/api/mcp/asset/99409c77-b415-45b9-9851-bcdd9c1679fd";
-const imgGroup1 = "https://www.figma.com/api/mcp/asset/02bac204-fb07-4ab5-a1c3-81c7cbf3d4b6";
-const imgGroup2 = "https://www.figma.com/api/mcp/asset/c9771199-e712-400e-af14-1a19e227a936";
-const imgGroup3 = "https://www.figma.com/api/mcp/asset/af922b98-1db3-4dfa-a54e-5b57c743d918";
-const imgGroup4 = "https://www.figma.com/api/mcp/asset/5ccffeab-efe6-42c8-a976-c4438bd8c148";
-const imgGroup5 = "https://www.figma.com/api/mcp/asset/dfc8f7d1-0fbe-4cff-8e12-158a4c840453";
-const imgGroup6 = "https://www.figma.com/api/mcp/asset/a12c10f7-b326-418e-8ad5-5c8b580d2530";
-const imgShape01Svg = "https://www.figma.com/api/mcp/asset/a27c4b78-44a3-4280-9739-3603d17ea932";
-const imgVector = "https://www.figma.com/api/mcp/asset/927afac7-f9f2-4f70-a8a8-b389f7c69236";
-const imgVector1 = "https://www.figma.com/api/mcp/asset/00200bfe-e156-4ea4-a026-529dbd566a86";
-const imgVector2 = "https://www.figma.com/api/mcp/asset/ab409430-cad2-4a10-86ab-0f5f4cddb11e";
-const imgVector3 = "https://www.figma.com/api/mcp/asset/4528c06c-bef0-4098-9fb0-b67ca1452993";
+/* Local assets — Figma MCP URLs expire and are not publicly reachable */
+const CENTER_LOGO = "/assets/images/center-logo.png";
+const HERO_BG = "/assets/images/home-hero-bg.png";
+const imgGroup = "/agenio/assets/images/banner/icon/arrow-left.svg";
+const imgGroup1 = "/agenio/assets/images/banner/icon/arrow-left.svg";
+const imgGroup2 = "/agenio/assets/images/banner/icon/arrow-right.svg";
+const imgGroup3 = "/agenio/assets/images/banner/icon/arrow-right.svg";
 
 import BannerWordRotator from "./BannerWordRotator";
 import BannerCtaButton from "./BannerCtaButton";
@@ -23,15 +16,17 @@ export default function Banner() {
       <BannerMobile />
       <div className="tgt-banner-section tgt-banner-desktop hidden md:block border-[rgba(3,7,18,0.1)] border-b border-solid border-t relative size-full" data-node-id="3:2935" data-name="Section - wpr banner area start">
       <div className="tgt-banner-inner absolute border-[rgba(3,7,18,0.1)] border-l border-r border-solid h-[800px] left-[160px] overflow-clip right-[160px] top-0" data-node-id="3:2936" data-name="Border">
-        <div className="tgt-banner-bg absolute inset-[0_192px_0_0] overflow-clip" data-node-id="3:2937" data-name="bg-shape.svg">
-          <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[798.864px] left-1/2 top-1/2 w-[1406px]" data-node-id="3:2938" data-name="bg-shape.svg">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBgShapeSvg} />
-          </div>
+        <div className="tgt-banner-bg absolute inset-0 z-0 overflow-hidden" data-name="hero-bg">
+          <img
+            alt=""
+            className="absolute inset-0"
+            src={HERO_BG}
+          />
         </div>
-        <div className="tgt-banner-spine -translate-x-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-dashed border-l border-r bottom-[70%] left-[calc(50%-60px)] top-0 w-[100px]" data-node-id="3:2940" data-name="Background+Border" />
-        <div className="tgt-hero-stack absolute h-[303px] left-0 right-[-1px] top-[172px]" data-node-id="3:2941" data-name="Heading 1">
+        <div className="tgt-banner-spine -translate-x-1/2 absolute z-[1] bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-dashed border-l border-r bottom-[70%] left-[calc(50%-60px)] top-0 w-[100px]" data-node-id="3:2940" data-name="Background+Border" />
+        <div className="tgt-hero-stack absolute z-[1] h-[303px] left-0 right-[-1px] top-[172px]" data-node-id="3:2941" data-name="Heading 1">
           <div className="tgt-hero-icon -translate-x-1/2 -translate-y-1/2 absolute left-[calc(50%-57.5px)] rounded-[21px] size-[304px] top-[calc(50%-0.5px)] tgt-animate-scale-in" data-node-id="3:3438">
-            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[21px] size-full" src={imgRectangle39989} />
+            <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[21px] size-full" src={CENTER_LOGO} />
           </div>
           <div className="tgt-hero-word-right -translate-y-1/2 absolute bg-[#f3f4f6] border-[rgba(67,67,67,0.5)] border-b border-dashed border-t h-[201px] left-[894px] right-0 top-1/2 tgt-animate-fade-right" data-node-id="3:2943" data-name="Background+Border">
             <BannerWordRotator className="tgt-hero-word-rotator-slot" />
@@ -284,43 +279,10 @@ export default function Banner() {
             <div className="absolute bg-[#030712] bottom-[-3.04px] right-[-3px] size-[6px]" data-node-id="3:3304" data-name="Background" />
           </div>
         </div>
-        <div className="tgt-banner-desc -translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col justify-center left-[calc(50%-57.5px)] text-[#030712] text-center top-[572px] w-[665px] tgt-animate-fade-up" data-node-id="3:3305">
+        <div className="tgt-banner-desc -translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute z-[1] flex flex-col justify-center left-[calc(50%-57.5px)] text-[#030712] text-center top-[572px] w-[665px] tgt-animate-fade-up" data-node-id="3:3305">
           <p className="leading-[24px]">At TGT Nexus, we are committed to helping businesses thrive in the digital age. Our expert team leverages cutting-edge technologies to drive your growth, providing tailored solutions designed to meet your unique business needs. Whether it’s strategic guidance or round-the-clock support, we’re here to ensure your success at every step of the journey.</p>
         </div>
-        <BannerCtaButton className="-translate-x-1/2 absolute left-1/2 top-[664px] tgt-animate-fade-up" />
-        <div className="tgt-banner-decor absolute h-[223px] left-0 overflow-clip top-0 w-[261px] tgt-animate-shape-left" data-node-id="3:3407" data-name="shape-01.svg">
-          <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[223px] left-1/2 top-1/2 w-[261px]" data-node-id="3:3408" data-name="shape-01.svg">
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgShape01Svg} />
-          </div>
-        </div>
-        <div className="tgt-banner-decor absolute flex inset-[86.43%_calc(10.1%-0.8px)_0.11%_calc(76.44%+0.53px)] items-center justify-center" data-node-id="3:3415" style={{ containerType: "size" }}>
-          <div className="flex-none h-[100cqh] rotate-180 w-[100cqw]">
-            <div className="relative size-full" data-name="Vector">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector} />
-            </div>
-          </div>
-        </div>
-        <div className="tgt-banner-decor absolute flex inset-[72.96%_calc(6.73%-0.87px)_13.57%_calc(86.54%+0.73px)] items-center justify-center" data-node-id="3:3416" style={{ containerType: "size" }}>
-          <div className="flex-none h-[100cqh] rotate-180 w-[100cqw]">
-            <div className="relative size-full" data-name="Vector">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector1} />
-            </div>
-          </div>
-        </div>
-        <div className="tgt-banner-decor absolute flex inset-[86.43%_-1px_0.11%_calc(93.27%+0.87px)] items-center justify-center" data-node-id="3:3417" style={{ containerType: "size" }}>
-          <div className="flex-none h-[100cqh] rotate-180 w-[100cqw]">
-            <div className="relative size-full" data-name="Vector">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector2} />
-            </div>
-          </div>
-        </div>
-        <div className="tgt-banner-decor absolute flex inset-[59.5%_-1px_27.04%_calc(93.27%+0.87px)] items-center justify-center" data-node-id="3:3418" style={{ containerType: "size" }}>
-          <div className="flex-none h-[100cqh] rotate-180 w-[100cqw]">
-            <div className="relative size-full" data-name="Vector">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgVector3} />
-            </div>
-          </div>
-        </div>
+        <BannerCtaButton className="-translate-x-1/2 absolute left-1/2 top-[664px] z-[1] tgt-animate-fade-up" />
       </div>
     </div>
     </>

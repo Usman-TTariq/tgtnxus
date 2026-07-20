@@ -3,8 +3,7 @@
 import { FormEvent, useCallback, useRef, useState } from "react";
 import ContactThankYouModal from "./ContactThankYouModal";
 
-const imgIcon =
-  "https://www.figma.com/api/mcp/asset/8ee10799-1f4a-42ca-ab80-b5d792b8ede9";
+const imgIcon = "/assets/images/attach-resume.svg";
 
 export const POSITIONS = [
   "Sales Development Representative",
@@ -318,9 +317,7 @@ export default function ContactForm({
                 }
               >
                 <span className="flex h-[24px] w-[21px] shrink-0 items-center justify-center">
-                  <span className="-scale-y-100 flex-none">
-                    <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
-                  </span>
+                  <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
                 </span>
                 <div className="min-w-0 flex-1">
                   <p
@@ -352,9 +349,7 @@ export default function ContactForm({
                 }
               >
                 <span className="flex h-[24px] w-[21px] shrink-0 items-center justify-center">
-                  <span className="-scale-y-100 flex-none">
-                    <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
-                  </span>
+                  <img alt="" className="block h-[23.411px] w-[20.485px]" src={imgIcon} />
                 </span>
                 <span className="font-secondary text-[18px] font-normal leading-[1.4] text-[#f9fafb]">
                   Attach your resume

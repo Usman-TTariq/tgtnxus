@@ -40,5 +40,4 @@ export const SERVICES = [
   },
 ] as const;
 
-export const SERVICE_ARROW_ICON =
-  "https://www.figma.com/api/mcp/asset/33e21105-cc53-4314-b119-2963bad866a6";
+export const SERVICE_ARROW_ICON = "/assets/images/service-arrow.svg";

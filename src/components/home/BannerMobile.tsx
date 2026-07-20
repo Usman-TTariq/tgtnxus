@@ -3,8 +3,7 @@
 import BannerWordRotator from "./BannerWordRotator";
 import BannerCtaButton from "./BannerCtaButton";
 
-const HERO_IMAGE =
-  "https://www.figma.com/api/mcp/asset/d533699e-53a0-4ee3-bbb0-08da1e5bd547";
+const HERO_IMAGE = "/assets/images/center-logo.png";
 
 const HERO_DESC =
   "At TGT Nexus, we help businesses thrive in the digital age with tailored web, design, and marketing solutions built for real growth.";
